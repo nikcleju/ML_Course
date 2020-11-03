@@ -12947,13 +12947,8 @@ ul.typeahead-list  > li > a.pull-right {
 /*# sourceMappingURL=style.min.css.map */
     </style>
 <style type="text/css">
-    pre { line-height: 125%; margin: 0; }
-td.linenos pre { color: #000000; background-color: #f0f0f0; padding: 0 5px 0 5px; }
-span.linenos { color: #000000; background-color: #f0f0f0; padding: 0 5px 0 5px; }
-td.linenos pre.special { color: #000000; background-color: #ffffc0; padding: 0 5px 0 5px; }
-span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px 0 5px; }
-.highlight .hll { background-color: #ffffcc }
-.highlight { background: #f8f8f8; }
+    .highlight .hll { background-color: #ffffcc }
+.highlight  { background: #f8f8f8; }
 .highlight .c { color: #408080; font-style: italic } /* Comment */
 .highlight .err { border: 1px solid #FF0000 } /* Error */
 .highlight .k { color: #008000; font-weight: bold } /* Keyword */
@@ -13105,14 +13100,16 @@ The sigmoid function is also known as the <strong>logistic function</strong>, he
 $$y \approx \frac{1}{1 + e^{- w_1 x_1 - w_2 x_2 - ... - w_N x_N - b}}.$$</p>
 <p>This can be understood as a <strong>sequence of two steps</strong>:</p>
 <ol>
-<li><p>Compute a linear combination $z$ of the inputs:
+<li><p>Compute a <strong>linear combination $z$</strong> of the inputs:
  $$z = w_1 x_1 + w_2 x_2 + ... + w_N x_N + b$$</p>
 </li>
-<li><p>Pass $z$ through the sigmoid function $\sigma(z)$:
+<li><p>Pass $z$ through the <strong>sigmoid</strong> function $\sigma(z)$:
  $$y = \frac{1}{1 + e^{-z}}$$</p>
 </li>
 </ol>
-<p>TODO: make a drawing here of the computational graph.</p>
+<p><img src="img/Neuron2.png" alt="Logistic regression as 1 neuron"></p>
+<p>Both steps can be represented asn one "neuron" like this:</p>
+<p><img src="img/Neuron.png" alt="Logistic regression as 1 neuron"></p>
 
 </div>
 </div>
@@ -13120,21 +13117,20 @@ $$y \approx \frac{1}{1 + e^{- w_1 x_1 - w_2 x_2 - ... - w_N x_N - b}}.$$</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="The-sigmoid-function">The sigmoid function<a class="anchor-link" href="#The-sigmoid-function">&#182;</a></h3><p>Let's take a look at the sigmoid function $\sigma(z)$:</p>
-<p>TODO: put picture here</p>
-<p><strong>Notes</strong>:</p>
+<h3 id="The-sigmoid-function">The sigmoid function<a class="anchor-link" href="#The-sigmoid-function">&#182;</a></h3><p>Let's take a look at the sigmoid function $\sigma{z}$:</p>
+<div>
+<img src="img/Sigmoid.svg" align="center" width="600"/>
+</div><p><strong>Notes</strong>:</p>
 <ul>
 <li>The output value is always between 0 and 1. This makes the result good for modeling <strong>probabilities</strong>, but not good for other types of numeric values.</li>
-<li><p>The sigmoid can be understood as follows:</p>
-<ul>
-<li>when $z$ is much bigger than 0, the result is close to 1</li>
-<li>when $z$ is much smaller than 0, the result is close to 0</li>
-<li><p>when $z$ is around 0, there is a "transition zone" from 0 to 1. In particular, when $z=0$, the output is right at the middle, $\sigma(0) = 0.5$.</p>
+<li>The sigmoid can be understood as follows:<ul>
+<li>when $z$ is much bigger than 0, the result is practically 1</li>
+<li>when $z$ is much smaller than 0, the result is practically 0</li>
+<li>when $z$ is around 0, there is a "transition zone" from 0 to 1. In particular, when $z=0$, the output is right at the middle, $\sigma(0) = 0.5$.</li>
+</ul>
+</li>
+</ul>
 <p>This makes it similar to classification: if $z$ much larger than 0, data belongs to class 1; if $z$ much smaller than 0, data belongs to class 0; $z=0$ is the frontier. Around the frontier, we have less confidence in the classification (a sort of "gray area").</p>
-</li>
-</ul>
-</li>
-</ul>
 
 </div>
 </div>
@@ -13155,24 +13151,16 @@ $$\begin{bmatrix} x_1 &amp; x_2 &amp; \dots &amp; w_N &amp; b \end{bmatrix} \cdo
 <h3 id="Cost-function-(loss-function)">Cost function (loss function)<a class="anchor-link" href="#Cost-function-(loss-function)">&#182;</a></h3><p>Any cost function can be chose (the cost function can always be chosen independent of the model). 
 However, because the outputs are typically understood as <strong>probabilities</strong>, we should use a distance function which is appropriate to probabilities: the cross-entropy (also known as the Kullback-Leibler distance).</p>
 <p>The <strong>cross-entropy</strong> loss function (cost function) for a single value $y$:</p>
-$$L(y, \hat{y}) = - y \log{\hat{y}} - (1-y) \log{(1 - \hat{y})}$$<p>Most of the times, the true value $y$ is either 0 or 1 (e.g. in a  classification: 0 = cat, 1 = dog). In this case the cross-entropy should be understood as:</p>
+$$L(y, \hat{y}) = - y \log{\hat{y}} - (1-y) \log{(1 - \hat{y})}$$<p>Usually the true value $y$ is either 0 or 1 (e.g. in a  classification: 0 = cat, 1 = dog). In this case the cross-entropy should be understood as:</p>
 $$L(y, \hat{y}) = 
 \begin{cases}
 - \log(\hat{y})     = \log{\frac{1}{\hat{y}}}, &amp; \textrm{ when true output is } y = 1; \\
 - \log(1 - \hat{y}) = \log{\frac{1}{1-\hat{y}}}, &amp; \textrm{ when true output is } y = 0;
 \end{cases}
-$$<p>In both cases, the cose is 0 if $\hat{y} = y$, and it is $\infty$ when $\hat{y}$ is exactly the opposite.</p>
+$$<p>In both cases, the cost is 0 if $\hat{y} = y$, and it is $\infty$ when $\hat{y}$ is exactly the opposite, as depicted below:</p>
+<p><img src="img/CrossEntropy.png" alt="Cross-entropy loss when true class $y$ is either 0 or 1"></p>
 <p>When there are N input-output pairs, the overall cost is the average for all:</p>
 $$J = \frac{1}{N} \sum_i L(y^i, \hat{y}^i) = \frac{1}{N} \sum_i \left(- y \log{\hat{y}} - (1-y) \log{1 - \hat{y}} \right)$$
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Graphical-representation-as-a-neuron">Graphical representation as a neuron<a class="anchor-link" href="#Graphical-representation-as-a-neuron">&#182;</a></h3><p>The logistic regression model can be represented graphically as a "neuron".</p>
-<p>TODO: put picture here</p>
-
 </div>
 </div>
 </div>
@@ -13224,7 +13212,7 @@ $$\frac{dJ}{dW} = X^* (\hat{Y} - Y).$$<p>(TODO: prove this).</p>
 <span class="n">X</span> <span class="p">=</span> <span class="p">[</span><span class="n">X</span><span class="p">,</span> <span class="nb">ones</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="mi">1</span><span class="p">)];</span>
 
 <span class="c">% Initialize the three parameters in W</span>
-<span class="n">W</span> <span class="p">=</span> <span class="n">randn</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+<span class="n">W</span> <span class="p">=</span> <span class="nb">randn</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
 
 <span class="c">% Repeat Gradient Descent iterations</span>
 <span class="k">for</span> <span class="n">iter</span><span class="p">=</span><span class="mi">1</span><span class="p">:</span><span class="mi">1000</span>
@@ -13267,9 +13255,9 @@ $$\frac{dJ}{dW} = X^* (\hat{Y} - Y).$$<p>(TODO: prove this).</p>
     <span class="n">I</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span><span class="mi">500</span><span class="p">);</span>
     <span class="n">x_values</span> <span class="p">=</span> <span class="nb">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">500</span><span class="p">);</span>
     <span class="n">y_values</span> <span class="p">=</span> <span class="nb">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">500</span><span class="p">);</span>
-    <span class="n">for</span> <span class="s">i</span> <span class="p">=</span> <span class="mi">1</span><span class="p">:</span><span class="nb">length</span><span class="p">(</span><span class="n">x_values</span><span class="p">)</span>
+    <span class="n">for</span> <span class="s">i</span> <span class="s">=</span> <span class="s">1:length(x_values)</span>
         <span class="n">x</span> <span class="p">=</span> <span class="n">x_values</span><span class="p">(</span><span class="nb">i</span><span class="p">);</span>
-        <span class="n">for</span> <span class="s">j</span> <span class="p">=</span> <span class="mi">1</span><span class="p">:</span><span class="nb">length</span><span class="p">(</span><span class="n">y_values</span><span class="p">)</span>
+        <span class="n">for</span> <span class="s">j</span> <span class="s">=</span> <span class="s">1:length(y_values)</span>
             <span class="n">y</span> <span class="p">=</span> <span class="n">y_values</span><span class="p">(</span><span class="nb">j</span><span class="p">);</span>
             <span class="c">% Compute prediction in point (i,j)</span>
             <span class="n">z</span> <span class="p">=</span> <span class="p">[</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">W</span><span class="p">;</span>
@@ -13568,7 +13556,7 @@ ans =
 <div class="prompt input_prompt">In&nbsp;[42]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-matlab"><pre><span></span><span class="n">W</span> <span class="p">=</span> <span class="n">randn</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>   <span class="c">% a column vector</span>
+<div class=" highlight hl-matlab"><pre><span></span><span class="n">W</span> <span class="p">=</span> <span class="nb">randn</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>   <span class="c">% a column vector</span>
 </pre></div>
 
     </div>
@@ -13652,20 +13640,20 @@ You cannot plot all the 11 dimensions of the input data, so pick only two of the
 <span class="c">% To fill in</span>
 <span class="c">%======================</span>
 
-<span class="n">W</span> <span class="p">=</span> <span class="n">randn</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>           <span class="c">% initialize parameters randomly</span>
+<span class="n">W</span> <span class="p">=</span> <span class="nb">randn</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>           <span class="c">% initialize parameters randomly</span>
 
 <span class="n">number_of_epochs</span> <span class="p">=</span> <span class="mi">1000</span><span class="p">;</span>    <span class="c">% set number of iterations</span>
 
-<span class="n">for</span> <span class="s">iter</span> <span class="p">=</span> <span class="mi">1</span><span class="p">:</span><span class="n">number_of_epochs</span>
+<span class="n">for</span> <span class="s">iter</span> <span class="s">=</span> <span class="s">1:number_of_epochs</span>
     
     <span class="c">% Compute predictions:</span>
-    <span class="n">Y</span><span class="o">-</span><span class="n">pred</span> <span class="p">=</span> <span class="k">...</span>
+    <span class="n">Y</span><span class="o">-</span><span class="n">pred</span> <span class="p">=</span> <span class="c">...</span>
     
     <span class="c">% Compute cost:</span>
-    <span class="n">J</span><span class="p">(</span><span class="n">iter</span><span class="p">)</span> <span class="p">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">N</span> <span class="o">*</span> <span class="k">...</span>
+    <span class="n">J</span><span class="p">(</span><span class="n">iter</span><span class="p">)</span> <span class="p">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">N</span> <span class="o">*</span> <span class="c">...</span>
     
     <span class="c">% Compute derivatives according to the given formula</span>
-    <span class="n">dW</span> <span class="p">=</span> <span class="k">...</span>
+    <span class="n">dW</span> <span class="p">=</span> <span class="c">...</span>
     
     <span class="c">% Update the weights</span>
     <span class="n">mu</span> <span class="p">=</span> <span class="mf">0.0001</span><span class="p">;</span>           <span class="c">% try multiple values here</span>
