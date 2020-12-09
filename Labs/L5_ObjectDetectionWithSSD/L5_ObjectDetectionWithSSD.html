@@ -13017,6 +13017,45 @@ ul.typeahead-list  > li > a.pull-right {
 .highlight .vm { color: #19177C } /* Name.Variable.Magic */
 .highlight .il { color: #666666 } /* Literal.Number.Integer.Long */
     </style>
+<style type="text/css">
+    
+/* Temporary definitions which will become obsolete with Notebook release 5.0 */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-bold { font-weight: bold; }
+
+    </style>
 
 
 <style type="text/css">
@@ -13050,7 +13089,7 @@ div#notebook {
 
 <!-- Loading mathjax macro -->
 <!-- Load mathjax -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_HTML"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
     <!-- MathJax configuration -->
     <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
@@ -13103,16 +13142,22 @@ and be able use a pretrained object detection model available in Matlab.</p>
 <li>For each detected object, we want the <strong>bounding box</strong> surrounding the object. This is defined by 4 pixel coordinates (e.g. bottom=140, top=300, left=74, right=128)</li>
 <li>For each detected object, we want the <strong>class</strong> of the object (i.e. it is a person or a bicycle). The class will come with a certain confidence score (probability), just like we saw in Lab4 for classification networks.</li>
 </ol>
-<h3 id="The-SSD-network-architecture">The SSD network architecture<a class="anchor-link" href="#The-SSD-network-architecture">&#182;</a></h3><p><img src="img/gentle_guide_obj_det_ssd.jpg" alt="SSD architecture"></p>
-<p>(image from <a href="https://www.pyimagesearch.com/2018/05/14/a-gentle-guide-to-deep-learning-object-detection/">https://www.pyimagesearch.com/2018/05/14/a-gentle-guide-to-deep-learning-object-detection/</a></p>
+<h3 id="The-SSD-network-architecture">The SSD network architecture<a class="anchor-link" href="#The-SSD-network-architecture">&#182;</a></h3><p><img src="img/SSDArchitecture.jpg" alt="SSD architecture"></p>
+<p>(image from <a href="https://towardsdatascience.com/understanding-ssd-multibox-real-time-object-detection-in-deep-learning-495ef744fab">https://towardsdatascience.com/understanding-ssd-multibox-real-time-object-detection-in-deep-learning-495ef744fab</a></p>
 <p>The <strong>input</strong> of the network is a fixed-size $W \times H \times 3$ image tensor.</p>
 <p>The <strong>outputs</strong> of the network are the parameters for all $N$ detection boxes:</p>
 <ul>
-<li>A matrix of $N \times 4$ values with the predicted box displacements with respect to all the $N$ anchor boxes</li>
+<li>A matrix of $N \times 4$ values with the predicted box displacements/distortions with respect to all the $N$ anchor boxes (i.e. offset x, offset y, height scaling, width scaling).</li>
 <li>A matrix of $N \times C$ with the predicted class scores for all the $N$ boxes. $C$ is the number of distinct classes in the dataset.</li>
 </ul>
 <p>$N$ is the total number of predicted boxes over all the image. It can be very large, e.g. 8732 boxes for a $300 \times 300$ image.</p>
 <p>For a larger $1024 \times 640$ image, the number can be much larger, over 90000 (speaking from experience). Of course, it depends on the parameters chosen by the designer.</p>
+<h3 id="Output-encoding-and-decoding">Output encoding and decoding<a class="anchor-link" href="#Output-encoding-and-decoding">&#182;</a></h3><p>We have an image with one box around an object, done by a human (ground-truth). How do we tell the network what it should detect, in the training phase?</p>
+<p><strong>Output Encoding</strong>: Before training, we must convert the ground-truth box into displacements with respect to the anchor boxes of the network. This is known as <strong>encoding</strong>: we convert the desired box in the native format of the models' output. During training, we show the image to the network, and we "tell it" to predict the correct displacements.</p>
+<p><img src="img/SSDBox.png" alt="SSD Detection Boxes"></p>
+<p>(image from the SSD paper <a href="https://arxiv.org/abs/1512.02325">https://arxiv.org/abs/1512.02325</a></p>
+<p><strong>Output Decoding</strong>: When the network runs, it outputs the predicted displacements with respect to the anchor boxes. Afterwards, from these displacements we compute the final object position (in pixels). This is known as <strong>decoding</strong> the results of the network, since we translate the native network output into our desired format (pixels). This is typically done outside the network itself.</p>
+<p><strong>Non-Max Suppression</strong>: A single object is predicted by many anchor boxes. As a result, we will have many predicted boxes around one object in the image, with slightly different values. We want just one box. There is a procedure to select a single one out of them (the one with the highest confidence score), and ignore all the other opverlapping ones. This is known as Non-Max Suppression (NMS), since we keep only the box with the highest confidence, and we suppress all the other (non-max) overlapping boxes. An example is discussed in the exercises.</p>
 
 </div>
 </div>
@@ -13138,12 +13183,12 @@ and be able use a pretrained object detection model available in Matlab.</p>
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="The-cost-function">The cost function<a class="anchor-link" href="#The-cost-function">&#182;</a></h3><p>The model produces two kinds of data:</p>
 <ul>
-<li>box locations</li>
+<li>box locations (expressed as displacements/distortions with respect to the anchot boxes)</li>
 <li>box classification scores</li>
 </ul>
 <p>The boxes are compared to the <strong>real ground-truth</strong> boxes available. For each ground-truth box, the best predicted box is selected (the predicted box with the correct class which overlaps the most with it), and the error is computed based on two terms:</p>
 <ol>
-<li><p>The <strong>localization error</strong>: typically, is the absolute difference between the coordinates of the ground-truth box and the predicted box.</p>
+<li><p>The <strong>localization error</strong>: typically, is the absolute difference between the coordinates or displacements of the ground-truth box and the predicted box.</p>
 </li>
 <li><p>The <strong>classification error</strong>, which compares the class scores of the predicted box with the true ground-truth class. The cross-entropy loss function is typically used, just like it is used for all other classification tasks.</p>
 <p>Besides the predicted boxes which are compared to the ground-truth, there are many predicted boxes which corespond to <strong>no</strong> ground truth box. There are a few different methods how to treat these, some methods (e.g. Focal Loss) being better than others.</p>
