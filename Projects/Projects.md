@@ -24,3 +24,8 @@ The project should be finalized with a written report (a few pages), which shoul
 
 The projects must be presented in the last week or sometime during the exam session, before the exam.
 
+# Tips'n Tricks and other instructions
+
+- If the dataset is too large, you can use only a smaller part of it 
+
+- Images can be resampled to a desired resolution (e.g. 224 x 224 for AlexNet)
