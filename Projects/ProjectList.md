@@ -3,10 +3,9 @@
 This list contains only **suggested** datasets and tasks. You can use a custom dataset (for safety, check with me first). The only requirement is that it is interesting.
 
 
-1. Credit card fraud detection with logistic regression
+1. Brain tumor classification from MRI images with CNN networks
 
-    [https://www.kaggle.com/mlg-ulb/creditcardfraud](https://www.kaggle.com/mlg-ulb/creditcardfraud)
-    
+    [https://www.kaggle.com/sartajbhuvaji/brain-tumor-classification-mri](https://www.kaggle.com/sartajbhuvaji/brain-tumor-classification-mri)
     
 2. Credit card fraud detection with MLP networks 
 
@@ -20,21 +19,21 @@ This list contains only **suggested** datasets and tasks. You can use a custom d
 
     [https://www.kaggle.com/zalando-research/fashionmnist](https://www.kaggle.com/zalando-research/fashionmnist)
 
-5. Image detection with CNN networks on the Fashion-MNIST dataset
+5. Recognize dog vs cat image with CNN networks
 
-    [https://www.kaggle.com/zalando-research/fashionmnist](https://www.kaggle.com/zalando-research/fashionmnist)
+    [https://www.kaggle.com/vaishnavkapil/feature-detection-cnn](https://www.kaggle.com/vaishnavkapil/feature-detection-cnn)
 
 6. Detect handwritten letters with MLP networks
 
     [https://www.kaggle.com/sachinpatel21/az-handwritten-alphabets-in-csv-format](https://www.kaggle.com/sachinpatel21/az-handwritten-alphabets-in-csv-format)
     
-7. Detect heart disease based on health measurements with logistic regression
+7. Detect heart disease based on health measurements with logistic regression or MLP networks
 
     [https://www.kaggle.com/ronitf/heart-disease-uci](https://www.kaggle.com/ronitf/heart-disease-uci)
     
-8. Predict heart disease based on health measurements using linear regression
+8. Gastrointestinal Cancer MSI MSS Prediction with CNN networks
 
-    [https://www.kaggle.com/ronitf/heart-disease-uci](https://www.kaggle.com/ronitf/heart-disease-uci)
+    [https://www.kaggle.com/linjustin/train-val-test-tcga-coad-msi-mss](https://www.kaggle.com/linjustin/train-val-test-tcga-coad-msi-mss)
      
 9. Predict mushroom toxicity with linear regression
 
@@ -44,14 +43,14 @@ This list contains only **suggested** datasets and tasks. You can use a custom d
 
     [https://www.kaggle.com/paultimothymooney/chest-xray-pneumonia](https://www.kaggle.com/paultimothymooney/chest-xray-pneumonia)
     
-11. Detect diabetes from diagnostic measurements with logistic regression (csv file)
+11. Detect diabetes from diagnostic measurements with logistic regression or MLP (csv file)
 
     [https://www.kaggle.com/uciml/pima-indians-diabetes-database](https://www.kaggle.com/uciml/pima-indians-diabetes-database)
     
-12. Detect diabetes from diagnostic measurements with MLP networks (csv file)
+12. Detect dog breed from images using CNN networks
 
-    [https://www.kaggle.com/uciml/pima-indians-diabetes-database](https://www.kaggle.com/uciml/pima-indians-diabetes-database)
-  
+	[https://www.kaggle.com/venktesh/person-images](https://www.kaggle.com/venktesh/person-images) (only the dog breed part of the dataset)
+    
 13. Recognize sign language using MLP networks on the Sign Language MNIST
 
     [https://www.kaggle.com/datamunge/sign-language-mnist](https://www.kaggle.com/datamunge/sign-language-mnist)
@@ -61,30 +60,33 @@ This list contains only **suggested** datasets and tasks. You can use a custom d
 
     [https://www.kaggle.com/gpreda/chinese-mnist](https://www.kaggle.com/gpreda/chinese-mnist)
     
+15. Bird species classification with CNN networks
+
+	[https://www.kaggle.com/gpiosenka/100-bird-species](https://www.kaggle.com/gpiosenka/100-bird-species)
     
+16. Bus vs car image detection with CNN networks
+
+	[https://www.kaggle.com/positivepc/object-detection](https://www.kaggle.com/positivepc/object-detection)
+	
 **MedMNIST** datasets: 
     
-  Available here: https://medmnist.github.io/, or see paper here: https://arxiv.org/pdf/2010.14925.pdf
+  All data for the next projects are available here: https://medmnist.github.io/, or see paper here: https://arxiv.org/pdf/2010.14925.pdf
 
-  - 15. Cancer patology detection from the PathMNIST dataset with MLP networks
+  - 17. Cancer patology detection from the PathMNIST dataset with MLP networks
     
-  - 16. Chest Xray classification on ChestMNIST with MLP networks
+  - 18. Chest Xray classification on ChestMNIST with MLP networks
     
-  - 17. Skin lesion classification on DermaMNIST with MLP networks 
+  - 19. Skin lesion classification on DermaMNIST with MLP networks 
     
-  - 18. Retina disease classification on OCTMNIST with MLP networks 
+  - 20. Retina disease classification on OCTMNIST with MLP networks 
     
-  - 19. Pneumonia detection on PneumoniaMNIST using MLP networks (or logistic regresison)
+  - 21. Pneumonia detection on PneumoniaMNIST using MLP networks (or logistic regresison)
     
-  - 20. Diabetic retinopathy severity classification on RetinaMNIST with MLP networks 
+  - 22. Diabetic retinopathy severity classification on RetinaMNIST with MLP networks 
     
-  - 21. Breast cancer detection on BreastMNIST with MLP networks (or logistic regresison)
+  - 23. Breast cancer detection on BreastMNIST with MLP networks (or logistic regresison)
     
-  - 22. Organ identification from CT image slices (OrganMNIST_Axial) with MLP networks 
-    
-  - 23. Organ identification from CT image slices (OragnMNIST_Coronal) with MLP networks 
-    
-  - 24. Organ identification from CT image slices (OrganMNIST_Sagittal) with MLP networks 
+  - 24. Organ identification from CT image slices (OrganMNIST_Axial or Coronal or Saggital) with MLP networks 
 
   - **Notes**:
   
@@ -104,6 +106,6 @@ This list contains only **suggested** datasets and tasks. You can use a custom d
     
     - [https://www.kaggle.com/datasets](https://www.kaggle.com/datasets)
     
-    - [www.zenodo.com](https://zenodo.org/search?page=1&size=20&q=dataset&type=dataset)
+    - [www.zenodo.org](https://zenodo.org/search?page=1&size=20&q=dataset&type=dataset)
     
     - [https://archive.ics.uci.edu/ml/datasets.php](https://archive.ics.uci.edu/ml/datasets.php)
