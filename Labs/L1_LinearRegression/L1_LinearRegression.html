@@ -14325,6 +14325,7 @@ $$Y \approx \hat{Y} = X \cdot W$$</p>
 <p>For linear regression, we can do it in three ways:</p>
 <h4 id="1.-Closed-form-solution">1. Closed form solution<a class="anchor-link" href="#1.-Closed-form-solution">&#182;</a></h4><p>When the cost function is the quadratic, the best solution can actually be found analytically (this may be the only such case in the whole of Machine Learning :) ):</p>
 $$W_{optimal} = X^\dagger Y = \left( X^* X \right)^{-1} X^* \cdot Y$$<p>This is not true anymore if we change the cost function.</p>
+<p>The sign <code>*</code> signifies <strong>transposition</strong>.</p>
 <h4 id="2.-Matlab-function-doing-the-job-for-us">2. Matlab function doing the job for us<a class="anchor-link" href="#2.-Matlab-function-doing-the-job-for-us">&#182;</a></h4><p>Linear regression can be fitted in Matlab using the function <code>fitml()</code>:</p>
 
 </div>
@@ -14549,7 +14550,7 @@ The job is to determine how do the measured parameters influence the quality sco
 <span class="n">for</span> <span class="s">iter</span> <span class="p">=</span> <span class="mi">1</span><span class="p">:</span><span class="n">number_of_epochs</span>
     
     <span class="c">% Compute predictions:</span>
-    <span class="n">Y</span><span class="o">-</span><span class="n">pred</span> <span class="p">=</span> <span class="k">...</span>
+    <span class="n">Ypred</span> <span class="p">=</span> <span class="k">...</span>
     
     <span class="c">% Compute cost:</span>
     <span class="n">J</span><span class="p">(</span><span class="n">iter</span><span class="p">)</span> <span class="p">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">N</span> <span class="o">*</span> <span class="k">...</span>
@@ -14562,7 +14563,7 @@ The job is to determine how do the measured parameters influence the quality sco
     <span class="n">W</span> <span class="p">=</span> <span class="n">W</span> <span class="o">-</span> <span class="n">mu</span> <span class="o">*</span> <span class="n">dW</span><span class="p">;</span>
     
     <span class="c">% Store the weights history</span>
-    <span class="n">W_hist</span><span class="p">(:,</span><span class="nb">i</span><span class="p">)</span> <span class="p">=</span> <span class="n">W</span><span class="p">;</span>
+    <span class="n">W_hist</span><span class="p">(:,</span><span class="n">iter</span><span class="p">)</span> <span class="p">=</span> <span class="n">W</span><span class="p">;</span>
 <span class="n">end</span>
 
 <span class="s">%</span> <span class="s">Plot</span> <span class="s">the</span> <span class="s">error</span> <span class="s">and</span> <span class="s">the</span> <span class="s">evolution</span> <span class="s">of</span> <span class="s">the</span> <span class="s">weights</span>
