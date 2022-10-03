@@ -1,0 +1,24 @@
+1. Brain tumor classification from MRI images with CNN networks
+2. Credit card fraud detection with MLP networks 
+3. Fruit and vegetables image detection with CNN networks
+4. Image detection with MLP networks on the Fashion-MNIST dataset
+5. Recognize dog vs cat image with CNN networks
+6. Detect handwritten letters with MLP networks
+7. Detect heart disease based on health measurements with logistic regression or MLP networks
+8. Gastrointestinal Cancer MSI MSS Prediction with CNN networks
+9. Predict mushroom toxicity with linear regression
+10. Detect pneumonia from chest X-Rays using CNN networks
+11. Detect diabetes from diagnostic measurements with logistic regression or MLP (csv file)
+12. Detect dog breed from images using CNN networks
+13. Recognize sign language using MLP networks on the Sign Language MNIST
+14. Recognize Chinese handwritten numbers using MLP networks
+15. Bird species classification with CNN networks
+16. Bus vs car image detection with CNN networks
+17. Cancer patology detection from the PathMNIST dataset with MLP networks
+18. Chest Xray classification on ChestMNIST with MLP networks
+19. Skin lesion classification on DermaMNIST with MLP networks 
+20. Retina disease classification on OCTMNIST with MLP networks 
+21. Pneumonia detection on PneumoniaMNIST using MLP networks (or logistic regresison)
+22. Diabetic retinopathy severity classification on RetinaMNIST with MLP networks 
+23. Breast cancer detection on BreastMNIST with MLP networks (or logistic regresison)
+24. Organ identification from CT image slices (OrganMNIST_Axial or Coronal or Saggital) with MLP networks 
