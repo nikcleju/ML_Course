@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.1.175">
+<meta name="generator" content="quarto-1.1.189">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -136,9 +136,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </ul></li>
   <li><a href="#practical-work" id="toc-practical-work" class="nav-link" data-scroll-target="#practical-work"><span class="toc-section-number">3</span>  Practical work</a>
   <ul class="collapse">
-  <li><a href="#exercise-1---wine-classification---nprtool" id="toc-exercise-1---wine-classification---nprtool" class="nav-link" data-scroll-target="#exercise-1---wine-classification---nprtool"><span class="toc-section-number">3.1</span>  Exercise 1 - Wine classification - nprtool</a></li>
-  <li><a href="#exercise-2---wine-classification---classification-learner" id="toc-exercise-2---wine-classification---classification-learner" class="nav-link" data-scroll-target="#exercise-2---wine-classification---classification-learner"><span class="toc-section-number">3.2</span>  Exercise 2 - Wine classification - Classification Learner</a></li>
-  <li><a href="#exercise-3---handwritten-digit-classification-on-mnist" id="toc-exercise-3---handwritten-digit-classification-on-mnist" class="nav-link" data-scroll-target="#exercise-3---handwritten-digit-classification-on-mnist"><span class="toc-section-number">3.3</span>  Exercise 3 - Handwritten digit classification on MNIST</a></li>
+  <li><a href="#exercise-0---manual-calculations" id="toc-exercise-0---manual-calculations" class="nav-link" data-scroll-target="#exercise-0---manual-calculations"><span class="toc-section-number">3.1</span>  Exercise 0 - Manual calculations</a></li>
+  <li><a href="#exercise-1---wine-classification---nprtool" id="toc-exercise-1---wine-classification---nprtool" class="nav-link" data-scroll-target="#exercise-1---wine-classification---nprtool"><span class="toc-section-number">3.2</span>  Exercise 1 - Wine classification - nprtool</a></li>
+  <li><a href="#exercise-2---wine-classification---classification-learner" id="toc-exercise-2---wine-classification---classification-learner" class="nav-link" data-scroll-target="#exercise-2---wine-classification---classification-learner"><span class="toc-section-number">3.3</span>  Exercise 2 - Wine classification - Classification Learner</a></li>
+  <li><a href="#exercise-3---handwritten-digit-classification-on-mnist" id="toc-exercise-3---handwritten-digit-classification-on-mnist" class="nav-link" data-scroll-target="#exercise-3---handwritten-digit-classification-on-mnist"><span class="toc-section-number">3.4</span>  Exercise 3 - Handwritten digit classification on MNIST</a></li>
   </ul></li>
   <li><a href="#final-questions" id="toc-final-questions" class="nav-link" data-scroll-target="#final-questions"><span class="toc-section-number">4</span>  Final questions</a></li>
   </ul>
@@ -288,6 +289,12 @@ a^{k} =&amp; activation(z^{k})\\
 \end{aligned}\]</span></p>
 <p>Here, <span class="math inline">\(W^{k}\)</span> is a matrix and <span class="math inline">\(z{k}\)</span>, <span class="math inline">\(a{k}\)</span> are vectors (columns).</p>
 <p>The activation function can be the <strong>sigmoid</strong>, <strong>ReLU</strong>, <strong>tanh</strong> etc. Typically the output used sigmoid, but all others are up to the designer.</p>
+<ul>
+<li><p>sigmoid activation function: <span class="math display">\[f(z) = \sigma(z) = \frac{1}{1 + e^{-z}} = \frac{e^z}{e^z + 1}\]</span></p></li>
+<li><p>ReLU (“Rectified Linear Unit”): <span class="math display">\[f(z) = \begin{cases} z &amp;, \textrm{ if } z \geq 0 \\ 0 &amp;,  \textrm{ if } z &lt; 0  \end{cases}\]</span></p></li>
+<li><p>Hyperbolic tangent:</p>
+<p>…</p></li>
+</ul>
 <p><strong>Inputs</strong>:</p>
 <ul>
 <li>a matrix <span class="math inline">\(X\)</span> with every input vector being a column (according to the equations below; we can also transpose all matrices and vectors, if we want).</li>
@@ -305,11 +312,10 @@ a^{k} =&amp; activation(z^{k})\\
 </section>
 <section id="the-cost-function" class="level2" data-number="2.4">
 <h2 data-number="2.4" class="anchored" data-anchor-id="the-cost-function"><span class="header-section-number">2.4</span> The cost function</h2>
-<p>For classification, the cross-entropy is used.</p>
-<p>For a single input:</p>
-<p><span class="math display">\[L(y, \hat{y}) = - y_1 \log{\hat{y_1}} - \dots - y_n \log{\hat{y_n}} = -\log{\hat{y_{class}}},\]</span></p>
-<p>where <span class="math inline">\(\hat{y_{class}}\)</span> is the model’s predicted probability for the true class of the input.</p>
-<p>For multiple inputs: do the average of all <span class="math display">\[J = \frac{1}{N} \sum_i L(y^i, \hat{y}^i)\]</span></p>
+<p>For classification, the <strong>cross-entropy</strong> loss function is typically used. For a single input, whose output is a vector <span class="math inline">\(\hat{y} = [\hat{y}_1, ... \hat{y}_N]\)</span> and the true output should have been <span class="math inline">\(y = [y_1, ... y_N]\)</span>, the cross-entropy function is defined as:</p>
+<p><span class="math display">\[L(y, \hat{y}) = - y_1 \log_2{\hat{y_1}} - \dots - y_n \log_2{\hat{y_n}} = -\log_2{\hat{y_{class}}},\]</span></p>
+<p>where <span class="math inline">\(\hat{y_{class}}\)</span> is the model’s predicted probability for the true class of the input. Note that we assume that the true output is one-hot encoded, i.e.&nbsp;the vector <span class="math inline">\(y\)</span> has a single value of 1 and all the others are 0.</p>
+<p>For several inputs (a “batch”), do the average of all losses: <span class="math display">\[J = \frac{1}{N} \sum_i L(y^i, \hat{y}^i)\]</span></p>
 </section>
 <section id="training" class="level2" data-number="2.5">
 <h2 data-number="2.5" class="anchored" data-anchor-id="training"><span class="header-section-number">2.5</span> Training</h2>
@@ -438,8 +444,25 @@ a^{4} =&amp; activation(z^{4})
 </section>
 <section id="practical-work" class="level1" data-number="3">
 <h1 data-number="3"><span class="header-section-number">3</span> Practical work</h1>
-<section id="exercise-1---wine-classification---nprtool" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="exercise-1---wine-classification---nprtool"><span class="header-section-number">3.1</span> Exercise 1 - Wine classification - nprtool</h2>
+<section id="exercise-0---manual-calculations" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="exercise-0---manual-calculations"><span class="header-section-number">3.1</span> Exercise 0 - Manual calculations</h2>
+<p>Consider a neural network with the following architecture:</p>
+<p><img src="img/BlankNetSize2.png" class="img-fluid"></p>
+<p>The network parameters are:</p>
+<ul>
+<li>hidden layer: <span class="math inline">\(W^{1} = \begin{bmatrix} 2 &amp; -0.5 \\ -1 &amp; 1.5 \end{bmatrix}\)</span>, <span class="math inline">\(b^{1} = \begin{bmatrix} 0.25 \\ 0.25\end{bmatrix}\)</span></li>
+<li>output layer: <span class="math inline">\(W^{2} = \begin{bmatrix} 0.5 &amp; -1 \end{bmatrix}\)</span>, <span class="math inline">\(b^{2} = 2\)</span></li>
+</ul>
+<p>Both the hidden layer and the output layer have sigmoid activation function.</p>
+<ol type="a">
+<li><p>Compute the network output for the input <span class="math inline">\(x = \begin{bmatrix} 0.5 \\ 1 \end{bmatrix}\)</span></p></li>
+<li><p>Compute the network output for the same input, considering that the hidden layer has ReLU activation instead</p></li>
+<li><p>Compute the cost function (i.e.&nbsp;the loss), assuming the true output should have been <span class="math inline">\(y = 0\)</span>.</p></li>
+<li><p>Compute the cost function (i.e.&nbsp;the loss), assuming the true output should have been <span class="math inline">\(y = 1\)</span>.</p></li>
+</ol>
+</section>
+<section id="exercise-1---wine-classification---nprtool" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="exercise-1---wine-classification---nprtool"><span class="header-section-number">3.2</span> Exercise 1 - Wine classification - nprtool</h2>
 <p>We shall work with the same <code>wine_dataset</code> data as in the first labs. The last column gives the quality score. We shall treat the quality score as a <strong>class indicator</strong>. We shall perform classification with a multilayer network model, aiming to classify correctly the quality of a wine based on its parameters.</p>
 <ol type="1">
 <li><p>Prepare the data</p>
@@ -469,15 +492,15 @@ a^{4} =&amp; activation(z^{4})
 <li><p>Go back and change the hidden layer size to 20, 50, then 5. Do the results change significantly?</p></li>
 </ol>
 </section>
-<section id="exercise-2---wine-classification---classification-learner" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="exercise-2---wine-classification---classification-learner"><span class="header-section-number">3.2</span> Exercise 2 - Wine classification - Classification Learner</h2>
+<section id="exercise-2---wine-classification---classification-learner" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="exercise-2---wine-classification---classification-learner"><span class="header-section-number">3.3</span> Exercise 2 - Wine classification - Classification Learner</h2>
 <p>Use the Classification Learner app to train a similar model with two hidden layers with sizes 9 and 8.</p>
 </section>
-<section id="exercise-3---handwritten-digit-classification-on-mnist" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="exercise-3---handwritten-digit-classification-on-mnist"><span class="header-section-number">3.3</span> Exercise 3 - Handwritten digit classification on MNIST</h2>
+<section id="exercise-3---handwritten-digit-classification-on-mnist" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="exercise-3---handwritten-digit-classification-on-mnist"><span class="header-section-number">3.4</span> Exercise 3 - Handwritten digit classification on MNIST</h2>
 <p>We follow the MNIST training tutorial from <a href="https://www.mathworks.com/matlabcentral/fileexchange/73010-mnist-neural-network-training-and-testing">https://www.mathworks.com/matlabcentral/fileexchange/73010-mnist-neural-network-training-and-testing</a></p>
 <ol type="1">
-<li><p>Unzip the MNIST data file `<code>MNISTdata.zip</code> provided with the ab.</p></li>
+<li><p>Unzip the MNIST data file `<code>MNISTdata.zip</code> provided with the lab.</p></li>
 <li><p>Load the data (this will create the matrix <code>mnist_train</code>):</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="va">load</span> <span class="va">mnist_train</span>.<span class="va">csv</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>The first column is the digit number. The remaining 748 columns contain the pixels in the linearized image (every image has 28x28 pixels).</p>

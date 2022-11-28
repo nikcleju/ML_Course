@@ -156,6 +156,16 @@ Here, $W^{k}$ is a matrix and $z{k}$, $a{k}$ are vectors (columns).
 
 The activation function can be the **sigmoid**, **ReLU**, **tanh** etc. Typically the output used sigmoid, but all others are up to the designer.
 
+- sigmoid activation function:
+  $$f(z) = \sigma(z) = \frac{1}{1 + e^{-z}} = \frac{e^z}{e^z + 1}$$
+
+- ReLU ("Rectified Linear Unit"):
+  $$f(z) = \begin{cases} z &, \textrm{ if } z \geq 0 \\ 0 &,  \textrm{ if } z < 0  \end{cases}$$
+
+- Hyperbolic tangent:
+  
+  ...
+
 **Inputs**: 
 
    - a matrix $X$ with every input vector being a column (according to the equations below; we can also transpose all matrices and vectors, 
@@ -176,15 +186,15 @@ like we did until now (e.g. like a fake input equal to 1 is appended to the inpu
 
 ## The cost function
 
-For classification, the cross-entropy is used.
+For classification, the **cross-entropy** loss function is typically used. For a single input, whose output is a vector $\hat{y} = [\hat{y}_1, ... \hat{y}_N]$ and the
+true output should have been $y = [y_1, ... y_N]$, the cross-entropy function is defined as:
 
-For a single input:
+$$L(y, \hat{y}) = - y_1 \log_2{\hat{y_1}} - \dots - y_n \log_2{\hat{y_n}} = -\log_2{\hat{y_{class}}},$$
 
-$$L(y, \hat{y}) = - y_1 \log{\hat{y_1}} - \dots - y_n \log{\hat{y_n}} = -\log{\hat{y_{class}}},$$
+where $\hat{y_{class}}$ is the model's predicted probability for the true class of the input. Note that we assume that the true output is one-hot encoded, i.e. the vector $y$
+has a single value of 1 and all the others are 0.
 
-where $\hat{y_{class}}$ is the model's predicted probability for the true class of the input.
-
-For multiple inputs: do the average of all
+For several inputs (a "batch"), do the average of all losses:
 $$J = \frac{1}{N} \sum_i L(y^i, \hat{y}^i)$$
 
 ## Training
@@ -360,6 +370,27 @@ y = net([-1; -1])
 
 
 # Practical work
+
+## Exercise 0 - Manual calculations
+
+Consider a neural network with the following architecture:
+
+![](img/BlankNetSize2.png)
+
+The network parameters are:
+
+- hidden layer: $W^{1} = \begin{bmatrix} 2 & -0.5 \\ -1 & 1.5 \end{bmatrix}$, $b^{1} = \begin{bmatrix} 0.25 \\ 0.25\end{bmatrix}$
+- output layer: $W^{2} = \begin{bmatrix} 0.5 & -1 \end{bmatrix}$, $b^{2} = 2$
+
+Both the hidden layer and the output layer have sigmoid activation function.
+
+a. Compute the network output for the input $x = \begin{bmatrix} 0.5 \\ 1 \end{bmatrix}$
+
+a. Compute the network output for the same input, considering that the hidden layer has ReLU activation instead
+
+a. Compute the cost function (i.e. the loss), assuming the true output should have been $y = 0$.
+
+a. Compute the cost function (i.e. the loss), assuming the true output should have been $y = 1$.
 
 ## Exercise 1 - Wine classification - nprtool
 
