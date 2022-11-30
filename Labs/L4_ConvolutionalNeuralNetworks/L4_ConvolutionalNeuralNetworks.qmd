@@ -21,13 +21,11 @@ execute:
 
 Students should understand and be able use some basic pretrained CNN models available in Matlab
 
-# Contents
-
-## CNN networks 
+# CNN networks 
 
 CNNs are multilayer networks adapted for image processing, which use the **convolution** operation extensively.
 
-### Starting points
+## Starting points
 
 1. The layers in a normal multilayer perceptron network (MLP) are **fully-connected**: each output value is a combination of all inputs 
 2. Each full-connected layer is a **full (dense) matrix**
@@ -41,7 +39,7 @@ Problems:
 How many parameters does this layer have?
 
 
-### Convolution
+## Convolution
 
 DSP deja-vu vibes: $$y[n] = \sum_k x[n-k] h[k]$$
 
@@ -55,7 +53,7 @@ Key points:
 
 - Each output value depends only on the surrounding pixels
 
-### Convolutional Neural Networks
+## Convolutional Neural Networks
 
 - The basic unit is now **a layer**
 
@@ -65,7 +63,7 @@ Key points:
 
 - We don't think of individual neurons anymore. Each neuron in a convolutional layer does exactly the same operation as the others, with the same weights, but "sees" just one small part of the input image
 
-### Architecture of a CNN
+## Architecture of a CNN
 
 **AlexNet:**
 
@@ -74,7 +72,7 @@ Key points:
 ![AlexNet architecture (image from (https://www.mdpi.com/2072-4292/9/8/848/htm)](img/AlexNet.png)
 
 
-### Layer types
+## Layer types
 
 Open the AlexNet model in Matlab and look at the architecture directly
 
@@ -97,7 +95,7 @@ A CNN can be viewed as a feature extractor + classificator:
 - The output layers are very similar to multilayer perceptron: fully-connected layers + softmax
 - The first part, with the convolution layers, is a kind of **feature extractor**
 
-### The model
+## The model
 
 A CNN has a fixed arcihtecture composed of several layers. For typical networks, the architecture is described in the accompanying papers.
 
@@ -111,7 +109,7 @@ A CNN has a fixed arcihtecture composed of several layers. For typical networks,
   - the **location of the maximum** value gives the predicted class
   
 
-### The model parameters
+## The model parameters
 
 The model parameters are the parameters of the layers:
 
@@ -121,7 +119,7 @@ The model parameters are the parameters of the layers:
  
  The number of parameters of the convolutional layers is **much smaller** than for fully-connected layers.
 
-### The cost function
+## The cost function
 
 For classification, the **cross-entropy** is typically used. This is exactly similar to how it is used in MLP networks.
 
@@ -134,7 +132,7 @@ where $\hat{y_{class}}$ is the model's predicted probability for the true class 
 For multiple inputs: do the average of all
 $$J = \frac{1}{N} \sum_i L(y^i, \hat{y}^i)$$
 
-### Training
+## Training
 
 Training is done with **backpropagation** and gradient descent (or some variant of it).
 
@@ -142,17 +140,17 @@ Training is done with **backpropagation** and gradient descent (or some variant 
 
 Same story as for multilayer perceptron (MLP) networks
 
-## Matlab tools and functions for working with CNNs
+# Matlab tools and functions for working with CNNs
 
 There are lots of new functions and tools in Matlab for deep neural networks, since the last 2-3 years. There are also Matlab courses and tutorials on how to use them.
 
 But whoever is serious on this subject should use the Python frameworks (Pytorch, Tensorflow/Keras).
 
-### Deep Network Designer
+## Deep Network Designer
 
 ![](img/2022-11-30-17-52-24.png)
 
-### Other frameworks besides Matlab
+## Other frameworks besides Matlab
 
 The most used deep learning frameworks are written in Python:
 
@@ -160,7 +158,7 @@ The most used deep learning frameworks are written in Python:
 - Pytorch
 - ...
 
-## Walkthroughs
+# Walkthroughs
 
 We go step by step through the following Matlab examples:
 

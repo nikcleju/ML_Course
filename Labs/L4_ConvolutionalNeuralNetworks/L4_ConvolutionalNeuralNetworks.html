@@ -110,34 +110,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
    
   <ul>
   <li><a href="#objective" id="toc-objective" class="nav-link active" data-scroll-target="#objective"><span class="toc-section-number">1</span>  Objective</a></li>
-  <li><a href="#contents" id="toc-contents" class="nav-link" data-scroll-target="#contents"><span class="toc-section-number">2</span>  Contents</a>
+  <li><a href="#cnn-networks" id="toc-cnn-networks" class="nav-link" data-scroll-target="#cnn-networks"><span class="toc-section-number">2</span>  CNN networks</a>
   <ul class="collapse">
-  <li><a href="#cnn-networks" id="toc-cnn-networks" class="nav-link" data-scroll-target="#cnn-networks"><span class="toc-section-number">2.1</span>  CNN networks</a>
+  <li><a href="#starting-points" id="toc-starting-points" class="nav-link" data-scroll-target="#starting-points"><span class="toc-section-number">2.1</span>  Starting points</a></li>
+  <li><a href="#convolution" id="toc-convolution" class="nav-link" data-scroll-target="#convolution"><span class="toc-section-number">2.2</span>  Convolution</a></li>
+  <li><a href="#convolutional-neural-networks" id="toc-convolutional-neural-networks" class="nav-link" data-scroll-target="#convolutional-neural-networks"><span class="toc-section-number">2.3</span>  Convolutional Neural Networks</a></li>
+  <li><a href="#architecture-of-a-cnn" id="toc-architecture-of-a-cnn" class="nav-link" data-scroll-target="#architecture-of-a-cnn"><span class="toc-section-number">2.4</span>  Architecture of a CNN</a></li>
+  <li><a href="#layer-types" id="toc-layer-types" class="nav-link" data-scroll-target="#layer-types"><span class="toc-section-number">2.5</span>  Layer types</a></li>
+  <li><a href="#the-model" id="toc-the-model" class="nav-link" data-scroll-target="#the-model"><span class="toc-section-number">2.6</span>  The model</a></li>
+  <li><a href="#the-model-parameters" id="toc-the-model-parameters" class="nav-link" data-scroll-target="#the-model-parameters"><span class="toc-section-number">2.7</span>  The model parameters</a></li>
+  <li><a href="#the-cost-function" id="toc-the-cost-function" class="nav-link" data-scroll-target="#the-cost-function"><span class="toc-section-number">2.8</span>  The cost function</a></li>
+  <li><a href="#training" id="toc-training" class="nav-link" data-scroll-target="#training"><span class="toc-section-number">2.9</span>  Training</a></li>
+  </ul></li>
+  <li><a href="#matlab-tools-and-functions-for-working-with-cnns" id="toc-matlab-tools-and-functions-for-working-with-cnns" class="nav-link" data-scroll-target="#matlab-tools-and-functions-for-working-with-cnns"><span class="toc-section-number">3</span>  Matlab tools and functions for working with CNNs</a>
   <ul class="collapse">
-  <li><a href="#starting-points" id="toc-starting-points" class="nav-link" data-scroll-target="#starting-points">Starting points</a></li>
-  <li><a href="#convolution" id="toc-convolution" class="nav-link" data-scroll-target="#convolution">Convolution</a></li>
-  <li><a href="#convolutional-neural-networks" id="toc-convolutional-neural-networks" class="nav-link" data-scroll-target="#convolutional-neural-networks">Convolutional Neural Networks</a></li>
-  <li><a href="#architecture-of-a-cnn" id="toc-architecture-of-a-cnn" class="nav-link" data-scroll-target="#architecture-of-a-cnn">Architecture of a CNN</a></li>
-  <li><a href="#layer-types" id="toc-layer-types" class="nav-link" data-scroll-target="#layer-types">Layer types</a></li>
-  <li><a href="#the-model" id="toc-the-model" class="nav-link" data-scroll-target="#the-model">The model</a></li>
-  <li><a href="#the-model-parameters" id="toc-the-model-parameters" class="nav-link" data-scroll-target="#the-model-parameters">The model parameters</a></li>
-  <li><a href="#the-cost-function" id="toc-the-cost-function" class="nav-link" data-scroll-target="#the-cost-function">The cost function</a></li>
-  <li><a href="#training" id="toc-training" class="nav-link" data-scroll-target="#training">Training</a></li>
+  <li><a href="#deep-network-designer" id="toc-deep-network-designer" class="nav-link" data-scroll-target="#deep-network-designer"><span class="toc-section-number">3.1</span>  Deep Network Designer</a></li>
+  <li><a href="#other-frameworks-besides-matlab" id="toc-other-frameworks-besides-matlab" class="nav-link" data-scroll-target="#other-frameworks-besides-matlab"><span class="toc-section-number">3.2</span>  Other frameworks besides Matlab</a></li>
   </ul></li>
-  <li><a href="#matlab-tools-and-functions-for-working-with-cnns" id="toc-matlab-tools-and-functions-for-working-with-cnns" class="nav-link" data-scroll-target="#matlab-tools-and-functions-for-working-with-cnns"><span class="toc-section-number">2.2</span>  Matlab tools and functions for working with CNNs</a>
+  <li><a href="#walkthroughs" id="toc-walkthroughs" class="nav-link" data-scroll-target="#walkthroughs"><span class="toc-section-number">4</span>  Walkthroughs</a></li>
+  <li><a href="#practical-work" id="toc-practical-work" class="nav-link" data-scroll-target="#practical-work"><span class="toc-section-number">5</span>  Practical work</a>
   <ul class="collapse">
-  <li><a href="#deep-network-designer" id="toc-deep-network-designer" class="nav-link" data-scroll-target="#deep-network-designer">Deep Network Designer</a></li>
-  <li><a href="#other-frameworks-besides-matlab" id="toc-other-frameworks-besides-matlab" class="nav-link" data-scroll-target="#other-frameworks-besides-matlab">Other frameworks besides Matlab</a></li>
+  <li><a href="#exercise-1---play-with-pretrained-networks" id="toc-exercise-1---play-with-pretrained-networks" class="nav-link" data-scroll-target="#exercise-1---play-with-pretrained-networks"><span class="toc-section-number">5.1</span>  Exercise 1 - Play with pretrained networks</a></li>
+  <li><a href="#exercise-2---transfer-learning-to-classify-cola-vs-pepsi" id="toc-exercise-2---transfer-learning-to-classify-cola-vs-pepsi" class="nav-link" data-scroll-target="#exercise-2---transfer-learning-to-classify-cola-vs-pepsi"><span class="toc-section-number">5.2</span>  Exercise 2 - Transfer Learning to classify Cola vs Pepsi</a></li>
+  <li><a href="#exercise-3---add-a-new-layer-and-retrain" id="toc-exercise-3---add-a-new-layer-and-retrain" class="nav-link" data-scroll-target="#exercise-3---add-a-new-layer-and-retrain"><span class="toc-section-number">5.3</span>  Exercise 3 - Add a new layer and retrain</a></li>
   </ul></li>
-  <li><a href="#walkthroughs" id="toc-walkthroughs" class="nav-link" data-scroll-target="#walkthroughs"><span class="toc-section-number">2.3</span>  Walkthroughs</a></li>
-  </ul></li>
-  <li><a href="#practical-work" id="toc-practical-work" class="nav-link" data-scroll-target="#practical-work"><span class="toc-section-number">3</span>  Practical work</a>
-  <ul class="collapse">
-  <li><a href="#exercise-1---play-with-pretrained-networks" id="toc-exercise-1---play-with-pretrained-networks" class="nav-link" data-scroll-target="#exercise-1---play-with-pretrained-networks"><span class="toc-section-number">3.1</span>  Exercise 1 - Play with pretrained networks</a></li>
-  <li><a href="#exercise-2---transfer-learning-to-classify-cola-vs-pepsi" id="toc-exercise-2---transfer-learning-to-classify-cola-vs-pepsi" class="nav-link" data-scroll-target="#exercise-2---transfer-learning-to-classify-cola-vs-pepsi"><span class="toc-section-number">3.2</span>  Exercise 2 - Transfer Learning to classify Cola vs Pepsi</a></li>
-  <li><a href="#exercise-3---add-a-new-layer-and-retrain" id="toc-exercise-3---add-a-new-layer-and-retrain" class="nav-link" data-scroll-target="#exercise-3---add-a-new-layer-and-retrain"><span class="toc-section-number">3.3</span>  Exercise 3 - Add a new layer and retrain</a></li>
-  </ul></li>
-  <li><a href="#final-questions" id="toc-final-questions" class="nav-link" data-scroll-target="#final-questions"><span class="toc-section-number">4</span>  Final questions</a></li>
+  <li><a href="#final-questions" id="toc-final-questions" class="nav-link" data-scroll-target="#final-questions"><span class="toc-section-number">6</span>  Final questions</a></li>
   </ul>
 </nav>
 </div>
@@ -164,13 +161,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1 data-number="1"><span class="header-section-number">1</span> Objective</h1>
 <p>Students should understand and be able use some basic pretrained CNN models available in Matlab</p>
 </section>
-<section id="contents" class="level1" data-number="2">
-<h1 data-number="2"><span class="header-section-number">2</span> Contents</h1>
-<section id="cnn-networks" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="cnn-networks"><span class="header-section-number">2.1</span> CNN networks</h2>
+<section id="cnn-networks" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> CNN networks</h1>
 <p>CNNs are multilayer networks adapted for image processing, which use the <strong>convolution</strong> operation extensively.</p>
-<section id="starting-points" class="level3">
-<h3 class="anchored" data-anchor-id="starting-points">Starting points</h3>
+<section id="starting-points" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="starting-points"><span class="header-section-number">2.1</span> Starting points</h2>
 <ol type="1">
 <li>The layers in a normal multilayer perceptron network (MLP) are <strong>fully-connected</strong>: each output value is a combination of all inputs</li>
 <li>Each full-connected layer is a <strong>full (dense) matrix</strong></li>
@@ -182,8 +177,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ol>
 <p><strong>Example</strong> Consider a layer with input size = 300 x 300 color pixels, and output size equivalent to 150 x 150 color pixels. How many parameters does this layer have?</p>
 </section>
-<section id="convolution" class="level3">
-<h3 class="anchored" data-anchor-id="convolution">Convolution</h3>
+<section id="convolution" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="convolution"><span class="header-section-number">2.2</span> Convolution</h2>
 <p>DSP deja-vu vibes: <span class="math display">\[y[n] = \sum_k x[n-k] h[k]\]</span></p>
 <ul>
 <li>Some videos here: a <strong>kernel</strong> with fixed coefficients <span class="math inline">\(h[k]\)</span> is slided over the input <span class="math inline">\(x[n]\)</span> and computes the output as a linear combination of the surrounding input samples</li>
@@ -195,8 +190,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>Each output value depends only on the surrounding pixels</p></li>
 </ul>
 </section>
-<section id="convolutional-neural-networks" class="level3">
-<h3 class="anchored" data-anchor-id="convolutional-neural-networks">Convolutional Neural Networks</h3>
+<section id="convolutional-neural-networks" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="convolutional-neural-networks"><span class="header-section-number">2.3</span> Convolutional Neural Networks</h2>
 <ul>
 <li><p>The basic unit is now <strong>a layer</strong></p></li>
 <li><p>The data is viewed as <strong>tensors</strong>: 3D cubes of data (like a three-dimensional matrix)</p></li>
@@ -204,8 +199,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>We don’t think of individual neurons anymore. Each neuron in a convolutional layer does exactly the same operation as the others, with the same weights, but “sees” just one small part of the input image</p></li>
 </ul>
 </section>
-<section id="architecture-of-a-cnn" class="level3">
-<h3 class="anchored" data-anchor-id="architecture-of-a-cnn">Architecture of a CNN</h3>
+<section id="architecture-of-a-cnn" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="architecture-of-a-cnn"><span class="header-section-number">2.4</span> Architecture of a CNN</h2>
 <p><strong>AlexNet:</strong></p>
 <p>[1] Krizhevsky, Alex; Sutskever, Ilya; Hinton, Geoffrey E. (2017-05-24). “ImageNet classification with deep convolutional neural networks” (PDF). Communications of the ACM. 60 (6): 84–90. doi:10.1145/3065386. ISSN 0001-0782.</p>
 <div class="quarto-figure quarto-figure-center">
@@ -215,8 +210,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </figure>
 </div>
 </section>
-<section id="layer-types" class="level3">
-<h3 class="anchored" data-anchor-id="layer-types">Layer types</h3>
+<section id="layer-types" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="layer-types"><span class="header-section-number">2.5</span> Layer types</h2>
 <p>Open the AlexNet model in Matlab and look at the architecture directly</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="va">net</span> <span class="op">=</span> <span class="va">alexnet</span>(<span class="ss">'Weights'</span><span class="op">,</span><span class="ss">'imagenet'</span>)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="va">analyzeNetwork</span>(<span class="va">net</span>)  <span class="co">% or double-click `net` in the Workspace</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -235,8 +230,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>The first part, with the convolution layers, is a kind of <strong>feature extractor</strong></li>
 </ul>
 </section>
-<section id="the-model" class="level3">
-<h3 class="anchored" data-anchor-id="the-model">The model</h3>
+<section id="the-model" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="the-model"><span class="header-section-number">2.6</span> The model</h2>
 <p>A CNN has a fixed arcihtecture composed of several layers. For typical networks, the architecture is described in the accompanying papers.</p>
 <p><strong>Inputs</strong>:</p>
 <ul>
@@ -248,8 +243,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>the <strong>location of the maximum</strong> value gives the predicted class</li>
 </ul>
 </section>
-<section id="the-model-parameters" class="level3">
-<h3 class="anchored" data-anchor-id="the-model-parameters">The model parameters</h3>
+<section id="the-model-parameters" class="level2" data-number="2.7">
+<h2 data-number="2.7" class="anchored" data-anchor-id="the-model-parameters"><span class="header-section-number">2.7</span> The model parameters</h2>
 <p>The model parameters are the parameters of the layers:</p>
 <ul>
 <li><p>the filter coefficients in the convolutional layers</p></li>
@@ -257,31 +252,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p>The number of parameters of the convolutional layers is <strong>much smaller</strong> than for fully-connected layers.</p>
 </section>
-<section id="the-cost-function" class="level3">
-<h3 class="anchored" data-anchor-id="the-cost-function">The cost function</h3>
+<section id="the-cost-function" class="level2" data-number="2.8">
+<h2 data-number="2.8" class="anchored" data-anchor-id="the-cost-function"><span class="header-section-number">2.8</span> The cost function</h2>
 <p>For classification, the <strong>cross-entropy</strong> is typically used. This is exactly similar to how it is used in MLP networks.</p>
 <p>For a single input:</p>
 <p><span class="math display">\[L(y, \hat{y}) = - y_1 \log{\hat{y_1}} - \dots - y_n \log{\hat{y_n}} = -\log{\hat{y_{class}}},\]</span></p>
 <p>where <span class="math inline">\(\hat{y_{class}}\)</span> is the model’s predicted probability for the true class of the input.</p>
 <p>For multiple inputs: do the average of all <span class="math display">\[J = \frac{1}{N} \sum_i L(y^i, \hat{y}^i)\]</span></p>
 </section>
-<section id="training" class="level3">
-<h3 class="anchored" data-anchor-id="training">Training</h3>
+<section id="training" class="level2" data-number="2.9">
+<h2 data-number="2.9" class="anchored" data-anchor-id="training"><span class="header-section-number">2.9</span> Training</h2>
 <p>Training is done with <strong>backpropagation</strong> and gradient descent (or some variant of it).</p>
 <p><strong>Backpropagation</strong> = the technique to compute the derivatives of <span class="math inline">\(J\)</span> with respect to all parameters in the network.</p>
 <p>Same story as for multilayer perceptron (MLP) networks</p>
 </section>
 </section>
-<section id="matlab-tools-and-functions-for-working-with-cnns" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="matlab-tools-and-functions-for-working-with-cnns"><span class="header-section-number">2.2</span> Matlab tools and functions for working with CNNs</h2>
+<section id="matlab-tools-and-functions-for-working-with-cnns" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Matlab tools and functions for working with CNNs</h1>
 <p>There are lots of new functions and tools in Matlab for deep neural networks, since the last 2-3 years. There are also Matlab courses and tutorials on how to use them.</p>
 <p>But whoever is serious on this subject should use the Python frameworks (Pytorch, Tensorflow/Keras).</p>
-<section id="deep-network-designer" class="level3">
-<h3 class="anchored" data-anchor-id="deep-network-designer">Deep Network Designer</h3>
+<section id="deep-network-designer" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="deep-network-designer"><span class="header-section-number">3.1</span> Deep Network Designer</h2>
 <p><img src="img/2022-11-30-17-52-24.png" class="img-fluid"></p>
 </section>
-<section id="other-frameworks-besides-matlab" class="level3">
-<h3 class="anchored" data-anchor-id="other-frameworks-besides-matlab">Other frameworks besides Matlab</h3>
+<section id="other-frameworks-besides-matlab" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="other-frameworks-besides-matlab"><span class="header-section-number">3.2</span> Other frameworks besides Matlab</h2>
 <p>The most used deep learning frameworks are written in Python:</p>
 <ul>
 <li>Tersorflow + Keras</li>
@@ -290,8 +285,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 </section>
 </section>
-<section id="walkthroughs" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="walkthroughs"><span class="header-section-number">2.3</span> Walkthroughs</h2>
+<section id="walkthroughs" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Walkthroughs</h1>
 <p>We go step by step through the following Matlab examples:</p>
 <ol type="1">
 <li><a href="https://www.mathworks.com/help/deeplearning/ug/classify-image-using-googlenet.html">Classify Image Using GoogLeNet</a></li>
@@ -306,11 +301,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>DeepLearning OnRamp: <a href="https://matlabacademy.mathworks.com/details/deep-learning-onramp/deeplearning">https://matlabacademy.mathworks.com/details/deep-learning-onramp/deeplearning</a></li>
 </ul>
 </section>
-</section>
-<section id="practical-work" class="level1" data-number="3">
-<h1 data-number="3"><span class="header-section-number">3</span> Practical work</h1>
-<section id="exercise-1---play-with-pretrained-networks" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="exercise-1---play-with-pretrained-networks"><span class="header-section-number">3.1</span> Exercise 1 - Play with pretrained networks</h2>
+<section id="practical-work" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Practical work</h1>
+<section id="exercise-1---play-with-pretrained-networks" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="exercise-1---play-with-pretrained-networks"><span class="header-section-number">5.1</span> Exercise 1 - Play with pretrained networks</h2>
 <ol type="1">
 <li><p>Load the AlexNet model with pretrained weights on the ImageNet database. Open the model and examine the architecure.</p>
 <ul>
@@ -337,8 +331,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The sample code is taken from here: <a href="https://www.mathworks.com/help/deeplearning/ug/visualize-activations-of-a-convolutional-neural-network.html">https://www.mathworks.com/help/deeplearning/ug/visualize-activations-of-a-convolutional-neural-network.html</a></p></li>
 </ol>
 </section>
-<section id="exercise-2---transfer-learning-to-classify-cola-vs-pepsi" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="exercise-2---transfer-learning-to-classify-cola-vs-pepsi"><span class="header-section-number">3.2</span> Exercise 2 - Transfer Learning to classify Cola vs Pepsi</h2>
+<section id="exercise-2---transfer-learning-to-classify-cola-vs-pepsi" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="exercise-2---transfer-learning-to-classify-cola-vs-pepsi"><span class="header-section-number">5.2</span> Exercise 2 - Transfer Learning to classify Cola vs Pepsi</h2>
 <p>Use transfer learning to train AlexNet (or GoogLeNet) to classify images of Pepsi vs CocaCola beverages.</p>
 <p>The dataset is in the file <code>Data_PepsiCola.zip,</code> downloaded from here: <a href="https://www.kaggle.com/datasets/die9origephit/pepsi-and-cocacola-images">https://www.kaggle.com/datasets/die9origephit/pepsi-and-cocacola-images</a></p>
 <ol type="1">
@@ -347,16 +341,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Test the results with some of the images from the dataset.</li>
 </ol>
 </section>
-<section id="exercise-3---add-a-new-layer-and-retrain" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="exercise-3---add-a-new-layer-and-retrain"><span class="header-section-number">3.3</span> Exercise 3 - Add a new layer and retrain</h2>
+<section id="exercise-3---add-a-new-layer-and-retrain" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="exercise-3---add-a-new-layer-and-retrain"><span class="header-section-number">5.3</span> Exercise 3 - Add a new layer and retrain</h2>
 <ol type="1">
 <li><p>In DeepNetworkDesigner, and remove one convolutional layer (+ the pooling layer after it) from the middle part of AlexNet. Retrain the whole network on the Pepsi/Cola dataset (it may take some time).</p></li>
 <li><p>Add one extra convolutional layer (+ pooling) in the middle part of AlexNet. Retrain the whole network on the Pepsi/Cola dataset (it may take some time).</p></li>
 </ol>
 </section>
 </section>
-<section id="final-questions" class="level1" data-number="4">
-<h1 data-number="4"><span class="header-section-number">4</span> Final questions</h1>
+<section id="final-questions" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Final questions</h1>
 <p>TBD</p>
 </section>
 
