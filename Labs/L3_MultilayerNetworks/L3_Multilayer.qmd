@@ -1,5 +1,5 @@
 ---
-title: "Multilayer Perception (MLP) neural networks"
+title: "MultiLayer Perceptron (MLP) neural networks"
 subtitle: "ML Laboratory 03"
 format: 
   html: default
@@ -273,7 +273,7 @@ In previous versions, we can use the function `ind2vec()`.
 
 ```matlab
 [X,Y] = make_data([2 2;   1 -1;    -1,1]);
-Yonehot = onehotencode(Y);
+Yonehot = onehotencode(categorical(Y),2);
 ```
 
 ### Neural Net tools
