@@ -32,8 +32,9 @@ The project should be finalized with a **written report**, consisting of a few p
   - Is the dataset balanced or unbalanced (roughly same amount of data in each category, or not)
   - Anything else of interest
 - What is desired to obtain
-- What algorithm is used, and how you used it
+- What algorithm is used, and how you used it (parameter values etc.)
 - Results: include classification results, training results (if relevant), any other graphical or numerical result relevant for the problem
+- Any personal comments or conclusions
 
 The project must be presented in 5-10 minutes presentation, either in the last week project sessions or on some agreed date before the exam.
 
