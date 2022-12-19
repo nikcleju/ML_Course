@@ -20,7 +20,7 @@ EXPORTED_DOCS_TEX = $(SOURCE_MD:.md=.tex)
 
 # Pandoc options
 PANDOC = pandoc
-PANDOC_OPTIONS = -f markdown+latex_macros --standalone 
+PANDOC_OPTIONS = -f markdown+latex_macros --standalone --shift-heading-level-by=-1
 
 # PWeave options
 PWEAVE = pweave
