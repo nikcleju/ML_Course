@@ -298,6 +298,14 @@ The linear model tries to estimate the output only as a linear combination of th
 
 Augment the existing dataset by appending, for every column $x_i$, new columns with the squared values $x_i^2$, and also all possible products $x_i \cdot x_j$. Then repeat the training process on the augmented data. How are the results?
 
-## 4. Final questions
+**Task 7**: Change dataset
+
+Perform linear regression on the dataset available in "Admission_Predict_Ver1.1.csv", using one of the methods described above (your choice). 
+
+Read the description of the dataset from it's original homepage: [https://www.kaggle.com/datasets/mohansacharya/graduate-admissions/](https://www.kaggle.com/datasets/mohansacharya/graduate-admissions/).
+
+# Final questions
 
 1. In Gradient Descent, what happens when $\mu$ is too large? What if it is too small?
+
+2. What's the difference between a coefficient $w_i$ being positive vs negative?
