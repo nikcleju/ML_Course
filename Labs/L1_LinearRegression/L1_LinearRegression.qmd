@@ -185,14 +185,14 @@ Let's load the data first:
 ```{matlab}
 Data = readmatrix('winequality-red.csv');
 X = Data(:,1:11);   % 11 columns for the inputs
-Y = Data(:,12);     % 1 column for the output
+Y = Data(:,13);     % 1 column for the output
 N = size(Data,1);   % The number of wines in the set (1599)
 ```
 
 Extend the X matrix so we can treat the bias $b$ as just another weight.
 
 ```{matlab}
-X = [X ones(N,1)]
+X2 = [X ones(N,1)]
 ```
 
 Let's initialize the weights to some random values
