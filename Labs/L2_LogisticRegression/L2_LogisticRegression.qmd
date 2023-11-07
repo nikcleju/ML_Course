@@ -1,7 +1,7 @@
 ---
 title: "ML Laboratory 02: Logistic Regression"
 
-format: 
+format:
   html: default
   pdf: default
   ipynb: default
@@ -14,7 +14,7 @@ jupyter: python3
 execute:
   freeze: true
   eval: false
-    
+
 ---
 
 # Objective
@@ -38,28 +38,28 @@ This can be understood as a **sequence of two steps**:
 
 1. Compute a **linear combination $z$** of the inputs:
     $$z = w_1 x_1 + w_2 x_2 + ... + w_N x_N + b$$
-    
+
 2. Pass $z$ through the **sigmoid** function $\sigma(z)$:
     $$y = \frac{1}{1 + e^{-z}}$$
 
 
-![Logistic regression as 1 neuron](img/Neuron2.png)  
+![Logistic regression as 1 neuron](img/Neuron2.png)
 
 Both steps can be represented as one "neuron" like this:
 
-![Logistic regression as 1 neuron](img/Neuron.png)      
+![Logistic regression as 1 neuron](img/Neuron.png)
 
 
 ## The sigmoid function
 
-Let's take a look at the sigmoid function $\sigma{z}$:
+Let's take a look at the sigmoid function $\sigma(z)$:
 
 <div>
 <img src="img/Sigmoid.svg" align="center" width="600"/>
 </div>
 <!-- ![](img/Sigmoid.svg) -->
 
-**Notes**: 
+**Notes**:
 
 - The output value is always between 0 and 1. This makes the result good for modeling **probabilities**, but not good for other types of numeric values.
 
@@ -67,18 +67,18 @@ Let's take a look at the sigmoid function $\sigma{z}$:
    - when $z$ is much bigger than 0, the result is practically 1
    - when $z$ is much smaller than 0, the result is practically 0
    - when $z$ is around 0, there is a "transition zone" from 0 to 1. In particular, when $z=0$, the output is right at the middle, $\sigma(0) = 0.5$.
-   
-This makes it similar to classification: 
 
-- if $z$ much larger than 0, data belongs almost surely to class 1; 
-- if $z$ much smaller than 0, data belongs almost surely to class 0; 
+This makes it similar to classification:
+
+- if $z$ much larger than 0, data belongs almost surely to class 1;
+- if $z$ much smaller than 0, data belongs almost surely to class 0;
 - $z=0$ is the frontier. Around the frontier, we have less confidence in the classification (a sort of "gray area").
 
 ## Logistic regression: the parameters
 
 The parameters of the logistic regression model are similar to those of linear regression:
 
-- the **weights** $w_1, w_2, ... w_N$, and 
+- the **weights** $w_1, w_2, ... w_N$, and
 - the **bias** value $b$ (also known as the **intercept**).
 
 In a similar way to linear regression, we can consider $b$ as just another weight $w_i$ which multiplies a constant input of 1.
@@ -97,7 +97,7 @@ $$L(y, \hat{y}) = - y \log{\hat{y}} - (1-y) \log{(1 - \hat{y})}$$
 
 Usually the true value $y$ is either 0 or 1 (e.g. in a  classification: 0 = cat, 1 = dog). In this case the cross-entropy should be understood as:
 
-$$L(y, \hat{y}) = 
+$$L(y, \hat{y}) =
 \begin{cases}
 - \log(\hat{y})     = \log{\frac{1}{\hat{y}}}, & \textrm{ when true output is } y = 1; \\
 - \log(1 - \hat{y}) = \log{\frac{1}{1-\hat{y}}}, & \textrm{ when true output is } y = 0;
@@ -136,7 +136,7 @@ $$\frac{dJ}{dW} = X^* (\hat{Y} - Y).$$
 
 That's right, the gradient of logistic regression with cross-entropy loss is the same as the gradient of linear regression with quadratic loss.
 
-# Logistic Regression in Matlab 
+# Logistic Regression in Matlab
 
 ## Direct implementation example
 
@@ -188,17 +188,17 @@ for iter=1:1000
     % Update
     mu = 0.0001;          % step-size
     W = W - mu*dW;        % update rule
-    
+
     %===================================
     % Plotting stuff
     %===================================
-    
+
     % Plot decision boundary
     subplot(1,2,1)
     gscatter(X(:,1),X(:,2),Y)
     title('Data plot');
     hold on
-    
+
     % Plot decision line on top of points
     xx = linspace(-2, 3, 1000);
     yy = -W(1)/W(2) * xx - W(3)/W(2);
@@ -207,8 +207,8 @@ for iter=1:1000
     legend('Class 0', 'Class 1', 'Boundary between classes (output = 0.5)');
     hold off
     axis([-2, 3, -2, 3])
-    axis square     
-    
+    axis square
+
     % On right side, plot grayscale regions
     subplot(1,2,2)
     I = zeros(500,500);
@@ -227,19 +227,19 @@ for iter=1:1000
     imshow(I);
     title('Sigmoid output');
     hold on
-    
+
     % Plot line on right side as well
     subplot(1,2,2)
     xx_rescaled = (xx + 2)*500/5+1;
     yy_rescaled = 500 - (yy + 2)*500/5+1;
-    %plot(xx_rescaled, yy_rescaled, 'LineWidth',2) 
-    plot(xx_rescaled, yy_rescaled, 'LineWidth',2) 
+    %plot(xx_rescaled, yy_rescaled, 'LineWidth',2)
+    plot(xx_rescaled, yy_rescaled, 'LineWidth',2)
     hold off
     %axis([-2, 3, -2, 3])
-    axis square     
-    
+    axis square
+
     drawnow()
-   
+
     %pause(0.1)
     %===================================
 end
@@ -269,10 +269,10 @@ mdl = fitglm(X, Y, 'Distribution', 'binomial')   % X are the inputs, Y is the ta
 Let's make some predictions with our model:
 
 ```matlab
-% Predict 
-mdl.predict([0,0]) 
-mdl.predict([0,0.5]) 
-mdl.predict([3,-1.5]) 
+% Predict
+mdl.predict([0,0])
+mdl.predict([0,0.5])
+mdl.predict([3,-1.5])
 ```
 
 To which class do the previous inputs belong?
@@ -300,10 +300,10 @@ To which class do the previous inputs belong?
 7. Export the model to Matlab's Workspace, and start using it for predictions
 
    ```matlab
-   % Predict 
-   trainedModel.predictFcn([0,0]) 
-   trainedModel.predictFcn([0,0.5]) 
-   trainedModel.predictFcn([3,-1.5]) 
+   % Predict
+   trainedModel.predictFcn([0,0])
+   trainedModel.predictFcn([0,0.5])
+   trainedModel.predictFcn([3,-1.5])
     ```
 
    You can explore the trained model parameters from the Workspace:
@@ -352,7 +352,7 @@ We are using the Titanic Survivors dataset from here: [https://www.kaggle.com/da
     - What is the accuracy of the model?
 
 3.  Import the testing data `Titanic/test_data.csv` and predict the survival of the those passengers.
-    
+
     You can call `trainedModel.predictFcn( table )` on a full table.
 
     Are the predictions correct (do they match the actual "Survived" value)? Check for the first five persons.
