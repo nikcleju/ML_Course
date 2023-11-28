@@ -18,7 +18,7 @@ data = readtable(......);
 
 % Data Exploration
 % Create a scatter plot between two features (example: area vs perimeter)
-% scatter(data.Area, data.Perimeter);
+scatter(data.Area, data.Perimeter);
 xlabel('Area'); ylabel('Perimeter');
 title('Area vs Perimeter');
 
