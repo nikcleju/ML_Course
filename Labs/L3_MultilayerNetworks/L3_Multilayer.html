@@ -136,10 +136,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </ul></li>
   <li><a href="#practical-work" id="toc-practical-work" class="nav-link" data-scroll-target="#practical-work"><span class="toc-section-number">3</span>  Practical work</a>
   <ul class="collapse">
-  <li><a href="#exercise-0---manual-calculations" id="toc-exercise-0---manual-calculations" class="nav-link" data-scroll-target="#exercise-0---manual-calculations"><span class="toc-section-number">3.1</span>  Exercise 0 - Manual calculations</a></li>
-  <li><a href="#exercise-1---wine-classification---nprtool" id="toc-exercise-1---wine-classification---nprtool" class="nav-link" data-scroll-target="#exercise-1---wine-classification---nprtool"><span class="toc-section-number">3.2</span>  Exercise 1 - Wine classification - nprtool</a></li>
-  <li><a href="#exercise-2---wine-classification---classification-learner" id="toc-exercise-2---wine-classification---classification-learner" class="nav-link" data-scroll-target="#exercise-2---wine-classification---classification-learner"><span class="toc-section-number">3.3</span>  Exercise 2 - Wine classification - Classification Learner</a></li>
-  <li><a href="#exercise-3---handwritten-digit-classification-on-mnist" id="toc-exercise-3---handwritten-digit-classification-on-mnist" class="nav-link" data-scroll-target="#exercise-3---handwritten-digit-classification-on-mnist"><span class="toc-section-number">3.4</span>  Exercise 3 - Handwritten digit classification on MNIST</a></li>
+  <li><a href="#split" id="toc-split" class="nav-link" data-scroll-target="#split"><span class="toc-section-number">3.1</span>  Split</a></li>
+  <li><a href="#exercise-0---manual-calculations" id="toc-exercise-0---manual-calculations" class="nav-link" data-scroll-target="#exercise-0---manual-calculations"><span class="toc-section-number">3.2</span>  Exercise 0 - Manual calculations</a></li>
+  <li><a href="#exercise-1---wine-classification---nprtool" id="toc-exercise-1---wine-classification---nprtool" class="nav-link" data-scroll-target="#exercise-1---wine-classification---nprtool"><span class="toc-section-number">3.3</span>  Exercise 1 - Wine classification - nprtool</a></li>
+  <li><a href="#exercise-2---wine-classification---classification-learner" id="toc-exercise-2---wine-classification---classification-learner" class="nav-link" data-scroll-target="#exercise-2---wine-classification---classification-learner"><span class="toc-section-number">3.4</span>  Exercise 2 - Wine classification - Classification Learner</a></li>
+  <li><a href="#exercise-3---handwritten-digit-classification-on-mnist" id="toc-exercise-3---handwritten-digit-classification-on-mnist" class="nav-link" data-scroll-target="#exercise-3---handwritten-digit-classification-on-mnist"><span class="toc-section-number">3.5</span>  Exercise 3 - Handwritten digit classification on MNIST</a></li>
+  <li><a href="#exercise-4---classifying-wheat-seeds-independent-work" id="toc-exercise-4---classifying-wheat-seeds-independent-work" class="nav-link" data-scroll-target="#exercise-4---classifying-wheat-seeds-independent-work"><span class="toc-section-number">3.6</span>  Exercise 4 - Classifying wheat seeds (independent work)</a></li>
   </ul></li>
   <li><a href="#final-questions" id="toc-final-questions" class="nav-link" data-scroll-target="#final-questions"><span class="toc-section-number">4</span>  Final questions</a></li>
   </ul>
@@ -171,7 +173,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="theoretical-aspects" class="level1" data-number="2">
 <h1 data-number="2"><span class="header-section-number">2</span> Theoretical aspects</h1>
-<p>Multi-layer perceptron (fully-connected) neural networks are widely used for classificaton of small, simple datasets.</p>
+<p>Multi-layer perceptron (fully-connected) neural networks are widely used for classification of small, simple datasets.</p>
 <section id="multilayer-perceptron" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="multilayer-perceptron"><span class="header-section-number">2.1</span> Multilayer perceptron</h2>
 <section id="cascading-neurons" class="level3">
@@ -198,7 +200,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>each one draws a hyperplane (a line)</li>
 <li>aggregate their results into the final outcome: “When both neurons say 1, output class is 1. Otherwise, output class is 0”.</li>
 </ul>
-<!-- 
+<!--
 <div>
 <img src=img/DatasetAngled2.png align="center" width="400"/>
 </div> -->
@@ -209,7 +211,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </figure>
 </div>
 <p>Combining the results of both neurons in the final result is <strong>also done with a (third) neuron</strong>. Thus, we have <strong>cascading neurons</strong>.</p>
-<!-- 
+<!--
 <div>
 <img src=img/Network2plus1.png align="center" width="500"/>
 </div> -->
@@ -256,7 +258,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="matrix-form" class="level3">
 <h3 class="anchored" data-anchor-id="matrix-form">Matrix form</h3>
 <p><strong>One neuron</strong> does a linear combination of the inputs, followed by activation function: <span class="math display">\[\begin{bmatrix} w_1 &amp; x_w &amp; \dots &amp; w_N &amp; b \end{bmatrix} \cdot \begin{bmatrix} x_1 \\ x_2 \\ \vdots \\ x_N \\ 1 \end{bmatrix} = z
-\rightarrow a\]</span></p>
+\rightarrow \sigma(z) = a\]</span></p>
+<p><span class="math display">\[\begin{bmatrix} w_1 &amp; x_w &amp; \dots &amp; w_N \end{bmatrix} \cdot \begin{bmatrix} x_1 \\ x_2 \\ \vdots \\ x_N \end{bmatrix}  + b = z
+\rightarrow \sigma(z) = a\]</span></p>
 <p><strong>A layer of <span class="math inline">\(M\)</span> neurons is just <span class="math inline">\(M\)</span> neurons next to each other</strong>: <span class="math display">\[\begin{bmatrix}
 w_{11} &amp; w_{12} &amp; \dots &amp; w_{1N} &amp; b_1 \\
 w_{21} &amp; w_{22} &amp; \dots &amp; w_{2N} &amp; b_2 \\
@@ -267,12 +271,36 @@ w_{M1} &amp; w_{M2} &amp; \dots &amp; w_{MN} &amp; b_M \\
 z_1 \\ z_2 \\ \dots \\ z_M
 \end{bmatrix}
 \rightarrow
+\sigma(\begin{bmatrix}
+z_1 \\ z_2 \\ \dots \\ z_M
+\end{bmatrix})
+=
 \begin{bmatrix}
 a_1 \\ a_2 \\ \dots \\ a_M
 \end{bmatrix}\]</span></p>
-<p>Each layer is characterized by the weight matrix <span class="math inline">\(W\)</span>.</p>
+<p><span class="math display">\[\begin{bmatrix}
+w_{11} &amp; w_{12} &amp; \dots &amp; w_{1N}\\
+w_{21} &amp; w_{22} &amp; \dots &amp; w_{2N}\\
+\vdots  &amp; \vdots &amp; \dots &amp; \vdots\\
+w_{M1} &amp; w_{M2} &amp; \dots &amp; w_{MN}\\
+\end{bmatrix} \cdot \begin{bmatrix} x_1 \\ x_2 \\ \vdots \\ x_N \end{bmatrix}
++
+\begin{bmatrix} b_1 \\ b_2 \\ \vdots \\ b_N \end{bmatrix}
+=
+\begin{bmatrix}
+z_1 \\ z_2 \\ \dots \\ z_M
+\end{bmatrix}
+\rightarrow
+\sigma(\begin{bmatrix}
+z_1 \\ z_2 \\ \dots \\ z_M
+\end{bmatrix})
+=
+\begin{bmatrix}
+a_1 \\ a_2 \\ \dots \\ a_M
+\end{bmatrix}\]</span></p>
+<p>Each layer is characterized by the weight matrix <span class="math inline">\(W\)</span> and column <span class="math inline">\(b\)</span> (separately or joined).</p>
 <p>The whole network can be understood as a sequence of matrix multiplications and activation functions.</p>
-<p><strong>The next layer</strong> takes as inputs the outputs <span class="math inline">\(a_i\)</span> of the previos layer, and does the same.</p>
+<p><strong>The next layer</strong> takes as inputs the outputs <span class="math inline">\(a_i\)</span> of the previous layer, and does the same.</p>
 </section>
 </section>
 <section id="the-model" class="level2" data-number="2.2">
@@ -288,8 +316,8 @@ a^{2} =&amp; activation(z^{2}) \\
 z^{k} =&amp; W^{k} \cdot a^{k-1} \\
 a^{k} =&amp; activation(z^{k})\\
 \end{aligned}\]</span></p>
-<p>Here, <span class="math inline">\(W^{k}\)</span> is a matrix and <span class="math inline">\(z{k}\)</span>, <span class="math inline">\(a{k}\)</span> are vectors (columns).</p>
-<p>The activation function can be the <strong>sigmoid</strong>, <strong>ReLU</strong>, <strong>tanh</strong> etc. Typically the output used sigmoid, but all others are up to the designer.</p>
+<p>Here, <span class="math inline">\(W^{k}\)</span> is a matrix and <span class="math inline">\(z{k}\)</span>, <span class="math inline">\(a{k}\)</span> are vectors (columns). <span class="math inline">\(k\)</span> refers to layer number <span class="math inline">\(k\)</span>.</p>
+<p>The activation function can be the <strong>sigmoid</strong>, <strong>ReLU</strong>, <strong>tanh</strong> etc. Typically the outputs use sigmoid activation, but all others are up to the designer.</p>
 <ul>
 <li><p>sigmoid activation function: <span class="math display">\[f(z) = \sigma(z) = \frac{1}{1 + e^{-z}} = \frac{e^z}{e^z + 1}\]</span></p></li>
 <li><p>ReLU (“Rectified Linear Unit”): <span class="math display">\[f(z) = \begin{cases} z &amp;, \textrm{ if } z \geq 0 \\ 0 &amp;,  \textrm{ if } z &lt; 0  \end{cases}\]</span></p></li>
@@ -408,7 +436,7 @@ a^{4} =&amp; activation(z^{4})
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="va">ans</span> <span class="op">=</span></span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a> <span class="fl">0.8166</span>    <span class="fl">0.0117</span>    <span class="fl">0.1716</span>   </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a> <span class="fl">0.8166</span>    <span class="fl">0.0117</span>    <span class="fl">0.1716</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ol>
 </section>
 <section id="classification-learner" class="level3">
@@ -429,24 +457,40 @@ a^{4} =&amp; activation(z^{4})
 <h3 class="anchored" data-anchor-id="the-patternnet-function">The <code>patternnet()</code> function</h3>
 <p>For more fine-grained control, you can use the <code>patternnet()</code> function. Read its documentation to see more details.</p>
 <p><strong>Note</strong>: All the data vectors should be column vectors.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">% Construct a pattern network with two hidden layer of sizes 8 and 4:</span></span>
+<div class="sourceCode" id="cb4"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">% Construct a pattern network with two hidden layer of sizes 8 and 4</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="va">net</span> <span class="op">=</span> <span class="va">patternnet</span>([<span class="fl">8</span> <span class="fl">4</span>])<span class="op">;</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co">% Train the network net using the training data (outputs are one-hot-encoded). Use the default training algorithm.</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="va">net</span> <span class="op">=</span> <span class="va">train</span>(<span class="va">net</span><span class="op">,</span><span class="va">X</span><span class="op">',</span><span class="va">Yonehot</span><span class="op">'</span>)<span class="op">;</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">% View the trained network.</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="va">view</span>(<span class="va">net</span>)<span class="op">;</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co">% Predict using the trained network. Pass a column vector!</span></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="va">y</span> <span class="op">=</span> <span class="va">net</span>([<span class="op">-</span><span class="fl">1</span><span class="op">;</span> <span class="op">-</span><span class="fl">1</span>])    </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co">% Train the network net using the training data (outputs are one-hot-encoded).</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co">% Use the default training algorithm.</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="va">net</span> <span class="op">=</span> <span class="va">train</span>(<span class="va">net</span><span class="op">,</span><span class="va">X</span><span class="op">',</span><span class="va">Yonehot</span><span class="op">'</span>)<span class="op">;</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">% View the trained network.</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="va">view</span>(<span class="va">net</span>)<span class="op">;</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co">% Predict using the trained network. Pass a column vector!</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="va">y</span> <span class="op">=</span> <span class="va">net</span>([<span class="op">-</span><span class="fl">1</span><span class="op">;</span> <span class="op">-</span><span class="fl">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
 </section>
 <section id="practical-work" class="level1" data-number="3">
 <h1 data-number="3"><span class="header-section-number">3</span> Practical work</h1>
-<section id="exercise-0---manual-calculations" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="exercise-0---manual-calculations"><span class="header-section-number">3.1</span> Exercise 0 - Manual calculations</h2>
+<section id="split" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="split"><span class="header-section-number">3.1</span> Split</h2>
+<p>In Week 1:</p>
+<ul>
+<li>Exercise 1</li>
+<li>Exercise 2</li>
+<li>Exercise 3 (fast)</li>
+</ul>
+<p>In week 2, do/redo with greater care:</p>
+<ul>
+<li>Exercise 0</li>
+<li>Exercise 3 - train and run on the test images as well</li>
+<li>Exercise 4 - independently</li>
+</ul>
+</section>
+<section id="exercise-0---manual-calculations" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="exercise-0---manual-calculations"><span class="header-section-number">3.2</span> Exercise 0 - Manual calculations</h2>
 <p>Consider a neural network with the following architecture:</p>
 <p><img src="img/BlankNetSize2.png" class="img-fluid"></p>
 <p>The network parameters are:</p>
@@ -457,13 +501,13 @@ a^{4} =&amp; activation(z^{4})
 <p>Both the hidden layer and the output layer have sigmoid activation function.</p>
 <ol type="a">
 <li><p>Compute the network output for the input <span class="math inline">\(x = \begin{bmatrix} 0.5 \\ 1 \end{bmatrix}\)</span></p></li>
-<li><p>Compute the network output for the same input, considering that the hidden layer has ReLU activation instead</p></li>
+<li><p>Compute the network output for the same input, considering that the hidden layer has ReLU activation instead (output layer still sigmoid)</p></li>
 <li><p>Compute the cost function (i.e.&nbsp;the loss), assuming the true output should have been <span class="math inline">\(y = 0\)</span>.</p></li>
 <li><p>Compute the cost function (i.e.&nbsp;the loss), assuming the true output should have been <span class="math inline">\(y = 1\)</span>.</p></li>
 </ol>
 </section>
-<section id="exercise-1---wine-classification---nprtool" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="exercise-1---wine-classification---nprtool"><span class="header-section-number">3.2</span> Exercise 1 - Wine classification - nprtool</h2>
+<section id="exercise-1---wine-classification---nprtool" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="exercise-1---wine-classification---nprtool"><span class="header-section-number">3.3</span> Exercise 1 - Wine classification - nprtool</h2>
 <p>We shall work with the same <code>wine_dataset</code> data as in the first labs. The last column gives the quality score. We shall treat the quality score as a <strong>class indicator</strong>. We shall perform classification with a multilayer network model, aiming to classify correctly the quality of a wine based on its parameters.</p>
 <ol type="1">
 <li><p>Prepare the data</p>
@@ -493,12 +537,12 @@ a^{4} =&amp; activation(z^{4})
 <li><p>Go back and change the hidden layer size to 20, 50, then 5. Do the results change significantly?</p></li>
 </ol>
 </section>
-<section id="exercise-2---wine-classification---classification-learner" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="exercise-2---wine-classification---classification-learner"><span class="header-section-number">3.3</span> Exercise 2 - Wine classification - Classification Learner</h2>
+<section id="exercise-2---wine-classification---classification-learner" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="exercise-2---wine-classification---classification-learner"><span class="header-section-number">3.4</span> Exercise 2 - Wine classification - Classification Learner</h2>
 <p>Use the Classification Learner app to train a similar model with two hidden layers with sizes 9 and 8.</p>
 </section>
-<section id="exercise-3---handwritten-digit-classification-on-mnist" class="level2" data-number="3.4">
-<h2 data-number="3.4" class="anchored" data-anchor-id="exercise-3---handwritten-digit-classification-on-mnist"><span class="header-section-number">3.4</span> Exercise 3 - Handwritten digit classification on MNIST</h2>
+<section id="exercise-3---handwritten-digit-classification-on-mnist" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="exercise-3---handwritten-digit-classification-on-mnist"><span class="header-section-number">3.5</span> Exercise 3 - Handwritten digit classification on MNIST</h2>
 <p>We follow the MNIST training tutorial from <a href="https://www.mathworks.com/matlabcentral/fileexchange/73010-mnist-neural-network-training-and-testing">https://www.mathworks.com/matlabcentral/fileexchange/73010-mnist-neural-network-training-and-testing</a></p>
 <ol type="1">
 <li><p>Unzip the MNIST data file `<code>MNISTdata.zip</code> provided with the lab.</p></li>
@@ -509,8 +553,10 @@ a^{4} =&amp; activation(z^{4})
 <li><p>Prepare the inputs and outputs. Check the sizes of the resulting arrays to understand what they contain.</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="va">X</span> <span class="op">=</span> <span class="va">mnist_train</span>(<span class="op">:,</span><span class="fl">2</span><span class="op">:</span><span class="kw">end</span>)<span class="op">;</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="va">Y</span> <span class="op">=</span> <span class="va">mnist_train</span>(<span class="op">:,</span><span class="fl">1</span>)<span class="op">;</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="va">Yenc</span> <span class="op">=</span> <span class="va">full</span>(<span class="va">ind2vec</span>(<span class="fl">1</span> <span class="op">+</span> <span class="va">Y</span><span class="op">'</span>))   <span class="co">% digits are 0 to 9, add 1 so that class indices are 1 to 10 (10 classes)</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="va">Yenc</span> <span class="op">=</span> <span class="va">Yenc</span><span class="op">';</span>          <span class="co">% Transpose, so each value corresponds to a row, just like the input data</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co">% digits are 0 to 9, add 1 so that class indices are 1 to 10 (10 classes)</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="va">Yenc</span> <span class="op">=</span> <span class="va">full</span>(<span class="va">ind2vec</span>(<span class="fl">1</span> <span class="op">+</span> <span class="va">Y</span><span class="op">'</span>))</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co">% Transpose, so each value corresponds to a row, just like the input data</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="va">Yenc</span> <span class="op">=</span> <span class="va">Yenc</span><span class="op">';</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p>Use <code>patternnet()</code> to design and train a neural network with two layers of sizes 80 and 60.</p>
 <p><strong>Note:</strong> Training a real-life network may take some time. Have patience until training is finished.</p>
 <p>You can look a the performance and confusion matrix updating live as training progresses.</p></li>
@@ -543,6 +589,22 @@ a^{4} =&amp; activation(z^{4})
 <p>Identify (predict) the digit using the network:</p>
 <pre><code>net(Ivec)</code></pre>
 <p>Was the result correct?</p></li>
+</ol>
+</section>
+<section id="exercise-4---classifying-wheat-seeds-independent-work" class="level2" data-number="3.6">
+<h2 data-number="3.6" class="anchored" data-anchor-id="exercise-4---classifying-wheat-seeds-independent-work"><span class="header-section-number">3.6</span> Exercise 4 - Classifying wheat seeds (independent work)</h2>
+<p>Do a similar analysis on a new database, <code>seeds.csv</code>. It contains measurement data of seeds coming from three types of wheat grains.</p>
+<p>Start from the template file in <code>Ex4_Template.m</code> and fill in the blanks.</p>
+<ol type="1">
+<li><p>Use 1 hidden layer with 50 neurons, and run the training for 1000 epochs.</p>
+<ul>
+<li>Does overfitting happen? (Yes / No)</li>
+<li>At which epoch did the training actually stop?</li>
+</ul></li>
+<li><p>Architecture experimentation:</p>
+<p>Use a single hidden layer with different sizes: 5, 10, 15, 25, 100. Which case gives the best classification accuracy on the test set?</p></li>
+<li><p>Architecture experimentation:</p>
+<p>Adjust number of hidden layers (1, 2, 3, 5, 8), keeping 10 neurons in each layer. Which case gives the best classification accuracy on the test set?</p></li>
 </ol>
 </section>
 </section>

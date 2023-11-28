@@ -1,7 +1,7 @@
 ---
 title: "MultiLayer Perceptron (MLP) neural networks"
 subtitle: "ML Laboratory 03"
-format: 
+format:
   html: default
   pdf: default
   ipynb: default
@@ -14,7 +14,7 @@ jupyter: python3
 execute:
   freeze: true
   eval: false
-    
+
 ---
 
 
@@ -24,20 +24,20 @@ Students should understand and be able use a multi-layer fully-connected network
 
 # Theoretical aspects
 
-Multi-layer perceptron (fully-connected) neural networks are widely used for classificaton of small, simple datasets.
+Multi-layer perceptron (fully-connected) neural networks are widely used for classification of small, simple datasets.
 
 ## Multilayer perceptron
 
-### Cascading neurons 
+### Cascading neurons
 
 Logistic regression = 1 neuron
 
 A single neuron creates a single hyperplane and separates the input space in two categories 0 or 1)
-  
+
   - **"neuron"** = one logistic regression operation
-  - **"hyperplane"** = a linear boundary surface, with dimension N-1 
+  - **"hyperplane"** = a linear boundary surface, with dimension N-1
   - with a smooth sigmoid transition zone between the two classes
-  
+
 What if we have a dataset as follows? How to do classification here?
 
 <!-- <div>
@@ -47,12 +47,12 @@ What if we have a dataset as follows? How to do classification here?
 ![How to separate the classes in this dataset? ](img/DatasetAngled1.png)
 
 
-Solution: use **two neurons**: 
-  
+Solution: use **two neurons**:
+
   - each one draws a hyperplane (a line)
   - aggregate their results into the final outcome: "When both neurons say 1, output class is 1. Otherwise, output class is 0".
 
-<!-- 
+<!--
 <div>
 <img src=img/DatasetAngled2.png align="center" width="400"/>
 </div> -->
@@ -62,7 +62,7 @@ Solution: use **two neurons**:
 
 Combining the results of both neurons in the final result is **also done with a (third) neuron**. Thus, we have **cascading neurons**.
 
-<!-- 
+<!--
 <div>
 <img src=img/Network2plus1.png align="center" width="500"/>
 </div> -->
@@ -90,7 +90,7 @@ What if we have 4 output classes?
 
 Have 4 neurons in the output layer, one for each class. When the input belongs to class $k$, the $k$-th neuron should produce 1, and all the others should produce 0.
 
-**One-hot encoding**: When we train the network, we need to tell it what is the desired output (target). This is known as **encoding**. 
+**One-hot encoding**: When we train the network, we need to tell it what is the desired output (target). This is known as **encoding**.
 For an input of class $k$, we tell the network to produce a vector with a single value of 1, on position $k$.
 $$\begin{bmatrix} 0 \\ \vdots \\ 0 \\ 1 \\ 0 \\ \vdots \end{bmatrix}$$
 
@@ -113,29 +113,57 @@ However, training many layers and many neurons is **difficult**, i.e. it can ove
 ### Matrix form
 
 **One neuron** does a linear combination of the inputs, followed by activation function:
-$$\begin{bmatrix} w_1 & x_w & \dots & w_N & b \end{bmatrix} \cdot \begin{bmatrix} x_1 \\ x_2 \\ \vdots \\ x_N \\ 1 \end{bmatrix} = z 
-\rightarrow a$$
+$$\begin{bmatrix} w_1 & x_w & \dots & w_N & b \end{bmatrix} \cdot \begin{bmatrix} x_1 \\ x_2 \\ \vdots \\ x_N \\ 1 \end{bmatrix} = z
+\rightarrow \sigma(z) = a$$
+
+$$\begin{bmatrix} w_1 & x_w & \dots & w_N \end{bmatrix} \cdot \begin{bmatrix} x_1 \\ x_2 \\ \vdots \\ x_N \end{bmatrix}  + b = z
+\rightarrow \sigma(z) = a$$
 
 **A layer of $M$ neurons is just $M$ neurons next to each other**:
-$$\begin{bmatrix} 
+$$\begin{bmatrix}
 w_{11} & w_{12} & \dots & w_{1N} & b_1 \\
 w_{21} & w_{22} & \dots & w_{2N} & b_2 \\
 \vdots  & \vdots & \dots & \vdots & \vdots \\
 w_{M1} & w_{M2} & \dots & w_{MN} & b_M \\
-\end{bmatrix} \cdot \begin{bmatrix} x_1 \\ x_2 \\ \vdots \\ x_N \\ 1 \end{bmatrix} = 
-\begin{bmatrix} 
+\end{bmatrix} \cdot \begin{bmatrix} x_1 \\ x_2 \\ \vdots \\ x_N \\ 1 \end{bmatrix} =
+\begin{bmatrix}
 z_1 \\ z_2 \\ \dots \\ z_M
 \end{bmatrix}
-\rightarrow 
-\begin{bmatrix} 
+\rightarrow
+\sigma(\begin{bmatrix}
+z_1 \\ z_2 \\ \dots \\ z_M
+\end{bmatrix})
+=
+\begin{bmatrix}
 a_1 \\ a_2 \\ \dots \\ a_M
 \end{bmatrix}$$
 
-Each layer is characterized by the weight matrix $W$.
+$$\begin{bmatrix}
+w_{11} & w_{12} & \dots & w_{1N}\\
+w_{21} & w_{22} & \dots & w_{2N}\\
+\vdots  & \vdots & \dots & \vdots\\
+w_{M1} & w_{M2} & \dots & w_{MN}\\
+\end{bmatrix} \cdot \begin{bmatrix} x_1 \\ x_2 \\ \vdots \\ x_N \end{bmatrix}
++
+\begin{bmatrix} b_1 \\ b_2 \\ \vdots \\ b_N \end{bmatrix}
+=
+\begin{bmatrix}
+z_1 \\ z_2 \\ \dots \\ z_M
+\end{bmatrix}
+\rightarrow
+\sigma(\begin{bmatrix}
+z_1 \\ z_2 \\ \dots \\ z_M
+\end{bmatrix})
+=
+\begin{bmatrix}
+a_1 \\ a_2 \\ \dots \\ a_M
+\end{bmatrix}$$
+
+Each layer is characterized by the weight matrix $W$ and column $b$ (separately or joined).
 
 The whole network can be understood as a sequence of matrix multiplications and activation functions.
 
-**The next layer** takes as inputs the outputs $a_i$ of the previos layer, and does the same.
+**The next layer** takes as inputs the outputs $a_i$ of the previous layer, and does the same.
 
 ## The model
 
@@ -146,15 +174,15 @@ z^{1} =& W^{1} \cdot X \\
 a^{1} =& activation(z^{1}) \\
 \\
 z^{2} =& W^{2} \cdot a^{1} \\
-a^{2} =& activation(z^{2}) \\ 
+a^{2} =& activation(z^{2}) \\
 ... \\
 z^{k} =& W^{k} \cdot a^{k-1} \\
 a^{k} =& activation(z^{k})\\
 \end{aligned}$$
 
-Here, $W^{k}$ is a matrix and $z{k}$, $a{k}$ are vectors (columns).
+Here, $W^{k}$ is a matrix and $z{k}$, $a{k}$ are vectors (columns). $k$ refers to layer number $k$.
 
-The activation function can be the **sigmoid**, **ReLU**, **tanh** etc. Typically the output used sigmoid, but all others are up to the designer.
+The activation function can be the **sigmoid**, **ReLU**, **tanh** etc. Typically the outputs use sigmoid activation, but all others are up to the designer.
 
 - sigmoid activation function:
   $$f(z) = \sigma(z) = \frac{1}{1 + e^{-z}} = \frac{e^z}{e^z + 1}$$
@@ -163,19 +191,19 @@ The activation function can be the **sigmoid**, **ReLU**, **tanh** etc. Typicall
   $$f(z) = \begin{cases} z &, \textrm{ if } z \geq 0 \\ 0 &,  \textrm{ if } z < 0  \end{cases}$$
 
 - Hyperbolic tangent:
-  
+
   ...
 
-**Inputs**: 
+**Inputs**:
 
-   - a matrix $X$ with every input vector being a column (according to the equations below; we can also transpose all matrices and vectors, 
+   - a matrix $X$ with every input vector being a column (according to the equations below; we can also transpose all matrices and vectors,
    if we want).
- 
+
 **Outputs** (assuming one-hot encoding):
- 
+
   - a vector $\hat{y}$ which should be understood as scores/probability of belonging in each class
   - the **location of the maximum** value gives the predicted class
-  
+
 
 ## The model parameters
 
@@ -213,10 +241,10 @@ a^{1} =& activation(z^{1}) \\
 \\
 z^{2} =& W^{2} \cdot a^{1} \\
 a^{2} =& activation(z^{2}) \\
-\\ 
+\\
 z^{3} =& W^{3} \cdot a^{2} \\
 a^{3} =& activation(z^{3}) \\
-\\ 
+\\
 z^{4} =& W^{4} \cdot a^{3} \\
 a^{4} =& activation(z^{4})
 \end{aligned}$$
@@ -227,15 +255,15 @@ Just like in logistic regression, we can compute the derivatives for the final l
 
 For the third layer, we compute its own derivatives, $\frac{da^{3}}{dW^{3}}$ and $\frac{da^{3}}{da^2}$. Together with the $\frac{dJ}{da^3}$ received as inputs from the above layer, we have:
 
-$$\frac{dJ}{dW^{3}} = \frac{dJ}{da^3} \cdot \frac{da^{3}}{dW^{3}}$$ 
-and 
-$$\frac{dJ}{da^{2}} = \frac{dJ}{da^3} \cdot \frac{da^{3}}{da^{2}}$$ 
+$$\frac{dJ}{dW^{3}} = \frac{dJ}{da^3} \cdot \frac{da^{3}}{dW^{3}}$$
+and
+$$\frac{dJ}{da^{2}} = \frac{dJ}{da^3} \cdot \frac{da^{3}}{da^{2}}$$
 
 For the second layer, we compute its own derivatives, $\frac{da^{2}}{dW^{2}}$ and $\frac{da^{2}}{da^1}$. Together with the $\frac{dJ}{da^2}$ received as inputs from the above layer, we have:
 
-$$\frac{dJ}{dW^{2}} = \frac{dJ}{da^2} \cdot \frac{da^{2}}{dW^{2}}$$ 
-and 
-$$\frac{dJ}{da^{1}} = \frac{dJ}{da^1} \cdot \frac{da^{2}}{da^{1}}$$ 
+$$\frac{dJ}{dW^{2}} = \frac{dJ}{da^2} \cdot \frac{da^{2}}{dW^{2}}$$
+and
+$$\frac{dJ}{da^{1}} = \frac{dJ}{da^1} \cdot \frac{da^{2}}{da^{1}}$$
 
 Finally, the input layer computes its own derivatives, $\frac{da^{1}}{dW^{1}}$, aand together with the $\frac{dJ}{da^{1}}$ received from the layer above, computes:
 $$\frac{dJ}{dW^{1}} = \frac{dJ}{da^1} \cdot \frac{da^{1}}{dW^{1}}$$
@@ -268,7 +296,7 @@ After the gradients are calculated, we can update the parameters.
 Let's generate some data points belonging in 3 classes, situated
 around central points `(2,2)`, `(1,-1)` and `(-1,1)`:
 
-We do **one hot encoding** of the output vector Y. In R2020b we can use the function `onehotencode()`. 
+We do **one hot encoding** of the output vector Y. In R2020b we can use the function `onehotencode()`.
 In previous versions, we can use the function `ind2vec()`.
 
 ```matlab
@@ -291,7 +319,7 @@ Yonehot = onehotencode(categorical(Y),2);
   - The **training set** contains the data used for the actual training.
   - The **validation set** contains the data used to stop the training before over-fitting (over-learning). For a fair decision, for validation we use data which is not used for actual training.
   - The **testing set** contains the data used for the final testing of the final trained model. For a fair result, we use data which the network has never seen until now (neither in training nor for validation).
- 
+
    Default values for small datasets are around 70% / 15% / 15%. For larger datasets (tens of thousands of input vectors), we can use smaller amounts for validation and testing.
 
    These three sets of data are selected **randomly** from the overall available dataset, for fairness.
@@ -323,10 +351,10 @@ Yonehot = onehotencode(categorical(Y),2);
 
    ans =
 
-    0.8166    0.0117    0.1716   
+    0.8166    0.0117    0.1716
    ```
 
-### Classification Learner 
+### Classification Learner
 
 1. Use the same Classification Learner tool introduced last time, and load the data.
 
@@ -355,21 +383,36 @@ For more fine-grained control, you can use the `patternnet()` function. Read its
 **Note**: All the data vectors should be column vectors.
 
 ```matlab
-% Construct a pattern network with two hidden layer of sizes 8 and 4:
+% Construct a pattern network with two hidden layer of sizes 8 and 4
 net = patternnet([8 4]);
 
-% Train the network net using the training data (outputs are one-hot-encoded). Use the default training algorithm.
+% Train the network net using the training data (outputs are one-hot-encoded).
+% Use the default training algorithm.
 net = train(net,X',Yonehot');
 
 % View the trained network.
 view(net);
 
 % Predict using the trained network. Pass a column vector!
-y = net([-1; -1])    
+y = net([-1; -1])
 ```
 
 
 # Practical work
+
+## Split
+
+In Week 1:
+
+- Exercise 1
+- Exercise 2
+- Exercise 3 (fast)
+
+In week 2, do/redo with greater care:
+
+- Exercise 0
+- Exercise 3 - train and run on the test images as well
+- Exercise 4 - independently
 
 ## Exercise 0 - Manual calculations
 
@@ -386,7 +429,7 @@ Both the hidden layer and the output layer have sigmoid activation function.
 
 a. Compute the network output for the input $x = \begin{bmatrix} 0.5 \\ 1 \end{bmatrix}$
 
-a. Compute the network output for the same input, considering that the hidden layer has ReLU activation instead
+a. Compute the network output for the same input, considering that the hidden layer has ReLU activation instead (output layer still sigmoid)
 
 a. Compute the cost function (i.e. the loss), assuming the true output should have been $y = 0$.
 
@@ -411,7 +454,7 @@ We shall work with the same `wine_dataset` data as in the first labs. The last c
    Y = Data(:,12) ;        % 12th column the quality
    ```
 
-   We do **one hot encoding** of the output vector Y. In R2020b we can use the function `onehotencode()`. 
+   We do **one hot encoding** of the output vector Y. In R2020b we can use the function `onehotencode()`.
    In previous versions, we can use the function `ind2vec()`.
 
    ```matlab
@@ -446,10 +489,10 @@ We follow the MNIST training tutorial from [https://www.mathworks.com/matlabcent
 
    ```matlab
    load mnist_train.csv
-   ``` 
+   ```
 
    The first column is the digit number. The remaining 748 columns contain the pixels in the linearized image (every image has 28x28 pixels).
-   
+
    Lookup the MNIST database on the Internet to see how the images look like.
 
 3. Prepare the inputs and outputs. Check the sizes of the resulting arrays to understand what they contain.
@@ -457,8 +500,10 @@ We follow the MNIST training tutorial from [https://www.mathworks.com/matlabcent
    ```matlab
    X = mnist_train(:,2:end);
    Y = mnist_train(:,1);
-   Yenc = full(ind2vec(1 + Y'))   % digits are 0 to 9, add 1 so that class indices are 1 to 10 (10 classes)
-   Yenc = Yenc';          % Transpose, so each value corresponds to a row, just like the input data
+   % digits are 0 to 9, add 1 so that class indices are 1 to 10 (10 classes)
+   Yenc = full(ind2vec(1 + Y'))
+   % Transpose, so each value corresponds to a row, just like the input data
+   Yenc = Yenc';
    ```
 
 4. Use `patternnet()` to design and train a neural network with two layers of sizes 80 and 60.
@@ -468,19 +513,19 @@ We follow the MNIST training tutorial from [https://www.mathworks.com/matlabcent
    You can look a the performance and confusion matrix updating live as training progresses.
 
 5. When training is finished:
-   
+
    - Display the error plot. Do you notice the **overfitting**? This is what validation is good for.
-   - Display the confusion matrix. What is the classification accuracy (percentage of correctly classified images) on the testing set? 
+   - Display the confusion matrix. What is the classification accuracy (percentage of correctly classified images) on the testing set?
 
 6. Load the test file `mnist_test.csv` and predict the class of the first data sample. Is the class correct?
 
-7. Play with parameters. Change the network architecture: use a single hidden layer, change the number of neurons, etc. 
+7. Play with parameters. Change the network architecture: use a single hidden layer, change the number of neurons, etc.
 Compare the results:
-   
+
    - When is the accuracy greater?
    - When is overfitting more of a problem?
 
-8. Optional: Use the model to predict the digit from your own hand-drawing. 
+8. Optional: Use the model to predict the digit from your own hand-drawing.
 
    Draw a digit similar to the ones in the dataset (this amounts to the **preprocessing** of the image):
 
@@ -489,13 +534,13 @@ Compare the results:
    - Save it as a grayscale image
    - Resize the image to 28x28 pixels
    - You should get an image similar to the ones in the dataset
-  
+
    Read the image in Matlab:
-   
+
    - Use `imread()` to load the image
    - Convert to double with (`double()`)
    - Linearize the matrix in a row-major order (row by row), e.g.: `Ivec = I'(:)`
-  
+
    Identify (predict) the digit using the network:
 
    ```
@@ -505,9 +550,32 @@ Compare the results:
    Was the result correct?
 
 
+## Exercise 4 - Classifying wheat seeds (independent work)
+
+Do a similar analysis on a new database, `seeds.csv`.
+It contains measurement data of seeds coming from three types of wheat grains.
+
+Start from the template file in `Ex4_Template.m` and fill in the blanks.
+
+1. Use 1 hidden layer with 50 neurons, and run the training for 1000 epochs.
+
+   - Does overfitting happen? (Yes / No)
+   - At which epoch did the training actually stop?
+
+2. Architecture experimentation:
+
+   Use a single hidden layer with different sizes: 5, 10, 15, 25, 100.
+   Which case gives the best classification accuracy on the test set?
+
+3. Architecture experimentation:
+
+   Adjust number of hidden layers (1, 2, 3, 5, 8), keeping 10 neurons in each layer.
+   Which case gives the best classification accuracy on the test set?
+
+
 # Final questions
 
-1. How many parameters does the network used for MNIST classification have? 
+1. How many parameters does the network used for MNIST classification have?
 
 2. How many parameters would have a network used for classifying color images with 1024 x 768 resolution, into 10 output classes, using two hidden layers of size 2000 and 150?
 
