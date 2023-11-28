@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.269">
+<meta name="generator" content="quarto-1.3.450">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -17,9 +17,10 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -46,43 +47,13 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
-    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -97,6 +68,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <link href="L3_Multilayer_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="L3_Multilayer_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
@@ -109,24 +81,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#objective" id="toc-objective" class="nav-link active" data-scroll-target="#objective"><span class="toc-section-number">1</span>  Objective</a></li>
-  <li><a href="#theoretical-aspects" id="toc-theoretical-aspects" class="nav-link" data-scroll-target="#theoretical-aspects"><span class="toc-section-number">2</span>  Theoretical aspects</a>
+  <li><a href="#objective" id="toc-objective" class="nav-link active" data-scroll-target="#objective"><span class="header-section-number">1</span> Objective</a></li>
+  <li><a href="#theoretical-aspects" id="toc-theoretical-aspects" class="nav-link" data-scroll-target="#theoretical-aspects"><span class="header-section-number">2</span> Theoretical aspects</a>
   <ul class="collapse">
-  <li><a href="#multilayer-perceptron" id="toc-multilayer-perceptron" class="nav-link" data-scroll-target="#multilayer-perceptron"><span class="toc-section-number">2.1</span>  Multilayer perceptron</a>
+  <li><a href="#multilayer-perceptron" id="toc-multilayer-perceptron" class="nav-link" data-scroll-target="#multilayer-perceptron"><span class="header-section-number">2.1</span> Multilayer perceptron</a>
   <ul class="collapse">
   <li><a href="#cascading-neurons" id="toc-cascading-neurons" class="nav-link" data-scroll-target="#cascading-neurons">Cascading neurons</a></li>
   <li><a href="#multiple-outputs" id="toc-multiple-outputs" class="nav-link" data-scroll-target="#multiple-outputs">Multiple outputs</a></li>
   <li><a href="#multiple-layers" id="toc-multiple-layers" class="nav-link" data-scroll-target="#multiple-layers">Multiple layers</a></li>
   <li><a href="#matrix-form" id="toc-matrix-form" class="nav-link" data-scroll-target="#matrix-form">Matrix form</a></li>
   </ul></li>
-  <li><a href="#the-model" id="toc-the-model" class="nav-link" data-scroll-target="#the-model"><span class="toc-section-number">2.2</span>  The model</a></li>
-  <li><a href="#the-model-parameters" id="toc-the-model-parameters" class="nav-link" data-scroll-target="#the-model-parameters"><span class="toc-section-number">2.3</span>  The model parameters</a></li>
-  <li><a href="#the-cost-function" id="toc-the-cost-function" class="nav-link" data-scroll-target="#the-cost-function"><span class="toc-section-number">2.4</span>  The cost function</a></li>
-  <li><a href="#training" id="toc-training" class="nav-link" data-scroll-target="#training"><span class="toc-section-number">2.5</span>  Training</a>
+  <li><a href="#the-model" id="toc-the-model" class="nav-link" data-scroll-target="#the-model"><span class="header-section-number">2.2</span> The model</a></li>
+  <li><a href="#the-model-parameters" id="toc-the-model-parameters" class="nav-link" data-scroll-target="#the-model-parameters"><span class="header-section-number">2.3</span> The model parameters</a></li>
+  <li><a href="#the-cost-function" id="toc-the-cost-function" class="nav-link" data-scroll-target="#the-cost-function"><span class="header-section-number">2.4</span> The cost function</a></li>
+  <li><a href="#training" id="toc-training" class="nav-link" data-scroll-target="#training"><span class="header-section-number">2.5</span> Training</a>
   <ul class="collapse">
   <li><a href="#backpropagation" id="toc-backpropagation" class="nav-link" data-scroll-target="#backpropagation">Backpropagation</a></li>
   </ul></li>
-  <li><a href="#matlab-functions-for-working-with-neural-networks" id="toc-matlab-functions-for-working-with-neural-networks" class="nav-link" data-scroll-target="#matlab-functions-for-working-with-neural-networks"><span class="toc-section-number">2.6</span>  Matlab functions for working with neural networks</a>
+  <li><a href="#matlab-functions-for-working-with-neural-networks" id="toc-matlab-functions-for-working-with-neural-networks" class="nav-link" data-scroll-target="#matlab-functions-for-working-with-neural-networks"><span class="header-section-number">2.6</span> Matlab functions for working with neural networks</a>
   <ul class="collapse">
   <li><a href="#toy-example-setup" id="toc-toy-example-setup" class="nav-link" data-scroll-target="#toy-example-setup">Toy Example setup</a></li>
   <li><a href="#neural-net-tools" id="toc-neural-net-tools" class="nav-link" data-scroll-target="#neural-net-tools">Neural Net tools</a></li>
@@ -134,18 +106,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#the-patternnet-function" id="toc-the-patternnet-function" class="nav-link" data-scroll-target="#the-patternnet-function">The <code>patternnet()</code> function</a></li>
   </ul></li>
   </ul></li>
-  <li><a href="#practical-work" id="toc-practical-work" class="nav-link" data-scroll-target="#practical-work"><span class="toc-section-number">3</span>  Practical work</a>
+  <li><a href="#practical-work" id="toc-practical-work" class="nav-link" data-scroll-target="#practical-work"><span class="header-section-number">3</span> Practical work</a>
   <ul class="collapse">
-  <li><a href="#split" id="toc-split" class="nav-link" data-scroll-target="#split"><span class="toc-section-number">3.1</span>  Split</a></li>
-  <li><a href="#exercise-0---manual-calculations" id="toc-exercise-0---manual-calculations" class="nav-link" data-scroll-target="#exercise-0---manual-calculations"><span class="toc-section-number">3.2</span>  Exercise 0 - Manual calculations</a></li>
-  <li><a href="#exercise-1---wine-classification---nprtool" id="toc-exercise-1---wine-classification---nprtool" class="nav-link" data-scroll-target="#exercise-1---wine-classification---nprtool"><span class="toc-section-number">3.3</span>  Exercise 1 - Wine classification - nprtool</a></li>
-  <li><a href="#exercise-2---wine-classification---classification-learner" id="toc-exercise-2---wine-classification---classification-learner" class="nav-link" data-scroll-target="#exercise-2---wine-classification---classification-learner"><span class="toc-section-number">3.4</span>  Exercise 2 - Wine classification - Classification Learner</a></li>
-  <li><a href="#exercise-3---handwritten-digit-classification-on-mnist" id="toc-exercise-3---handwritten-digit-classification-on-mnist" class="nav-link" data-scroll-target="#exercise-3---handwritten-digit-classification-on-mnist"><span class="toc-section-number">3.5</span>  Exercise 3 - Handwritten digit classification on MNIST</a></li>
-  <li><a href="#exercise-4---classifying-wheat-seeds-independent-work" id="toc-exercise-4---classifying-wheat-seeds-independent-work" class="nav-link" data-scroll-target="#exercise-4---classifying-wheat-seeds-independent-work"><span class="toc-section-number">3.6</span>  Exercise 4 - Classifying wheat seeds (independent work)</a></li>
+  <li><a href="#split" id="toc-split" class="nav-link" data-scroll-target="#split"><span class="header-section-number">3.1</span> Split</a></li>
+  <li><a href="#exercise-0---manual-calculations" id="toc-exercise-0---manual-calculations" class="nav-link" data-scroll-target="#exercise-0---manual-calculations"><span class="header-section-number">3.2</span> Exercise 0 - Manual calculations</a></li>
+  <li><a href="#exercise-1---wine-classification---nprtool" id="toc-exercise-1---wine-classification---nprtool" class="nav-link" data-scroll-target="#exercise-1---wine-classification---nprtool"><span class="header-section-number">3.3</span> Exercise 1 - Wine classification - nprtool</a></li>
+  <li><a href="#exercise-2---wine-classification---classification-learner" id="toc-exercise-2---wine-classification---classification-learner" class="nav-link" data-scroll-target="#exercise-2---wine-classification---classification-learner"><span class="header-section-number">3.4</span> Exercise 2 - Wine classification - Classification Learner</a></li>
+  <li><a href="#exercise-3---handwritten-digit-classification-on-mnist" id="toc-exercise-3---handwritten-digit-classification-on-mnist" class="nav-link" data-scroll-target="#exercise-3---handwritten-digit-classification-on-mnist"><span class="header-section-number">3.5</span> Exercise 3 - Handwritten digit classification on MNIST</a></li>
+  <li><a href="#exercise-4---classifying-wheat-seeds-independent-work" id="toc-exercise-4---classifying-wheat-seeds-independent-work" class="nav-link" data-scroll-target="#exercise-4---classifying-wheat-seeds-independent-work"><span class="header-section-number">3.6</span> Exercise 4 - Classifying wheat seeds (independent work)</a></li>
   </ul></li>
-  <li><a href="#final-questions" id="toc-final-questions" class="nav-link" data-scroll-target="#final-questions"><span class="toc-section-number">4</span>  Final questions</a></li>
+  <li><a href="#final-questions" id="toc-final-questions" class="nav-link" data-scroll-target="#final-questions"><span class="header-section-number">4</span> Final questions</a></li>
   </ul>
-</nav>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="L3_Multilayer.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li><li><a href="L3_Multilayer.ipynb" download="L3_Multilayer.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></nav>
 </div>
 <main class="content" id="quarto-document-content">
 
@@ -192,7 +164,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="img/DatasetAngled1.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">How to separate the classes in this dataset?</figcaption><p></p>
+<figcaption class="figure-caption">How to separate the classes in this dataset?</figcaption>
 </figure>
 </div>
 <p>Solution: use <strong>two neurons</strong>:</p>
@@ -207,7 +179,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="img/DatasetAngled2.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Each neuron draws a line…</figcaption><p></p>
+<figcaption class="figure-caption">Each neuron draws a line…</figcaption>
 </figure>
 </div>
 <p>Combining the results of both neurons in the final result is <strong>also done with a (third) neuron</strong>. Thus, we have <strong>cascading neurons</strong>.</p>
@@ -218,7 +190,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="img/Network2plus1.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">.. and a third neuron combines them</figcaption><p></p>
+<figcaption class="figure-caption">.. and a third neuron combines them</figcaption>
 </figure>
 </div>
 <p>Neurons operating on the same inputs form a <strong>layer</strong>. We have two layers now:</p>
@@ -341,9 +313,14 @@ a^{k} =&amp; activation(z^{k})\\
 </section>
 <section id="the-cost-function" class="level2" data-number="2.4">
 <h2 data-number="2.4" class="anchored" data-anchor-id="the-cost-function"><span class="header-section-number">2.4</span> The cost function</h2>
-<p>For classification, the <strong>cross-entropy</strong> loss function is typically used. For a single input, whose output is a vector <span class="math inline">\(\hat{y} = [\hat{y}_1, ... \hat{y}_N]\)</span> and the true output should have been <span class="math inline">\(y = [y_1, ... y_N]\)</span>, the cross-entropy function is defined as:</p>
+<p>For classification, the <strong>cross-entropy</strong> loss function is typically used. For a single input, whose output is a vector <span class="math inline">\(\hat{y} = [\hat{y}_1, ... \hat{y}_N]\)</span> (assuming N classes) and true output should have been <span class="math inline">\(y = [y_1, ... y_N]\)</span>, the cross-entropy function is defined as:</p>
 <p><span class="math display">\[L(y, \hat{y}) = - y_1 \log_2{\hat{y_1}} - \dots - y_n \log_2{\hat{y_n}} = -\log_2{\hat{y_{class}}},\]</span></p>
 <p>where <span class="math inline">\(\hat{y_{class}}\)</span> is the model’s predicted probability for the true class of the input. Note that we assume that the true output is one-hot encoded, i.e.&nbsp;the vector <span class="math inline">\(y\)</span> has a single value of 1 and all the others are 0.</p>
+<p>For a binary classification, the same rule stands: the loss = - logarithm in base 2 of the probability of the true class. Since we have a single output <span class="math inline">\(y\)</span>, the probability of the true class is:</p>
+<ul>
+<li><span class="math inline">\(y\)</span>, if the true class is class 1</li>
+<li><span class="math inline">\(1-y\)</span>, if the true class is class 0</li>
+</ul>
 <p>For several inputs (a “batch”), do the average of all losses: <span class="math display">\[J = \frac{1}{N} \sum_i L(y^i, \hat{y}^i)\]</span></p>
 </section>
 <section id="training" class="level2" data-number="2.5">
@@ -504,6 +481,8 @@ a^{4} =&amp; activation(z^{4})
 <li><p>Compute the network output for the same input, considering that the hidden layer has ReLU activation instead (output layer still sigmoid)</p></li>
 <li><p>Compute the cost function (i.e.&nbsp;the loss), assuming the true output should have been <span class="math inline">\(y = 0\)</span>.</p></li>
 <li><p>Compute the cost function (i.e.&nbsp;the loss), assuming the true output should have been <span class="math inline">\(y = 1\)</span>.</p></li>
+<li><p>Suppose we have a network with input with size 100, one hidden layer of with 1000 neurons, and one output layer with 4 neurons.</p>
+<p>How many parameters has the network? Compute the number of parameters for every layer.</p></li>
 </ol>
 </section>
 <section id="exercise-1---wine-classification---nprtool" class="level2" data-number="3.3">
@@ -523,9 +502,10 @@ a^{4} =&amp; activation(z^{4})
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="va">Y</span> <span class="op">=</span> <span class="va">Data</span>(<span class="op">:,</span><span class="fl">12</span>) <span class="op">;</span>        <span class="co">% 12th column the quality</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>We do <strong>one hot encoding</strong> of the output vector Y. In R2020b we can use the function <code>onehotencode()</code>. In previous versions, we can use the function <code>ind2vec()</code>.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="va">Yenc</span> <span class="op">=</span> <span class="va">full</span>(<span class="va">ind2vec</span>(<span class="va">Y</span><span class="op">'</span>))</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co">% Since our data starts from value 3, we shall remove the first two lines. Thus quality 3 = class 1, quality 4 = class 2, etc.</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="va">Yenc</span> <span class="op">=</span> <span class="va">Yenc</span>(<span class="fl">3</span><span class="op">:</span><span class="kw">end</span><span class="op">,</span> <span class="op">:</span>)<span class="op">'</span> <span class="co">% Remove first two lines</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="va">Yenc</span> <span class="op">=</span> <span class="va">Yenc</span><span class="op">';</span>          <span class="co">% Transpose, so each value corresponds to a row, just like the input data</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co">% Since our data starts from value 3, we shall remove the first two lines.</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co">% Thus quality 3 = class 1, quality 4 = class 2, etc.</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="va">Yenc</span> <span class="op">=</span> <span class="va">Yenc</span>(<span class="fl">3</span><span class="op">:</span><span class="kw">end</span><span class="op">,</span> <span class="op">:</span>)<span class="op">'</span> <span class="co">% Remove first two lines</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="va">Yenc</span> <span class="op">=</span> <span class="va">Yenc</span><span class="op">';</span>          <span class="co">% Transpose, so each value corresponds to a row, just like the input data</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p>Start the <code>nprtool()</code> and train a neural network to predict the wine quality.</p>
 <p>Display the following evaluation metrics:</p>
 <ul>
@@ -601,6 +581,8 @@ a^{4} =&amp; activation(z^{4})
 <li>Does overfitting happen? (Yes / No)</li>
 <li>At which epoch did the training actually stop?</li>
 </ul></li>
+<li><p>Normalization or not.</p>
+<p>Use 1 hidden layer with 10 neurons, but run with and then without data normalization. Which case produces the best results?</p></li>
 <li><p>Architecture experimentation:</p>
 <p>Use a single hidden layer with different sizes: 5, 10, 15, 25, 100. Which case gives the best classification accuracy on the test set?</p></li>
 <li><p>Architecture experimentation:</p>
@@ -645,9 +627,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -712,6 +708,92 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {

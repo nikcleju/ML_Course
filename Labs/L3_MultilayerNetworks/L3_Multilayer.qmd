@@ -214,13 +214,20 @@ like we did until now (e.g. like a fake input equal to 1 is appended to the inpu
 
 ## The cost function
 
-For classification, the **cross-entropy** loss function is typically used. For a single input, whose output is a vector $\hat{y} = [\hat{y}_1, ... \hat{y}_N]$ and the
-true output should have been $y = [y_1, ... y_N]$, the cross-entropy function is defined as:
+For classification, the **cross-entropy** loss function is typically used.
+For a single input, whose output is a vector $\hat{y} = [\hat{y}_1, ... \hat{y}_N]$ (assuming N classes)
+and true output should have been $y = [y_1, ... y_N]$, the cross-entropy function is defined as:
 
 $$L(y, \hat{y}) = - y_1 \log_2{\hat{y_1}} - \dots - y_n \log_2{\hat{y_n}} = -\log_2{\hat{y_{class}}},$$
 
 where $\hat{y_{class}}$ is the model's predicted probability for the true class of the input. Note that we assume that the true output is one-hot encoded, i.e. the vector $y$
 has a single value of 1 and all the others are 0.
+
+For a binary classification, the same rule stands: the loss = - logarithm in base 2 of the probability of the true class.
+Since we have a single output $y$, the probability of the true class is:
+
+- $y$, if the true class is class 1
+- $1-y$, if the true class is class 0
 
 For several inputs (a "batch"), do the average of all losses:
 $$J = \frac{1}{N} \sum_i L(y^i, \hat{y}^i)$$
@@ -435,6 +442,10 @@ a. Compute the cost function (i.e. the loss), assuming the true output should ha
 
 a. Compute the cost function (i.e. the loss), assuming the true output should have been $y = 1$.
 
+d. Suppose we have a network with input with size 100, one hidden layer of with 1000 neurons, and one output layer with 4 neurons.
+
+   How many parameters has the network? Compute the number of parameters for every layer.
+
 ## Exercise 1 - Wine classification - nprtool
 
 We shall work with the same `wine_dataset` data as in the first labs. The last column gives the quality score. We shall treat the quality score as a **class indicator**. We shall perform classification with a multilayer network model, aiming to classify correctly the quality of a wine based on its parameters.
@@ -459,7 +470,8 @@ We shall work with the same `wine_dataset` data as in the first labs. The last c
 
    ```matlab
    Yenc = full(ind2vec(Y'))
-   % Since our data starts from value 3, we shall remove the first two lines. Thus quality 3 = class 1, quality 4 = class 2, etc.
+   % Since our data starts from value 3, we shall remove the first two lines.
+   % Thus quality 3 = class 1, quality 4 = class 2, etc.
    Yenc = Yenc(3:end, :)' % Remove first two lines
    Yenc = Yenc';          % Transpose, so each value corresponds to a row, just like the input data
    ```
@@ -561,6 +573,11 @@ Start from the template file in `Ex4_Template.m` and fill in the blanks.
 
    - Does overfitting happen? (Yes / No)
    - At which epoch did the training actually stop?
+
+2. Normalization or not.
+
+   Use 1 hidden layer with 10 neurons, but run with and then without data normalization.
+   Which case produces the best results?
 
 2. Architecture experimentation:
 
