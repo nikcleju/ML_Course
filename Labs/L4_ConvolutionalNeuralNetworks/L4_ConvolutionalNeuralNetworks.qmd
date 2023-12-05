@@ -1,7 +1,7 @@
 ---
 title: "Convolutional Neural Networks (CNNs)"
 subtitle: "ML Laboratory 04"
-format: 
+format:
   html: default
   pdf: default
   ipynb: default
@@ -14,28 +14,28 @@ jupyter: python3
 execute:
   freeze: true
   eval: false
-    
+
 ---
 
 # Objective
 
 Students should understand and be able use some basic pretrained CNN models available in Matlab
 
-# CNN networks 
+# CNN networks
 
 CNNs are multilayer networks adapted for image processing, which use the **convolution** operation extensively.
 
 ## Starting points
 
-1. The layers in a normal multilayer perceptron network (MLP) are **fully-connected**: each output value is a combination of all inputs 
+1. The layers in a normal multilayer perceptron network (MLP) are **fully-connected**: each output value is a combination of all inputs
 2. Each full-connected layer is a **full (dense) matrix**
 
-Problems: 
+Problems:
 
 1. Images are large: 1 Mexapixel color image = 3 million values
 2. Fully-connected layers have **huge** size (the number of parameters in fully-connected layers is huge).
 
-**Example** Consider a layer with input size =  300 x 300 color pixels, and output size equivalent to 150 x 150 color pixels. 
+**Example**: Consider a layer with input size =  300 x 300 color pixels, and output size equivalent to 150 x 150 color pixels.
 How many parameters does this layer have?
 
 
@@ -47,7 +47,7 @@ DSP deja-vu vibes: $$y[n] = \sum_k x[n-k] h[k]$$
 
 Key points:
 
-- Convolution has been used since ever in signal and image processing for **extracting features** (edges, frequency bands, etc)
+- Convolution has been used since forever in signal and image processing for **extracting features** (edges, frequency bands, etc)
 
 - Convolution is a kind of matrix multiplication, with an almost sparse matrix of a special form ("circulant" or "Toeplitz")
 
@@ -74,7 +74,7 @@ Key points:
 
 ## Layer types
 
-Open the AlexNet model in Matlab and look at the architecture directly
+Open the AlexNet model in Matlab and look at the architecture directly.
 
 ```matlab
 net = alexnet('Weights','imagenet')
@@ -91,7 +91,7 @@ Layer types:
 - Other optional stuff: normalization, dropout, batch normalization etc
 
 A CNN can be viewed as a feature extractor + classificator:
- 
+
 - The output layers are very similar to multilayer perceptron: fully-connected layers + softmax
 - The first part, with the convolution layers, is a kind of **feature extractor**
 
@@ -99,29 +99,29 @@ A CNN can be viewed as a feature extractor + classificator:
 
 A CNN has a fixed arcihtecture composed of several layers. For typical networks, the architecture is described in the accompanying papers.
 
-**Inputs**: 
+**Inputs**:
 
    - a color image represented as a tensor $X$ of size $L_1 \times L_2 \times 3$
- 
+
 **Outputs** (assuming one-hot encoding):
- 
+
   - a vector $\hat{y}$ which should be understood as scores/probability of belonging in each class
   - the **location of the maximum** value gives the predicted class
-  
+
 
 ## The model parameters
 
 The model parameters are the parameters of the layers:
 
  - the filter coefficients in the convolutional layers
- 
+
  - the weights in the fully-connected layers
- 
+
  The number of parameters of the convolutional layers is **much smaller** than for fully-connected layers.
 
 ## The cost function
 
-For classification, the **cross-entropy** is typically used. This is exactly similar to how it is used in MLP networks.
+For classification, the **cross-entropy** is typically used. This is exactly the same loss function used in MLP networks.
 
 For a single input:
 
@@ -138,13 +138,13 @@ Training is done with **backpropagation** and gradient descent (or some variant 
 
 **Backpropagation** = the technique to compute the derivatives of $J$  with respect to all parameters in the network.
 
-Same story as for multilayer perceptron (MLP) networks
+This is the same approach used in multilayer perceptron (MLP) networks
 
 # Matlab tools and functions for working with CNNs
 
-There are lots of new functions and tools in Matlab for deep neural networks, since the last 2-3 years. There are also Matlab courses and tutorials on how to use them.
+There are lots of new functions and tools in Matlab for using Deep Neural Networks, introduced in the last 2-3 years. There are also Matlab courses and tutorials on how to use them.
 
-But whoever is serious on this subject should use the Python frameworks (Pytorch, Tensorflow/Keras).
+But anyone who is serious on this topic should use the Python frameworks (Pytorch, Tensorflow/Keras).
 
 ## Deep Network Designer
 
@@ -186,17 +186,25 @@ Additional links:
    - which has more/less layers?
    - which has bigger/smaller fully-connected layers at the end?
 
-1. Play with GoogLeNet/AlexNet. Download an image of a dog from the Internet and classify it. Does it work?
+1. Play with GoogLeNet and AlexNet. Download an image of a dog from the Internet and classify it. Does it work?
 
+   *Note*: The networks were pretrained on the ImageNet dataset, with 1000 image categories, each category having 1000 images.
    The ImageNet class names can be found [here](https://gist.github.com/yrevar/942d3a0ac09ec9e5eb3a)
 
-2. For the used image, visualize the internal activations of the layers 'conv1', 'conv2', 'fc7' and 'prob' inside the network. What are their shape?
+   - What is the second highest predicted score?
+
+2. Using AlexNet with the image above, visualize the internal activations of the layers 'conv1', 'conv2', 'fc7' and 'prob' inside the network.
+
+   - What are their shapes?
 
    Use the following code sample:
 
    ```matlab
+   % `net` is the model
+   % `im` is the input image
+   % 'conv1' is the layer name
    act1 = activations(net,im,'conv1');
-   
+
    % Nice plotting
    sz = size(act1);
    act1 = reshape(act1,[sz(1) sz(2) 1 sz(3)]);
@@ -205,7 +213,7 @@ Additional links:
    ```
 
    The sample code is taken from here: [https://www.mathworks.com/help/deeplearning/ug/visualize-activations-of-a-convolutional-neural-network.html](https://www.mathworks.com/help/deeplearning/ug/visualize-activations-of-a-convolutional-neural-network.html)
-  
+
 ## Exercise 2 - Transfer Learning to classify Cola vs Pepsi
 
 Use transfer learning to train AlexNet (or GoogLeNet) to classify images of Pepsi vs CocaCola beverages.

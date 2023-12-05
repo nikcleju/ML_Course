@@ -1,6 +1,6 @@
 # ML_Course
 
-Here you will find the materials for the application hours of the Machine Learning class taught during 2020-2021
+Here you will find the materials for the application hours of the Machine Learning class taught during 2023-2024
 autumn semester at ETTI, TUIASI.
 
 ## Course materials 

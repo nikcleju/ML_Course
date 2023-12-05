@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.1.179">
+<meta name="generator" content="quarto-1.2.269">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -151,6 +151,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="quarto-title-meta">
 
     
+  
     
   </div>
   
@@ -175,7 +176,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Images are large: 1 Mexapixel color image = 3 million values</li>
 <li>Fully-connected layers have <strong>huge</strong> size (the number of parameters in fully-connected layers is huge).</li>
 </ol>
-<p><strong>Example</strong> Consider a layer with input size = 300 x 300 color pixels, and output size equivalent to 150 x 150 color pixels. How many parameters does this layer have?</p>
+<p><strong>Example</strong>: Consider a layer with input size = 300 x 300 color pixels, and output size equivalent to 150 x 150 color pixels. How many parameters does this layer have?</p>
 </section>
 <section id="convolution" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="convolution"><span class="header-section-number">2.2</span> Convolution</h2>
@@ -185,7 +186,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p>Key points:</p>
 <ul>
-<li><p>Convolution has been used since ever in signal and image processing for <strong>extracting features</strong> (edges, frequency bands, etc)</p></li>
+<li><p>Convolution has been used since forever in signal and image processing for <strong>extracting features</strong> (edges, frequency bands, etc)</p></li>
 <li><p>Convolution is a kind of matrix multiplication, with an almost sparse matrix of a special form (“circulant” or “Toeplitz”)</p></li>
 <li><p>Each output value depends only on the surrounding pixels</p></li>
 </ul>
@@ -212,7 +213,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="layer-types" class="level2" data-number="2.5">
 <h2 data-number="2.5" class="anchored" data-anchor-id="layer-types"><span class="header-section-number">2.5</span> Layer types</h2>
-<p>Open the AlexNet model in Matlab and look at the architecture directly</p>
+<p>Open the AlexNet model in Matlab and look at the architecture directly.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="va">net</span> <span class="op">=</span> <span class="va">alexnet</span>(<span class="ss">'Weights'</span><span class="op">,</span><span class="ss">'imagenet'</span>)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="va">analyzeNetwork</span>(<span class="va">net</span>)  <span class="co">% or double-click `net` in the Workspace</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Layer types:</p>
@@ -254,7 +255,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="the-cost-function" class="level2" data-number="2.8">
 <h2 data-number="2.8" class="anchored" data-anchor-id="the-cost-function"><span class="header-section-number">2.8</span> The cost function</h2>
-<p>For classification, the <strong>cross-entropy</strong> is typically used. This is exactly similar to how it is used in MLP networks.</p>
+<p>For classification, the <strong>cross-entropy</strong> is typically used. This is exactly the same loss function used in MLP networks.</p>
 <p>For a single input:</p>
 <p><span class="math display">\[L(y, \hat{y}) = - y_1 \log{\hat{y_1}} - \dots - y_n \log{\hat{y_n}} = -\log{\hat{y_{class}}},\]</span></p>
 <p>where <span class="math inline">\(\hat{y_{class}}\)</span> is the model’s predicted probability for the true class of the input.</p>
@@ -264,13 +265,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2 data-number="2.9" class="anchored" data-anchor-id="training"><span class="header-section-number">2.9</span> Training</h2>
 <p>Training is done with <strong>backpropagation</strong> and gradient descent (or some variant of it).</p>
 <p><strong>Backpropagation</strong> = the technique to compute the derivatives of <span class="math inline">\(J\)</span> with respect to all parameters in the network.</p>
-<p>Same story as for multilayer perceptron (MLP) networks</p>
+<p>This is the same approach used in multilayer perceptron (MLP) networks</p>
 </section>
 </section>
 <section id="matlab-tools-and-functions-for-working-with-cnns" class="level1" data-number="3">
 <h1 data-number="3"><span class="header-section-number">3</span> Matlab tools and functions for working with CNNs</h1>
-<p>There are lots of new functions and tools in Matlab for deep neural networks, since the last 2-3 years. There are also Matlab courses and tutorials on how to use them.</p>
-<p>But whoever is serious on this subject should use the Python frameworks (Pytorch, Tensorflow/Keras).</p>
+<p>There are lots of new functions and tools in Matlab for using Deep Neural Networks, introduced in the last 2-3 years. There are also Matlab courses and tutorials on how to use them.</p>
+<p>But anyone who is serious on this topic should use the Python frameworks (Pytorch, Tensorflow/Keras).</p>
 <section id="deep-network-designer" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="deep-network-designer"><span class="header-section-number">3.1</span> Deep Network Designer</h2>
 <p><img src="img/2022-11-30-17-52-24.png" class="img-fluid"></p>
@@ -317,17 +318,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>which has more/less layers?</li>
 <li>which has bigger/smaller fully-connected layers at the end?</li>
 </ul></li>
-<li><p>Play with GoogLeNet/AlexNet. Download an image of a dog from the Internet and classify it. Does it work?</p>
-<p>The ImageNet class names can be found <a href="https://gist.github.com/yrevar/942d3a0ac09ec9e5eb3a">here</a></p></li>
-<li><p>For the used image, visualize the internal activations of the layers ‘conv1’, ‘conv2’, ‘fc7’ and ‘prob’ inside the network. What are their shape?</p>
+<li><p>Play with GoogLeNet and AlexNet. Download an image of a dog from the Internet and classify it. Does it work?</p>
+<p><em>Note</em>: The networks were pretrained on the ImageNet dataset, with 1000 image categories, each category having 1000 images. The ImageNet class names can be found <a href="https://gist.github.com/yrevar/942d3a0ac09ec9e5eb3a">here</a></p>
+<ul>
+<li>What is the second highest predicted score?</li>
+</ul></li>
+<li><p>Using AlexNet with the image above, visualize the internal activations of the layers ‘conv1’, ‘conv2’, ‘fc7’ and ‘prob’ inside the network.</p>
+<ul>
+<li>What are their shapes?</li>
+</ul>
 <p>Use the following code sample:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="va">act1</span> <span class="op">=</span> <span class="va">activations</span>(<span class="va">net</span><span class="op">,</span><span class="va">im</span><span class="op">,</span><span class="ss">'conv1'</span>)<span class="op">;</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">% Nice plotting</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="va">sz</span> <span class="op">=</span> <span class="va">size</span>(<span class="va">act1</span>)<span class="op">;</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="va">act1</span> <span class="op">=</span> <span class="va">reshape</span>(<span class="va">act1</span><span class="op">,</span>[<span class="va">sz</span>(<span class="fl">1</span>) <span class="va">sz</span>(<span class="fl">2</span>) <span class="fl">1</span> <span class="va">sz</span>(<span class="fl">3</span>)])<span class="op">;</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="va">I</span> <span class="op">=</span> <span class="va">imtile</span>(<span class="va">mat2gray</span>(<span class="va">act1</span>)<span class="op">,</span><span class="ss">'GridSize'</span><span class="op">,</span>[<span class="fl">8</span> <span class="fl">8</span>])<span class="op">;</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="va">imshow</span>(<span class="va">I</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">% `net` is the model</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">% `im` is the input image</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">% 'conv1' is the layer name</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="va">act1</span> <span class="op">=</span> <span class="va">activations</span>(<span class="va">net</span><span class="op">,</span><span class="va">im</span><span class="op">,</span><span class="ss">'conv1'</span>)<span class="op">;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co">% Nice plotting</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="va">sz</span> <span class="op">=</span> <span class="va">size</span>(<span class="va">act1</span>)<span class="op">;</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="va">act1</span> <span class="op">=</span> <span class="va">reshape</span>(<span class="va">act1</span><span class="op">,</span>[<span class="va">sz</span>(<span class="fl">1</span>) <span class="va">sz</span>(<span class="fl">2</span>) <span class="fl">1</span> <span class="va">sz</span>(<span class="fl">3</span>)])<span class="op">;</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="va">I</span> <span class="op">=</span> <span class="va">imtile</span>(<span class="va">mat2gray</span>(<span class="va">act1</span>)<span class="op">,</span><span class="ss">'GridSize'</span><span class="op">,</span>[<span class="fl">8</span> <span class="fl">8</span>])<span class="op">;</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="va">imshow</span>(<span class="va">I</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>The sample code is taken from here: <a href="https://www.mathworks.com/help/deeplearning/ug/visualize-activations-of-a-convolutional-neural-network.html">https://www.mathworks.com/help/deeplearning/ug/visualize-activations-of-a-convolutional-neural-network.html</a></p></li>
 </ol>
 </section>
@@ -397,7 +407,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
     button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
     setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
       button.setAttribute("title", currentTitle);
       button.classList.remove('code-copy-button-checked');
     }, 1000);
@@ -433,24 +460,42 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
   var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
   for (var i=0; i<bibliorefs.length; i++) {
     const ref = bibliorefs[i];
-    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
-    tippyHover(ref, function() {
-      var popup = window.document.createElement('div');
-      cites.forEach(function(cite) {
-        var citeDiv = window.document.createElement('div');
-        citeDiv.classList.add('hanging-indent');
-        citeDiv.classList.add('csl-entry');
-        var biblioDiv = window.document.getElementById('ref-' + cite);
-        if (biblioDiv) {
-          citeDiv.innerHTML = biblioDiv.innerHTML;
-        }
-        popup.appendChild(citeDiv);
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
       });
-      return popup.innerHTML;
-    });
+    }
   }
 });
 </script>
