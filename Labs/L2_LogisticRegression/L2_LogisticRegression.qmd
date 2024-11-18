@@ -27,14 +27,23 @@ Logistic regression is a widely used model for estimating probabilities (e.g. va
 
 ## Logistic regression: the model
 
-We have an input vector $x$ and a predicted value $y$:
+We have an input vector $x$ and a target value $y$:
 $$X = \begin{bmatrix} x_1 & x_2 & \dots & x_N \end{bmatrix} \rightarrow y$$
 
-The logistic regression model: the output is assumed to be a the **sigmoid function**  applied to a **linear combination** of the inputs.
-The sigmoid function is also known as the **logistic function**, hence the name.
+The output $y$ is assumed to be the **sigmoid function** $\sigma(z)$
+(also known as the **logistic function**, hence the name):
+
+$$y \approx \sigma(z) = \frac{1}{1 + e^{-z}}$$
+
+applied to a **linear combination** $z$ of the inputs $X$:
+
+$$z = w_1 x_1 + w_2 x_2 + ... + w_N x_N + b$$
+
+Put together in a single equation:
+
 $$y \approx \frac{1}{1 + e^{- w_1 x_1 - w_2 x_2 - ... - w_N x_N - b}}.$$
 
-This can be understood as a **sequence of two steps**:
+Or, as a **sequence of two steps**:
 
 1. Compute a **linear combination $z$** of the inputs:
     $$z = w_1 x_1 + w_2 x_2 + ... + w_N x_N + b$$
@@ -54,21 +63,21 @@ Both steps can be represented as one "neuron" like this:
 
 Let's take a look at the sigmoid function $\sigma(z)$:
 
-<div>
+<!-- <div>
 <img src="img/Sigmoid.svg" align="center" width="600"/>
-</div>
-<!-- ![](img/Sigmoid.svg) -->
+</div> -->
+![The sigmoid function ](img/Sigmoid.png){ width=75% }
 
-**Notes**:
+Note that:
 
-- The output value is always between 0 and 1. This makes the result good for modeling **probabilities**, but not good for other types of numeric values.
+- The output value $\sigma(z), \forall z$ is always between 0 and 1. This makes the result good for modeling **probabilities**, but not good for other types of numeric values.
 
-- The sigmoid can be understood as follows:
-   - when $z$ is much bigger than 0, the result is practically 1
-   - when $z$ is much smaller than 0, the result is practically 0
-   - when $z$ is around 0, there is a "transition zone" from 0 to 1. In particular, when $z=0$, the output is right at the middle, $\sigma(0) = 0.5$.
+- The effect of the sigmoid can be understood as follows:
+  - when $z$ is much bigger than 0, the result is practically 1
+  - when $z$ is much smaller than 0, the result is practically 0
+  - when $z$ is around 0, there is a transition zone from 0 to 1. In particular, when $z=0$, the output is right at the middle, $\sigma(0) = 0.5$.
 
-This makes it similar to classification:
+This makes it similar to classification, with $z=0$ being the frontier between the two classes:
 
 - if $z$ much larger than 0, data belongs almost surely to class 1;
 - if $z$ much smaller than 0, data belongs almost surely to class 0;
@@ -89,13 +98,17 @@ $$z = w_1 x_1 + w_2 x_2 + ... + w_N x_N + b = \begin{bmatrix} x_1 & x_2 & \dots 
 ## Cost function (loss function)
 
 In general, any cost function can be chosen for any model.
-However, because the outputs are typically understood as **probabilities**, we should use a distance function which is appropriate to probabilities: the cross-entropy (also known as the Kullback-Leibler distance).
 
-The **cross-entropy** loss (cost) function, also known as the **Kullback-Leibler distance**, for a single value $y$:
+However, in this case, because the outputs are typically understood as **probabilities**, we should use a distance function which is appropriate to probabilities: the cross-entropy (also known as the Kullback-Leibler distance).
+
+Given the correct value is $y$ and the predicted value $\hat{y}$,
+the **cross-entropy** loss (cost) function,
+also known as the **Kullback-Leibler (KL) distance** is defined as:
 
 $$L(y, \hat{y}) = - y \log{\hat{y}} - (1-y) \log{(1 - \hat{y})}$$
 
-Usually the true value $y$ is either 0 or 1 (e.g. in a  classification: 0 = cat, 1 = dog). In this case the cross-entropy should be understood as:
+Usually, the true value $y$ is either 0 or 1 (e.g. in a  classification: 0 = cat, 1 = dog).
+In this case the cross-entropy can be written as:
 
 $$L(y, \hat{y}) =
 \begin{cases}
@@ -108,9 +121,9 @@ In both cases, the cost is 0 if $\hat{y} = y$, and it is $\infty$ when $\hat{y}$
 
 ![Cross-entropy loss when true class $y$ is either 0 or 1](img/CrossEntropy.png)
 
-When there are N input-output pairs, the overall cost is the average for all:
+When there are M input-output pairs $(X, y)$, the cost is the average for all of them:
 
-$$J = \frac{1}{N} \sum_i L(y^i, \hat{y}^i) = \frac{1}{N} \sum_i \left(- y \log{\hat{y}} - (1-y) \log{1 - \hat{y}} \right)$$
+$$J = \frac{1}{M} \sum_i L(y^i, \hat{y}^i) = \frac{1}{M} \sum_i \left(- y \log{\hat{y}} - (1-y) \log{1 - \hat{y}} \right)$$
 
 ## How to train logistic regression?
 
