@@ -113,10 +113,10 @@ However, training many layers and many neurons is **difficult**, i.e. it can ove
 ### Matrix form
 
 **One neuron** does a linear combination of the inputs, followed by activation function:
-$$\begin{bmatrix} w_1 & x_w & \dots & w_N & b \end{bmatrix} \cdot \begin{bmatrix} x_1 \\ x_2 \\ \vdots \\ x_N \\ 1 \end{bmatrix} = z
+$$\begin{bmatrix} w_1 & w_2 & \dots & w_N & b \end{bmatrix} \cdot \begin{bmatrix} x_1 \\ x_2 \\ \vdots \\ x_N \\ 1 \end{bmatrix} = z
 \rightarrow \sigma(z) = a$$
 
-$$\begin{bmatrix} w_1 & x_w & \dots & w_N \end{bmatrix} \cdot \begin{bmatrix} x_1 \\ x_2 \\ \vdots \\ x_N \end{bmatrix}  + b = z
+$$\begin{bmatrix} w_1 & w_2 & \dots & w_N \end{bmatrix} \cdot \begin{bmatrix} x_1 \\ x_2 \\ \vdots \\ x_N \end{bmatrix}  + b = z
 \rightarrow \sigma(z) = a$$
 
 **A layer of $M$ neurons is just $M$ neurons next to each other**:
