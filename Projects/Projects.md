@@ -54,7 +54,7 @@ The project must be presented in 5-10 minutes presentation, either in the last w
 
     [Data source](https://www.kaggle.com/sartajbhuvaji/brain-tumor-classification-mri)
 
-2. Credit card fraud detection with MLP networks 
+2. Credit card fraud detection with MLP networks
 
     [Data source](https://www.kaggle.com/mlg-ulb/creditcardfraud)
 
@@ -110,6 +110,10 @@ The project must be presented in 5-10 minutes presentation, either in the last w
 
     [Data source](https://www.kaggle.com/gpiosenka/100-bird-species)
 
+    or here:
+
+    [Data source 2](https://www.kaggle.com/datasets/kedarsai/bird-species-classification-220-categories)
+
 16. Bus vs car image detection with CNN networks
 
     [Data source](https://www.kaggle.com/positivepc/object-detection)
@@ -117,24 +121,24 @@ The project must be presented in 5-10 minutes presentation, either in the last w
 ### MedMNIST datasets
 
 All data for the next project topics are available here: [https://www.kaggle.com/datasets/niccleju/medmnist-v10-mat-files](https://www.kaggle.com/datasets/niccleju/medmnist-v10-mat-files)
-  
+
 For a detailed description, see the website [https://medmnist.com/v1](https://medmnist.com/v1) or the paper [https://arxiv.org/pdf/2010.14925.pdf](https://arxiv.org/pdf/2010.14925.pdf)
-  
+
 Most images are resized to size 28x28 from larger images available elsewhere.
 
 17. Cancer patology detection from the PathMNIST dataset with MLP networks
-  
+
     [Data source](https://www.kaggle.com/datasets/niccleju/medmnist-v10-mat-files), file `pathmnist.mat`
 
 18. Chest Xray classification on ChestMNIST with MLP networks
 
     [Data source](https://www.kaggle.com/datasets/niccleju/medmnist-v10-mat-files), file `chestmnist.mat`
 
-19. Skin lesion classification on DermaMNIST with MLP networks 
+19. Skin lesion classification on DermaMNIST with MLP networks
 
     [Data source](https://www.kaggle.com/datasets/niccleju/medmnist-v10-mat-files), file `dermamnist.mat`
 
-20. Retina disease classification on OCTMNIST with MLP networks 
+20. Retina disease classification on OCTMNIST with MLP networks
 
     [Data source](https://www.kaggle.com/datasets/niccleju/medmnist-v10-mat-files), file `octmnist.mat`
 
@@ -142,7 +146,7 @@ Most images are resized to size 28x28 from larger images available elsewhere.
 
     [Data source](https://www.kaggle.com/datasets/niccleju/medmnist-v10-mat-files), file `pneumoniamnist.mat`
 
-22. Diabetic retinopathy severity classification on RetinaMNIST with MLP networks 
+22. Diabetic retinopathy severity classification on RetinaMNIST with MLP networks
 
     [Data source](https://www.kaggle.com/datasets/niccleju/medmnist-v10-mat-files), file `retinamnist.mat`
 
@@ -150,7 +154,7 @@ Most images are resized to size 28x28 from larger images available elsewhere.
 
     [Data source](https://www.kaggle.com/datasets/niccleju/medmnist-v10-mat-files), file `breastmnist.mat`
 
-24. Organ identification from CT image slices (OrganMNIST_Axial or Coronal or Saggital) with MLP networks 
+24. Organ identification from CT image slices (OrganMNIST_Axial or Coronal or Saggital) with MLP networks
 
     [Data source](https://www.kaggle.com/datasets/niccleju/medmnist-v10-mat-files), file `organmnist_axial.mat`, or `organmnist_coronal.mat`, or `organmnist_sagittal.mat`
 

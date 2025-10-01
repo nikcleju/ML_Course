@@ -154,8 +154,8 @@ Other tutorials:
 ### Exercise 1 - Run on another image
 
 - Run the EffecientDet object detector on the image `Richarlison.jpg`, and identify how many objects are detected, and their class.
-- Set the overlap threshold to 0.01 and run it on the `Richarlison.jpg` image. What happens?
-- Set the overlap threshold to 0.9 and the score threshold to 0.2, and run it on the `Richarlison.jpg` image. What happens?
+- Set the overlap threshold to 0.01 and run it on the `Richarlison.jpg` image. What happens? Then set it to 0.9 and run it again. What does this threshold do?
+- Reset the overlap threhsold to 0.5, and set the score threshold to 0.02, and run it on the `Richarlison.jpg` image. What happens? What does this threshold do?
 - Set a breakpoint on line 34 of the `postprocess.m` file and investigate the size of the `scores` vector. What is its size? What does this number represent?
 
 ### Exercise 2 - Aspect ratio
@@ -185,7 +185,7 @@ Other tutorials:
 - Go to the YoloX object detector from here: https://github.com/matlab-deep-learning/Pretrained-YOLOX-Network-For-Object-Detection
 - Using the Github example, run this detector on the same image `Richarlison.jpg`
 - Filter the bounding box on the image:
-  - Display only the objects with the highest score
+  - Display only the object with the highest score
   - Display only the object whose center (the center of the box) is the left-most among all objects
   - Display only the non-person objects
 
