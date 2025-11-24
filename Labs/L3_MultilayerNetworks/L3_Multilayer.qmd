@@ -188,10 +188,13 @@ a^{k} =& activation(z^{k})\\
 
 Here, $W^{k}$ is a matrix and $z^{k}$, $a^{k}$ are vectors (columns). $k$ refers to layer number $k$.
 
-The activation function can be the **sigmoid**, **ReLU**, **tanh** etc. Typically the outputs use a sigmoid activation for binary outputs, and a **softmax** for multi-class outputs (so that the class scores sum to 1), whereas the hidden layers can use whichever activation function the designer prefers.
+The activation function can be the **sigmoid**, **softmax**, **ReLU**, **tanh** etc. Typically the outputs use a sigmoid activation for binary outputs, and a **softmax** for multi-class outputs (so that the class scores sum to 1), whereas the hidden layers can use whichever activation function the designer prefers.
 
 - sigmoid activation function:
   $$f(z) = \sigma(z) = \frac{1}{1 + e^{-z}} = \frac{e^z}{e^z + 1}$$
+
+- softmax activation function (for multi-class outputs $z_1, z_2, \dots z_N$):
+  $$f(z_i) = \frac{e^{z_i}}{\sum_{j=1}^N e^{z_j}}, \textrm{ for each } z_i$$
 
 - ReLU ("Rectified Linear Unit"):
   $$f(z) = \begin{cases} z &, \textrm{ if } z \geq 0 \\ 0 &,  \textrm{ if } z < 0  \end{cases}$$

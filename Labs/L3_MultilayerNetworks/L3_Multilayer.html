@@ -324,9 +324,10 @@ z^{k} =&amp; W^{k} \cdot a^{k-1} \\
 a^{k} =&amp; activation(z^{k})\\
 \end{aligned}\]</span></p>
 <p>Here, <span class="math inline">\(W^{k}\)</span> is a matrix and <span class="math inline">\(z^{k}\)</span>, <span class="math inline">\(a^{k}\)</span> are vectors (columns). <span class="math inline">\(k\)</span> refers to layer number <span class="math inline">\(k\)</span>.</p>
-<p>The activation function can be the <strong>sigmoid</strong>, <strong>ReLU</strong>, <strong>tanh</strong> etc. Typically the outputs use a sigmoid activation for binary outputs, and a <strong>softmax</strong> for multi-class outputs (so that the class scores sum to 1), whereas the hidden layers can use whichever activation function the designer prefers.</p>
+<p>The activation function can be the <strong>sigmoid</strong>, <strong>softmax</strong>, <strong>ReLU</strong>, <strong>tanh</strong> etc. Typically the outputs use a sigmoid activation for binary outputs, and a <strong>softmax</strong> for multi-class outputs (so that the class scores sum to 1), whereas the hidden layers can use whichever activation function the designer prefers.</p>
 <ul>
 <li><p>sigmoid activation function: <span class="math display">\[f(z) = \sigma(z) = \frac{1}{1 + e^{-z}} = \frac{e^z}{e^z + 1}\]</span></p></li>
+<li><p>softmax activation function (for multi-class outputs <span class="math inline">\(z_1, z_2, \dots z_N\)</span>): <span class="math display">\[f(z_i) = \frac{e^{z_i}}{\sum_{j=1}^N e^{z_j}}, \textrm{ for each } z_i\]</span></p></li>
 <li><p>ReLU (“Rectified Linear Unit”): <span class="math display">\[f(z) = \begin{cases} z &amp;, \textrm{ if } z \geq 0 \\ 0 &amp;,  \textrm{ if } z &lt; 0  \end{cases}\]</span></p></li>
 <li><p>Hyperbolic tangent:</p>
 <p><span class="math display">\[f(z) = \tanh(z) = \frac{e^{z}-e^{-z}}{e^{z}+e^{-z}}\]</span></p></li>
