@@ -20,7 +20,7 @@ execute:
 
 # Objective
 
-Students should understand and be able use a multi-layer fully-connected networks in Matlab
+Students should understand and be able to use multi-layer fully-connected networks in Matlab
 
 # Theoretical aspects
 
@@ -32,7 +32,7 @@ Multi-layer perceptron (fully-connected) neural networks are widely used for cla
 
 Logistic regression = 1 neuron
 
-A single neuron creates a single hyperplane and separates the input space in two categories 0 or 1)
+A single neuron creates a single hyperplane and separates the input space in two categories (0 or 1)
 
   - **"neuron"** = one logistic regression operation
   - **"hyperplane"** = a linear boundary surface, with dimension N-1
@@ -95,6 +95,7 @@ For an input of class $k$, we tell the network to produce a vector with a single
 $$\begin{bmatrix} 0 \\ \vdots \\ 0 \\ 1 \\ 0 \\ \vdots \end{bmatrix}$$
 
 After training, when running the model, we look at **the location** of the highest value and the location is the predicted class.
+Use a **softmax** activation in the output layer so that the outputs form a proper probability distribution (they sum to 1).
 
 ### Multiple layers
 
@@ -107,12 +108,17 @@ We can actually have more than 2 layers in a network. We can have as many as we 
    - final layer gives the output
 
 In practice, it is often better to have **more layers with fewer neurons** than 2 layers but with a huge hidden layer.
-
 However, training many layers and many neurons is **difficult**, i.e. it can overfit, become unstable, etc.
+
+The following figure illustrates a multi-layer MLP network with 3 hidden layers:
+
+![Illustration of a MLP network with 3 hidden layers](img/MLP.png){width=400}
+
+
 
 ### Matrix form
 
-**One neuron** does a linear combination of the inputs, followed by activation function:
+**One neuron** does a linear combination of the inputs, followed by an activation function:
 $$\begin{bmatrix} w_1 & w_2 & \dots & w_N & b \end{bmatrix} \cdot \begin{bmatrix} x_1 \\ x_2 \\ \vdots \\ x_N \\ 1 \end{bmatrix} = z
 \rightarrow \sigma(z) = a$$
 
@@ -145,7 +151,7 @@ w_{21} & w_{22} & \dots & w_{2N}\\
 w_{M1} & w_{M2} & \dots & w_{MN}\\
 \end{bmatrix} \cdot \begin{bmatrix} x_1 \\ x_2 \\ \vdots \\ x_N \end{bmatrix}
 +
-\begin{bmatrix} b_1 \\ b_2 \\ \vdots \\ b_N \end{bmatrix}
+\begin{bmatrix} b_1 \\ b_2 \\ \vdots \\ b_M \end{bmatrix}
 =
 \begin{bmatrix}
 z_1 \\ z_2 \\ \dots \\ z_M
@@ -180,9 +186,9 @@ z^{k} =& W^{k} \cdot a^{k-1} \\
 a^{k} =& activation(z^{k})\\
 \end{aligned}$$
 
-Here, $W^{k}$ is a matrix and $z{k}$, $a{k}$ are vectors (columns). $k$ refers to layer number $k$.
+Here, $W^{k}$ is a matrix and $z^{k}$, $a^{k}$ are vectors (columns). $k$ refers to layer number $k$.
 
-The activation function can be the **sigmoid**, **ReLU**, **tanh** etc. Typically the outputs use sigmoid activation, but all others are up to the designer.
+The activation function can be the **sigmoid**, **ReLU**, **tanh** etc. Typically the outputs use a sigmoid activation for binary outputs, and a **softmax** for multi-class outputs (so that the class scores sum to 1), whereas the hidden layers can use whichever activation function the designer prefers.
 
 - sigmoid activation function:
   $$f(z) = \sigma(z) = \frac{1}{1 + e^{-z}} = \frac{e^z}{e^z + 1}$$
@@ -192,7 +198,7 @@ The activation function can be the **sigmoid**, **ReLU**, **tanh** etc. Typicall
 
 - Hyperbolic tangent:
 
-  ...
+  $$f(z) = \tanh(z) = \frac{e^{z}-e^{-z}}{e^{z}+e^{-z}}$$
 
 **Inputs**:
 
@@ -212,22 +218,26 @@ The model parameters are the weight matrices $W^{k}$ of every layer. The element
 Every neuron has a bias input. We presume that the bias is included in the weight matrices,
 like we did until now (e.g. like a fake input equal to 1 is appended to the input of every layer).
 
+**Example parameter count**: input size 100 $\rightarrow$ hidden layer with 1000 neurons $\rightarrow$ output layer with 4 neurons.
+
+- Layer 1 parameters: $(100 + 1) \times 1000 = 101{,}000$ (weights + biases)
+- Layer 2 parameters: $(1000 + 1) \times 4 = 4{,}004$
+- Total parameters: 105{,}004
+
 ## The cost function
 
 For classification, the **cross-entropy** loss function is typically used.
-For a single input, whose output is a vector $\hat{y} = [\hat{y}_1, ... \hat{y}_N]$ (assuming N classes)
-and true output should have been $y = [y_1, ... y_N]$, the cross-entropy function is defined as:
+For a single input, whose output is a vector $\hat{y} = [\hat{y}_1, \dots, \hat{y}_N]$ (assuming $N$ classes)
+and true output should have been $y = [y_1, \dots, y_N]$, the cross-entropy function is defined as:
 
-$$L(y, \hat{y}) = - y_1 \log_2{\hat{y_1}} - \dots - y_n \log_2{\hat{y_n}} = -\log_2{\hat{y_{class}}},$$
+$$L(y, \hat{y}) = - \sum_{i=1}^{N} y_i \log{\hat{y}_i} = -\log{\hat{y}_{\text{true class}}},$$
 
-where $\hat{y_{class}}$ is the model's predicted probability for the true class of the input. Note that we assume that the true output is one-hot encoded, i.e. the vector $y$
+where $\hat{y}_{\text{true class}}$ is the model's predicted probability for the true class of the input. We assume one-hot encoding, i.e. the vector $y$
 has a single value of 1 and all the others are 0.
 
-For a binary classification, the same rule stands: the loss = - logarithm in base 2 of the probability of the true class.
-Since we have a single output $y$, the probability of the true class is:
+For binary classification (a single output), use the binary cross-entropy:
 
-- $y$, if the true class is class 1
-- $1-y$, if the true class is class 0
+$$L(y, \hat{y}) = - \big( y \log{\hat{y}} + (1-y)\log{(1-\hat{y})} \big)$$
 
 For several inputs (a "batch"), do the average of all losses:
 $$J = \frac{1}{N} \sum_i L(y^i, \hat{y}^i)$$
@@ -270,18 +280,18 @@ For the second layer, we compute its own derivatives, $\frac{da^{2}}{dW^{2}}$ an
 
 $$\frac{dJ}{dW^{2}} = \frac{dJ}{da^2} \cdot \frac{da^{2}}{dW^{2}}$$
 and
-$$\frac{dJ}{da^{1}} = \frac{dJ}{da^1} \cdot \frac{da^{2}}{da^{1}}$$
+$$\frac{dJ}{da^{1}} = \frac{dJ}{da^2} \cdot \frac{da^{2}}{da^{1}}$$
 
-Finally, the input layer computes its own derivatives, $\frac{da^{1}}{dW^{1}}$, aand together with the $\frac{dJ}{da^{1}}$ received from the layer above, computes:
+Finally, the input layer computes its own derivatives, $\frac{da^{1}}{dW^{1}}$, and together with the $\frac{dJ}{da^{1}}$ received from the layer above, computes:
 $$\frac{dJ}{dW^{1}} = \frac{dJ}{da^1} \cdot \frac{da^{1}}{dW^{1}}$$
 
 In backpropagation, **each layer (each operation, really) does the following**:
 
 1. Has some inputs I, parameters P, and outputs O.
-2. Knows show to compute its own derivatives $\frac{dO}{dP}$ and $\frac{dO}{dI}$
-3. Receives as input from the next layer the quantity $\frac{dJ}{dO}$
+2. Knows how to compute its own derivatives $\frac{dO}{dP}$ and $\frac{dO}{dI}$.
+3. Receives as input from the next layer the quantity $\frac{dJ}{dO}$.
 4. Computes $\frac{dJ}{dP} = \frac{dJ}{dO} \cdot \frac{dO}{dP}$. This will be used in Gradient Descent.
-5. Computes $\frac{dJ}{dI} = \frac{dJ}{dI} \cdot \frac{dO}{dI}$ and passes them back to the preceding layer.
+5. Computes $\frac{dJ}{dI} = \frac{dJ}{dO} \cdot \frac{dO}{dI}$ and passes them back to the preceding layer.
 
 Backpropagation is a **computational graph** (sequence of operations) not unlike the model itself is just a sequence of operations.
 The only difference is that the data travels **backwards**,  from the network output towards its input. The "data" here is the gradients (derivatives).
@@ -289,7 +299,7 @@ The only difference is that the data travels **backwards**,  from the network ou
 Training the model means repeating the two passes:
 
 1. **Forward pass**: run the model (from the inputs, and current parameters, compute the outputs and the cost function)
-2. **Backward pass**: backpropagation + gradient descent (from the cost function, compute gradients and update parameters, going backwards to the input
+2. **Backward pass**: backpropagation + gradient descent (from the cost function, compute gradients and update parameters, going backwards to the input)
 3. Repeat
 
 After the gradients are calculated, we can update the parameters.
@@ -317,6 +327,8 @@ Yonehot = onehotencode(categorical(Y),2);
 - for **regression**: `nftool()` (Neural Net Fitting)
 - `nnstart()`: entry-point for both of the above
 
+**Important:** These functions expect each sample as a **column**. If your data matrix has samples as rows, transpose it (e.g. use `X'`).
+
 1. Open `nprtool` and select input and output data. Outputs must be one-hot encoded.
 
    ![](img/2022-11-26-20-09-22.png)
@@ -327,9 +339,9 @@ Yonehot = onehotencode(categorical(Y),2);
   - The **validation set** contains the data used to stop the training before over-fitting (over-learning). For a fair decision, for validation we use data which is not used for actual training.
   - The **testing set** contains the data used for the final testing of the final trained model. For a fair result, we use data which the network has never seen until now (neither in training nor for validation).
 
-   Default values for small datasets are around 70% / 15% / 15%. For larger datasets (tens of thousands of input vectors), we can use smaller amounts for validation and testing.
+    Default values for small datasets are around 70% / 15% / 15%. For larger datasets (tens of thousands of input vectors), we can use smaller amounts for validation and testing.
 
-   These three sets of data are selected **randomly** from the overall available dataset, for fairness.
+    These three sets of data are selected **randomly** from the overall available dataset, for fairness.
 
 
 3. Select hidden layer size. Output layer size is determined by the number of output classes.
@@ -390,7 +402,7 @@ For more fine-grained control, you can use the `patternnet()` function. Read its
 **Note**: All the data vectors should be column vectors.
 
 ```matlab
-% Construct a pattern network with two hidden layer of sizes 8 and 4
+% Construct a pattern network with two hidden layers of sizes 8 and 4
 net = patternnet([8 4]);
 
 % Train the network net using the training data (outputs are one-hot-encoded).
@@ -436,13 +448,13 @@ Both the hidden layer and the output layer have sigmoid activation function.
 
 a. Compute the network output for the input $x = \begin{bmatrix} 0.5 \\ 1 \end{bmatrix}$
 
-a. Compute the network output for the same input, considering that the hidden layer has ReLU activation instead (output layer still sigmoid)
+b. Compute the network output for the same input, considering that the hidden layer has ReLU activation instead (output layer still sigmoid)
 
-a. Compute the cost function (i.e. the loss), assuming the true output should have been $y = 0$.
+c. Compute the cost function (i.e. the loss), assuming the true output should have been $y = 0$.
 
-a. Compute the cost function (i.e. the loss), assuming the true output should have been $y = 1$.
+d. Compute the cost function (i.e. the loss), assuming the true output should have been $y = 1$.
 
-d. Suppose we have a network with input with size 100, one hidden layer of with 1000 neurons, and one output layer with 4 neurons.
+e. Suppose we have a network with input size 100, one hidden layer with 1000 neurons, and one output layer with 4 neurons.
 
    How many parameters has the network? Compute the number of parameters for every layer.
 
@@ -469,10 +481,8 @@ We shall work with the same `wine_dataset` data as in the first labs. The last c
    In previous versions, we can use the function `ind2vec()`.
 
    ```matlab
-   Yenc = full(ind2vec(Y'))
-   % Since our data starts from value 3, we shall remove the first two lines.
-   % Thus quality 3 = class 1, quality 4 = class 2, etc.
-   Yenc = Yenc(3:end, :)' % Remove first two lines
+   % Reindex so that quality 3 -> class 1, quality 4 -> class 2, etc.
+   Yenc = full(ind2vec((Y' - 2)));
    Yenc = Yenc';          % Transpose, so each value corresponds to a row, just like the input data
    ```
 
@@ -495,7 +505,7 @@ Use the Classification Learner app to train a similar model with two hidden laye
 
 We follow the MNIST training tutorial from [https://www.mathworks.com/matlabcentral/fileexchange/73010-mnist-neural-network-training-and-testing](https://www.mathworks.com/matlabcentral/fileexchange/73010-mnist-neural-network-training-and-testing)
 
-1. Unzip the MNIST data file ``MNISTdata.zip` provided with the lab.
+1. Unzip the MNIST data file `MNISTdata.zip` provided with the lab.
 
 2. Load the data (this will create the matrix `mnist_train`):
 
@@ -503,7 +513,7 @@ We follow the MNIST training tutorial from [https://www.mathworks.com/matlabcent
    load mnist_train.csv
    ```
 
-   The first column is the digit number. The remaining 748 columns contain the pixels in the linearized image (every image has 28x28 pixels).
+   The first column is the digit number. The remaining 784 columns contain the pixels in the linearized image (every image has 28x28 pixels).
 
    Lookup the MNIST database on the Internet to see how the images look like.
 
@@ -522,7 +532,7 @@ We follow the MNIST training tutorial from [https://www.mathworks.com/matlabcent
 
    **Note:** Training a real-life network may take some time. Have patience until training is finished.
 
-   You can look a the performance and confusion matrix updating live as training progresses.
+   You can look at the performance and confusion matrix updating live as training progresses.
 
 5. When training is finished:
 
@@ -579,12 +589,12 @@ Start from the template file in `Ex4_Template.m` and fill in the blanks.
    Use 1 hidden layer with 10 neurons, but run with and then without data normalization.
    Which case produces the best results?
 
-2. Architecture experimentation:
+3. Architecture experimentation:
 
    Use a single hidden layer with different sizes: 5, 10, 15, 25, 100.
    Which case gives the best classification accuracy on the test set?
 
-3. Architecture experimentation:
+4. Architecture experimentation:
 
    Adjust number of hidden layers (1, 2, 3, 5, 8), keeping 10 neurons in each layer.
    Which case gives the best classification accuracy on the test set?
@@ -595,4 +605,3 @@ Start from the template file in `Ex4_Template.m` and fill in the blanks.
 1. How many parameters does the network used for MNIST classification have?
 
 2. How many parameters would have a network used for classifying color images with 1024 x 768 resolution, into 10 output classes, using two hidden layers of size 2000 and 150?
-
