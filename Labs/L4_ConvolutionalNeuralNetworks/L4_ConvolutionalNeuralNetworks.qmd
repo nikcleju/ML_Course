@@ -19,20 +19,20 @@ execute:
 
 # Objective
 
-Students should understand and be able use some basic pretrained CNN models available in Matlab
+Students should understand and be able to use some basic pretrained CNN models available in MATLAB
 
-# CNN networks
+# CNNs
 
 CNNs are multilayer networks adapted for image processing, which use the **convolution** operation extensively.
 
 ## Starting points
 
 1. The layers in a normal multilayer perceptron network (MLP) are **fully-connected**: each output value is a combination of all inputs
-2. Each full-connected layer is a **full (dense) matrix**
+2. Each fully-connected layer is a **full (dense) matrix**
 
 Problems:
 
-1. Images are large: 1 Mexapixel color image = 3 million values
+1. Images are large: 1 Megapixel color image = 3 million values
 2. Fully-connected layers have **huge** size (the number of parameters in fully-connected layers is huge).
 
 **Example**: Consider a layer with input size =  300 x 300 color pixels, and output size equivalent to 150 x 150 color pixels.
@@ -43,7 +43,7 @@ How many parameters does this layer have?
 
 DSP deja-vu vibes: $$y[n] = \sum_k x[n-k] h[k]$$
 
-- Some videos here: a **kernel** with fixed coefficients $h[k]$ is slided over the input $x[n]$ and computes the output as a linear combination of the surrounding input samples
+- Some videos here: a **kernel** with fixed coefficients $h[k]$ slides over the input $x[n]$ and computes the output as a linear combination of the surrounding input samples
 
 Key points:
 
@@ -69,12 +69,12 @@ Key points:
 
 [1] Krizhevsky, Alex; Sutskever, Ilya; Hinton, Geoffrey E. (2017-05-24). "ImageNet classification with deep convolutional neural networks" (PDF). Communications of the ACM. 60 (6): 84–90. doi:10.1145/3065386. ISSN 0001-0782.
 
-![AlexNet architecture (image from (https://www.mdpi.com/2072-4292/9/8/848/htm)](img/AlexNet.png)
+![AlexNet architecture (image from https://www.mdpi.com/2072-4292/9/8/848/htm)](img/AlexNet.png)
 
 
 ## Layer types
 
-Open the AlexNet model in Matlab and look at the architecture directly.
+Open the AlexNet model in MATLAB and look at the architecture directly.
 
 ```matlab
 net = alexnet('Weights','imagenet')
@@ -90,14 +90,14 @@ Layer types:
 - Softmax activation to get probability-like scores (like in multilayer perceptron)
 - Other optional stuff: normalization, dropout, batch normalization etc
 
-A CNN can be viewed as a feature extractor + classificator:
+A CNN can be viewed as a feature extractor + classifier:
 
 - The output layers are very similar to multilayer perceptron: fully-connected layers + softmax
 - The first part, with the convolution layers, is a kind of **feature extractor**
 
 ## The model
 
-A CNN has a fixed arcihtecture composed of several layers. For typical networks, the architecture is described in the accompanying papers.
+A CNN has a fixed architecture composed of several layers. For typical networks, the architecture is described in the accompanying papers.
 
 **Inputs**:
 
@@ -138,11 +138,11 @@ Training is done with **backpropagation** and gradient descent (or some variant 
 
 **Backpropagation** = the technique to compute the derivatives of $J$  with respect to all parameters in the network.
 
-This is the same approach used in multilayer perceptron (MLP) networks
+This is the same approach used in multilayer perceptron (MLP) networks.
 
-# Matlab tools and functions for working with CNNs
+# MATLAB tools and functions for working with CNNs
 
-There are lots of new functions and tools in Matlab for using Deep Neural Networks, introduced in the last 2-3 years. There are also Matlab courses and tutorials on how to use them.
+There are lots of new functions and tools in MATLAB for using Deep Neural Networks, introduced in the last 2-3 years. There are also MATLAB courses and tutorials on how to use them.
 
 But anyone who is serious on this topic should use the Python frameworks (Pytorch, Tensorflow/Keras).
 
@@ -150,17 +150,17 @@ But anyone who is serious on this topic should use the Python frameworks (Pytorc
 
 ![](img/2022-11-30-17-52-24.png)
 
-## Other frameworks besides Matlab
+## Other frameworks besides MATLAB
 
 The most used deep learning frameworks are written in Python:
 
-- Tersorflow + Keras
+- TensorFlow + Keras
 - Pytorch
 - ...
 
 # Walkthroughs
 
-We go step by step through the following Matlab examples:
+We go step by step through the following MATLAB examples:
 
 1. [Classify Image Using GoogLeNet](https://www.mathworks.com/help/deeplearning/ug/classify-image-using-googlenet.html)
 2. [Transfer Learning with Deep Network Designer](https://www.mathworks.com/help/deeplearning/ug/transfer-learning-with-deep-network-designer.html)
@@ -175,25 +175,25 @@ Additional links:
 
 ## Exercise 1 - Play with pretrained networks
 
-1. Load the AlexNet model with pretrained weights on the ImageNet database. Open the model and examine the architecure.
+1. Load the AlexNet model with pretrained weights on the ImageNet database. Open the model and examine the architecture.
 
    - How many parameters does the first convolutional layer have?
    - How many parameters does each trainable layer have? (trainable = convolutional or fully-connected)
    - What is the share of the fully-connected layers in the total number of parameters?
 
-2. Compare other networks (GoogLeNet, Resnet-18, Mobile-net v2) with AlexNet:
+2. Compare other networks (GoogLeNet, ResNet-18, MobileNet v2) with AlexNet:
 
    - which has more/less layers?
    - which has bigger/smaller fully-connected layers at the end?
 
-1. Play with GoogLeNet and AlexNet. Download an image of a dog from the Internet and classify it. Does it work?
+3. Play with GoogLeNet and AlexNet. Download an image of a dog from the Internet and classify it. Does it work?
 
    *Note*: The networks were pretrained on the ImageNet dataset, with 1000 image categories, each category having 1000 images.
    The ImageNet class names can be found [here](https://gist.github.com/yrevar/942d3a0ac09ec9e5eb3a)
 
    - What is the second highest predicted score?
 
-2. Using AlexNet with the image above, visualize the internal activations of the layers 'conv1', 'conv2', 'fc7' and 'prob' inside the network.
+4. Using AlexNet with the image above, visualize the internal activations of the layers 'conv1', 'conv2', 'fc7' and 'prob' inside the network.
 
    - What are their shapes?
 
@@ -218,7 +218,12 @@ Additional links:
 
 Use transfer learning to train AlexNet (or GoogLeNet) to classify images of Pepsi vs CocaCola beverages.
 
-The dataset is in the file `Data_PepsiCola.zip,` downloaded from here: [https://www.kaggle.com/datasets/die9origephit/pepsi-and-cocacola-images](https://www.kaggle.com/datasets/die9origephit/pepsi-and-cocacola-images)
+The dataset is in the file `Data_PepsiCola.zip` downloaded from here: [https://www.kaggle.com/datasets/die9origephit/pepsi-and-cocacola-images](https://www.kaggle.com/datasets/die9origephit/pepsi-and-cocacola-images)
+
+```matlab
+% Unzip locally so `imageDatastore` can find the two classes
+unzip('Data_PepsiCola.zip','Data_PepsiCola')
+```
 
 1. Download and unzip images, look through them
 2. Use the training data to train the network
@@ -226,13 +231,17 @@ The dataset is in the file `Data_PepsiCola.zip,` downloaded from here: [https://
 
 ## Exercise 3 - Add a new layer and retrain
 
-1. In DeepNetworkDesigner, and remove one convolutional layer (+ the pooling layer after it) from the middle part of AlexNet.
+1. In DeepNetworkDesigner, remove one convolutional layer (+ the pooling layer after it) from the middle part of AlexNet.
    Retrain the whole network on the Pepsi/Cola dataset (it may take some time).
 
 2. Add one extra convolutional layer (+ pooling) in the middle part of AlexNet.
    Retrain the whole network on the Pepsi/Cola dataset (it may take some time).
 
+## Optional extensions
+
+- Compare training from scratch vs transfer learning on a small subset of the Pepsi/Cola data and report validation accuracy and signs of overfitting.
+- Benchmark inference time of AlexNet vs MobileNet v2 on CPU and GPU in MATLAB using `predict` to discuss speed/accuracy trade-offs.
+
 # Final questions
 
 TBD
-

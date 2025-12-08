@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.269">
+<meta name="generator" content="quarto-1.6.40">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -17,11 +17,12 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -32,7 +33,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -46,43 +47,13 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
-    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -92,12 +63,40 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="L4_ConvolutionalNeuralNetworks_files/libs/quarto-html/tippy.umd.min.js"></script>
 <script src="L4_ConvolutionalNeuralNetworks_files/libs/quarto-html/anchor.min.js"></script>
 <link href="L4_ConvolutionalNeuralNetworks_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="L4_ConvolutionalNeuralNetworks_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="L4_ConvolutionalNeuralNetworks_files/libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="L4_ConvolutionalNeuralNetworks_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="L4_ConvolutionalNeuralNetworks_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="L4_ConvolutionalNeuralNetworks_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="L4_ConvolutionalNeuralNetworks_files/libs/bootstrap/bootstrap-fccef259656ac8cde963f8a571d0fb6b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -109,34 +108,35 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#objective" id="toc-objective" class="nav-link active" data-scroll-target="#objective"><span class="toc-section-number">1</span>  Objective</a></li>
-  <li><a href="#cnn-networks" id="toc-cnn-networks" class="nav-link" data-scroll-target="#cnn-networks"><span class="toc-section-number">2</span>  CNN networks</a>
+  <li><a href="#objective" id="toc-objective" class="nav-link active" data-scroll-target="#objective"><span class="header-section-number">1</span> Objective</a></li>
+  <li><a href="#cnns" id="toc-cnns" class="nav-link" data-scroll-target="#cnns"><span class="header-section-number">2</span> CNNs</a>
   <ul class="collapse">
-  <li><a href="#starting-points" id="toc-starting-points" class="nav-link" data-scroll-target="#starting-points"><span class="toc-section-number">2.1</span>  Starting points</a></li>
-  <li><a href="#convolution" id="toc-convolution" class="nav-link" data-scroll-target="#convolution"><span class="toc-section-number">2.2</span>  Convolution</a></li>
-  <li><a href="#convolutional-neural-networks" id="toc-convolutional-neural-networks" class="nav-link" data-scroll-target="#convolutional-neural-networks"><span class="toc-section-number">2.3</span>  Convolutional Neural Networks</a></li>
-  <li><a href="#architecture-of-a-cnn" id="toc-architecture-of-a-cnn" class="nav-link" data-scroll-target="#architecture-of-a-cnn"><span class="toc-section-number">2.4</span>  Architecture of a CNN</a></li>
-  <li><a href="#layer-types" id="toc-layer-types" class="nav-link" data-scroll-target="#layer-types"><span class="toc-section-number">2.5</span>  Layer types</a></li>
-  <li><a href="#the-model" id="toc-the-model" class="nav-link" data-scroll-target="#the-model"><span class="toc-section-number">2.6</span>  The model</a></li>
-  <li><a href="#the-model-parameters" id="toc-the-model-parameters" class="nav-link" data-scroll-target="#the-model-parameters"><span class="toc-section-number">2.7</span>  The model parameters</a></li>
-  <li><a href="#the-cost-function" id="toc-the-cost-function" class="nav-link" data-scroll-target="#the-cost-function"><span class="toc-section-number">2.8</span>  The cost function</a></li>
-  <li><a href="#training" id="toc-training" class="nav-link" data-scroll-target="#training"><span class="toc-section-number">2.9</span>  Training</a></li>
+  <li><a href="#starting-points" id="toc-starting-points" class="nav-link" data-scroll-target="#starting-points"><span class="header-section-number">2.1</span> Starting points</a></li>
+  <li><a href="#convolution" id="toc-convolution" class="nav-link" data-scroll-target="#convolution"><span class="header-section-number">2.2</span> Convolution</a></li>
+  <li><a href="#convolutional-neural-networks" id="toc-convolutional-neural-networks" class="nav-link" data-scroll-target="#convolutional-neural-networks"><span class="header-section-number">2.3</span> Convolutional Neural Networks</a></li>
+  <li><a href="#architecture-of-a-cnn" id="toc-architecture-of-a-cnn" class="nav-link" data-scroll-target="#architecture-of-a-cnn"><span class="header-section-number">2.4</span> Architecture of a CNN</a></li>
+  <li><a href="#layer-types" id="toc-layer-types" class="nav-link" data-scroll-target="#layer-types"><span class="header-section-number">2.5</span> Layer types</a></li>
+  <li><a href="#the-model" id="toc-the-model" class="nav-link" data-scroll-target="#the-model"><span class="header-section-number">2.6</span> The model</a></li>
+  <li><a href="#the-model-parameters" id="toc-the-model-parameters" class="nav-link" data-scroll-target="#the-model-parameters"><span class="header-section-number">2.7</span> The model parameters</a></li>
+  <li><a href="#the-cost-function" id="toc-the-cost-function" class="nav-link" data-scroll-target="#the-cost-function"><span class="header-section-number">2.8</span> The cost function</a></li>
+  <li><a href="#training" id="toc-training" class="nav-link" data-scroll-target="#training"><span class="header-section-number">2.9</span> Training</a></li>
   </ul></li>
-  <li><a href="#matlab-tools-and-functions-for-working-with-cnns" id="toc-matlab-tools-and-functions-for-working-with-cnns" class="nav-link" data-scroll-target="#matlab-tools-and-functions-for-working-with-cnns"><span class="toc-section-number">3</span>  Matlab tools and functions for working with CNNs</a>
+  <li><a href="#matlab-tools-and-functions-for-working-with-cnns" id="toc-matlab-tools-and-functions-for-working-with-cnns" class="nav-link" data-scroll-target="#matlab-tools-and-functions-for-working-with-cnns"><span class="header-section-number">3</span> MATLAB tools and functions for working with CNNs</a>
   <ul class="collapse">
-  <li><a href="#deep-network-designer" id="toc-deep-network-designer" class="nav-link" data-scroll-target="#deep-network-designer"><span class="toc-section-number">3.1</span>  Deep Network Designer</a></li>
-  <li><a href="#other-frameworks-besides-matlab" id="toc-other-frameworks-besides-matlab" class="nav-link" data-scroll-target="#other-frameworks-besides-matlab"><span class="toc-section-number">3.2</span>  Other frameworks besides Matlab</a></li>
+  <li><a href="#deep-network-designer" id="toc-deep-network-designer" class="nav-link" data-scroll-target="#deep-network-designer"><span class="header-section-number">3.1</span> Deep Network Designer</a></li>
+  <li><a href="#other-frameworks-besides-matlab" id="toc-other-frameworks-besides-matlab" class="nav-link" data-scroll-target="#other-frameworks-besides-matlab"><span class="header-section-number">3.2</span> Other frameworks besides MATLAB</a></li>
   </ul></li>
-  <li><a href="#walkthroughs" id="toc-walkthroughs" class="nav-link" data-scroll-target="#walkthroughs"><span class="toc-section-number">4</span>  Walkthroughs</a></li>
-  <li><a href="#practical-work" id="toc-practical-work" class="nav-link" data-scroll-target="#practical-work"><span class="toc-section-number">5</span>  Practical work</a>
+  <li><a href="#walkthroughs" id="toc-walkthroughs" class="nav-link" data-scroll-target="#walkthroughs"><span class="header-section-number">4</span> Walkthroughs</a></li>
+  <li><a href="#practical-work" id="toc-practical-work" class="nav-link" data-scroll-target="#practical-work"><span class="header-section-number">5</span> Practical work</a>
   <ul class="collapse">
-  <li><a href="#exercise-1---play-with-pretrained-networks" id="toc-exercise-1---play-with-pretrained-networks" class="nav-link" data-scroll-target="#exercise-1---play-with-pretrained-networks"><span class="toc-section-number">5.1</span>  Exercise 1 - Play with pretrained networks</a></li>
-  <li><a href="#exercise-2---transfer-learning-to-classify-cola-vs-pepsi" id="toc-exercise-2---transfer-learning-to-classify-cola-vs-pepsi" class="nav-link" data-scroll-target="#exercise-2---transfer-learning-to-classify-cola-vs-pepsi"><span class="toc-section-number">5.2</span>  Exercise 2 - Transfer Learning to classify Cola vs Pepsi</a></li>
-  <li><a href="#exercise-3---add-a-new-layer-and-retrain" id="toc-exercise-3---add-a-new-layer-and-retrain" class="nav-link" data-scroll-target="#exercise-3---add-a-new-layer-and-retrain"><span class="toc-section-number">5.3</span>  Exercise 3 - Add a new layer and retrain</a></li>
+  <li><a href="#exercise-1---play-with-pretrained-networks" id="toc-exercise-1---play-with-pretrained-networks" class="nav-link" data-scroll-target="#exercise-1---play-with-pretrained-networks"><span class="header-section-number">5.1</span> Exercise 1 - Play with pretrained networks</a></li>
+  <li><a href="#exercise-2---transfer-learning-to-classify-cola-vs-pepsi" id="toc-exercise-2---transfer-learning-to-classify-cola-vs-pepsi" class="nav-link" data-scroll-target="#exercise-2---transfer-learning-to-classify-cola-vs-pepsi"><span class="header-section-number">5.2</span> Exercise 2 - Transfer Learning to classify Cola vs Pepsi</a></li>
+  <li><a href="#exercise-3---add-a-new-layer-and-retrain" id="toc-exercise-3---add-a-new-layer-and-retrain" class="nav-link" data-scroll-target="#exercise-3---add-a-new-layer-and-retrain"><span class="header-section-number">5.3</span> Exercise 3 - Add a new layer and retrain</a></li>
+  <li><a href="#optional-extensions" id="toc-optional-extensions" class="nav-link" data-scroll-target="#optional-extensions"><span class="header-section-number">5.4</span> Optional extensions</a></li>
   </ul></li>
-  <li><a href="#final-questions" id="toc-final-questions" class="nav-link" data-scroll-target="#final-questions"><span class="toc-section-number">6</span>  Final questions</a></li>
+  <li><a href="#final-questions" id="toc-final-questions" class="nav-link" data-scroll-target="#final-questions"><span class="header-section-number">6</span> Final questions</a></li>
   </ul>
-</nav>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="L4_ConvolutionalNeuralNetworks.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li><li><a href="L4_ConvolutionalNeuralNetworks.ipynb" download="L4_ConvolutionalNeuralNetworks.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></nav>
 </div>
 <main class="content" id="quarto-document-content">
 
@@ -156,24 +156,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </div>
   
 
+
 </header>
+
 
 <section id="objective" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> Objective</h1>
-<p>Students should understand and be able use some basic pretrained CNN models available in Matlab</p>
+<p>Students should understand and be able to use some basic pretrained CNN models available in MATLAB</p>
 </section>
-<section id="cnn-networks" class="level1" data-number="2">
-<h1 data-number="2"><span class="header-section-number">2</span> CNN networks</h1>
+<section id="cnns" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> CNNs</h1>
 <p>CNNs are multilayer networks adapted for image processing, which use the <strong>convolution</strong> operation extensively.</p>
 <section id="starting-points" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="starting-points"><span class="header-section-number">2.1</span> Starting points</h2>
 <ol type="1">
 <li>The layers in a normal multilayer perceptron network (MLP) are <strong>fully-connected</strong>: each output value is a combination of all inputs</li>
-<li>Each full-connected layer is a <strong>full (dense) matrix</strong></li>
+<li>Each fully-connected layer is a <strong>full (dense) matrix</strong></li>
 </ol>
 <p>Problems:</p>
 <ol type="1">
-<li>Images are large: 1 Mexapixel color image = 3 million values</li>
+<li>Images are large: 1 Megapixel color image = 3 million values</li>
 <li>Fully-connected layers have <strong>huge</strong> size (the number of parameters in fully-connected layers is huge).</li>
 </ol>
 <p><strong>Example</strong>: Consider a layer with input size = 300 x 300 color pixels, and output size equivalent to 150 x 150 color pixels. How many parameters does this layer have?</p>
@@ -182,7 +184,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2 data-number="2.2" class="anchored" data-anchor-id="convolution"><span class="header-section-number">2.2</span> Convolution</h2>
 <p>DSP deja-vu vibes: <span class="math display">\[y[n] = \sum_k x[n-k] h[k]\]</span></p>
 <ul>
-<li>Some videos here: a <strong>kernel</strong> with fixed coefficients <span class="math inline">\(h[k]\)</span> is slided over the input <span class="math inline">\(x[n]\)</span> and computes the output as a linear combination of the surrounding input samples</li>
+<li>Some videos here: a <strong>kernel</strong> with fixed coefficients <span class="math inline">\(h[k]\)</span> slides over the input <span class="math inline">\(x[n]\)</span> and computes the output as a linear combination of the surrounding input samples</li>
 </ul>
 <p>Key points:</p>
 <ul>
@@ -207,13 +209,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="img/AlexNet.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">AlexNet architecture (image from (https://www.mdpi.com/2072-4292/9/8/848/htm)</figcaption><p></p>
+<figcaption>AlexNet architecture (image from https://www.mdpi.com/2072-4292/9/8/848/htm)</figcaption>
 </figure>
 </div>
 </section>
 <section id="layer-types" class="level2" data-number="2.5">
 <h2 data-number="2.5" class="anchored" data-anchor-id="layer-types"><span class="header-section-number">2.5</span> Layer types</h2>
-<p>Open the AlexNet model in Matlab and look at the architecture directly.</p>
+<p>Open the AlexNet model in MATLAB and look at the architecture directly.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="va">net</span> <span class="op">=</span> <span class="va">alexnet</span>(<span class="ss">'Weights'</span><span class="op">,</span><span class="ss">'imagenet'</span>)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="va">analyzeNetwork</span>(<span class="va">net</span>)  <span class="co">% or double-click `net` in the Workspace</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Layer types:</p>
@@ -225,7 +227,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Softmax activation to get probability-like scores (like in multilayer perceptron)</li>
 <li>Other optional stuff: normalization, dropout, batch normalization etc</li>
 </ul>
-<p>A CNN can be viewed as a feature extractor + classificator:</p>
+<p>A CNN can be viewed as a feature extractor + classifier:</p>
 <ul>
 <li>The output layers are very similar to multilayer perceptron: fully-connected layers + softmax</li>
 <li>The first part, with the convolution layers, is a kind of <strong>feature extractor</strong></li>
@@ -233,7 +235,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="the-model" class="level2" data-number="2.6">
 <h2 data-number="2.6" class="anchored" data-anchor-id="the-model"><span class="header-section-number">2.6</span> The model</h2>
-<p>A CNN has a fixed arcihtecture composed of several layers. For typical networks, the architecture is described in the accompanying papers.</p>
+<p>A CNN has a fixed architecture composed of several layers. For typical networks, the architecture is described in the accompanying papers.</p>
 <p><strong>Inputs</strong>:</p>
 <ul>
 <li>a color image represented as a tensor <span class="math inline">\(X\)</span> of size <span class="math inline">\(L_1 \times L_2 \times 3\)</span></li>
@@ -265,22 +267,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2 data-number="2.9" class="anchored" data-anchor-id="training"><span class="header-section-number">2.9</span> Training</h2>
 <p>Training is done with <strong>backpropagation</strong> and gradient descent (or some variant of it).</p>
 <p><strong>Backpropagation</strong> = the technique to compute the derivatives of <span class="math inline">\(J\)</span> with respect to all parameters in the network.</p>
-<p>This is the same approach used in multilayer perceptron (MLP) networks</p>
+<p>This is the same approach used in multilayer perceptron (MLP) networks.</p>
 </section>
 </section>
 <section id="matlab-tools-and-functions-for-working-with-cnns" class="level1" data-number="3">
-<h1 data-number="3"><span class="header-section-number">3</span> Matlab tools and functions for working with CNNs</h1>
-<p>There are lots of new functions and tools in Matlab for using Deep Neural Networks, introduced in the last 2-3 years. There are also Matlab courses and tutorials on how to use them.</p>
+<h1 data-number="3"><span class="header-section-number">3</span> MATLAB tools and functions for working with CNNs</h1>
+<p>There are lots of new functions and tools in MATLAB for using Deep Neural Networks, introduced in the last 2-3 years. There are also MATLAB courses and tutorials on how to use them.</p>
 <p>But anyone who is serious on this topic should use the Python frameworks (Pytorch, Tensorflow/Keras).</p>
 <section id="deep-network-designer" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="deep-network-designer"><span class="header-section-number">3.1</span> Deep Network Designer</h2>
 <p><img src="img/2022-11-30-17-52-24.png" class="img-fluid"></p>
 </section>
 <section id="other-frameworks-besides-matlab" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="other-frameworks-besides-matlab"><span class="header-section-number">3.2</span> Other frameworks besides Matlab</h2>
+<h2 data-number="3.2" class="anchored" data-anchor-id="other-frameworks-besides-matlab"><span class="header-section-number">3.2</span> Other frameworks besides MATLAB</h2>
 <p>The most used deep learning frameworks are written in Python:</p>
 <ul>
-<li>Tersorflow + Keras</li>
+<li>TensorFlow + Keras</li>
 <li>Pytorch</li>
 <li>…</li>
 </ul>
@@ -288,7 +290,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="walkthroughs" class="level1" data-number="4">
 <h1 data-number="4"><span class="header-section-number">4</span> Walkthroughs</h1>
-<p>We go step by step through the following Matlab examples:</p>
+<p>We go step by step through the following MATLAB examples:</p>
 <ol type="1">
 <li><a href="https://www.mathworks.com/help/deeplearning/ug/classify-image-using-googlenet.html">Classify Image Using GoogLeNet</a></li>
 <li><a href="https://www.mathworks.com/help/deeplearning/ug/transfer-learning-with-deep-network-designer.html">Transfer Learning with Deep Network Designer</a>
@@ -307,13 +309,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="exercise-1---play-with-pretrained-networks" class="level2" data-number="5.1">
 <h2 data-number="5.1" class="anchored" data-anchor-id="exercise-1---play-with-pretrained-networks"><span class="header-section-number">5.1</span> Exercise 1 - Play with pretrained networks</h2>
 <ol type="1">
-<li><p>Load the AlexNet model with pretrained weights on the ImageNet database. Open the model and examine the architecure.</p>
+<li><p>Load the AlexNet model with pretrained weights on the ImageNet database. Open the model and examine the architecture.</p>
 <ul>
 <li>How many parameters does the first convolutional layer have?</li>
 <li>How many parameters does each trainable layer have? (trainable = convolutional or fully-connected)</li>
 <li>What is the share of the fully-connected layers in the total number of parameters?</li>
 </ul></li>
-<li><p>Compare other networks (GoogLeNet, Resnet-18, Mobile-net v2) with AlexNet:</p>
+<li><p>Compare other networks (GoogLeNet, ResNet-18, MobileNet v2) with AlexNet:</p>
 <ul>
 <li>which has more/less layers?</li>
 <li>which has bigger/smaller fully-connected layers at the end?</li>
@@ -344,7 +346,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="exercise-2---transfer-learning-to-classify-cola-vs-pepsi" class="level2" data-number="5.2">
 <h2 data-number="5.2" class="anchored" data-anchor-id="exercise-2---transfer-learning-to-classify-cola-vs-pepsi"><span class="header-section-number">5.2</span> Exercise 2 - Transfer Learning to classify Cola vs Pepsi</h2>
 <p>Use transfer learning to train AlexNet (or GoogLeNet) to classify images of Pepsi vs CocaCola beverages.</p>
-<p>The dataset is in the file <code>Data_PepsiCola.zip,</code> downloaded from here: <a href="https://www.kaggle.com/datasets/die9origephit/pepsi-and-cocacola-images">https://www.kaggle.com/datasets/die9origephit/pepsi-and-cocacola-images</a></p>
+<p>The dataset is in the file <code>Data_PepsiCola.zip</code> downloaded from here: <a href="https://www.kaggle.com/datasets/die9origephit/pepsi-and-cocacola-images">https://www.kaggle.com/datasets/die9origephit/pepsi-and-cocacola-images</a></p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">% Unzip locally so `imageDatastore` can find the two classes</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="va">unzip</span>(<span class="ss">'Data_PepsiCola.zip'</span><span class="op">,</span><span class="ss">'Data_PepsiCola'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ol type="1">
 <li>Download and unzip images, look through them</li>
 <li>Use the training data to train the network</li>
@@ -354,9 +358,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="exercise-3---add-a-new-layer-and-retrain" class="level2" data-number="5.3">
 <h2 data-number="5.3" class="anchored" data-anchor-id="exercise-3---add-a-new-layer-and-retrain"><span class="header-section-number">5.3</span> Exercise 3 - Add a new layer and retrain</h2>
 <ol type="1">
-<li><p>In DeepNetworkDesigner, and remove one convolutional layer (+ the pooling layer after it) from the middle part of AlexNet. Retrain the whole network on the Pepsi/Cola dataset (it may take some time).</p></li>
+<li><p>In DeepNetworkDesigner, remove one convolutional layer (+ the pooling layer after it) from the middle part of AlexNet. Retrain the whole network on the Pepsi/Cola dataset (it may take some time).</p></li>
 <li><p>Add one extra convolutional layer (+ pooling) in the middle part of AlexNet. Retrain the whole network on the Pepsi/Cola dataset (it may take some time).</p></li>
 </ol>
+</section>
+<section id="optional-extensions" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="optional-extensions"><span class="header-section-number">5.4</span> Optional extensions</h2>
+<ul>
+<li>Compare training from scratch vs transfer learning on a small subset of the Pepsi/Cola data and report validation accuracy and signs of overfitting.</li>
+<li>Benchmark inference time of AlexNet vs MobileNet v2 on CPU and GPU in MATLAB using <code>predict</code> to discuss speed/accuracy trade-offs.</li>
+</ul>
 </section>
 </section>
 <section id="final-questions" class="level1" data-number="6">
@@ -393,12 +404,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
     }
-  });
-  clipboard.on('success', function(e) {
+    return false;
+  }
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -430,11 +444,48 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
-  function tippyHover(el, contentFn) {
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -444,8 +495,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -457,9 +517,244 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {
@@ -500,6 +795,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+
 
 
 
