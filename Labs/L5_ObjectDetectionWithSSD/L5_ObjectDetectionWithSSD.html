@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
+<meta name="generator" content="quarto-1.6.40">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -63,10 +63,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="L5_ObjectDetectionWithSSD_files/libs/quarto-html/tippy.umd.min.js"></script>
 <script src="L5_ObjectDetectionWithSSD_files/libs/quarto-html/anchor.min.js"></script>
 <link href="L5_ObjectDetectionWithSSD_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="L5_ObjectDetectionWithSSD_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="L5_ObjectDetectionWithSSD_files/libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="L5_ObjectDetectionWithSSD_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="L5_ObjectDetectionWithSSD_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="L5_ObjectDetectionWithSSD_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="L5_ObjectDetectionWithSSD_files/libs/bootstrap/bootstrap-fccef259656ac8cde963f8a571d0fb6b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -119,6 +119,7 @@ window.Quarto = {
   <li><a href="#the-model-parameters" id="toc-the-model-parameters" class="nav-link" data-scroll-target="#the-model-parameters">The model parameters</a></li>
   <li><a href="#the-cost-function" id="toc-the-cost-function" class="nav-link" data-scroll-target="#the-cost-function">The cost function</a></li>
   <li><a href="#training" id="toc-training" class="nav-link" data-scroll-target="#training">Training</a></li>
+  <li><a href="#evaluation-metrics" id="toc-evaluation-metrics" class="nav-link" data-scroll-target="#evaluation-metrics">Evaluation metrics</a></li>
   </ul></li>
   <li><a href="#matlab-tutorials-walkthrough" id="toc-matlab-tutorials-walkthrough" class="nav-link" data-scroll-target="#matlab-tutorials-walkthrough"><span class="header-section-number">3</span> Matlab tutorials walkthrough</a></li>
   <li><a href="#practical-work" id="toc-practical-work" class="nav-link" data-scroll-target="#practical-work"><span class="header-section-number">4</span> Practical work</a>
@@ -158,14 +159,14 @@ window.Quarto = {
 
 <section id="objective" class="level2" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="objective"><span class="header-section-number">1</span> Objective</h2>
-<p>Students should understand the principles of object detection with single-stage object detection networks, and be able use a pretrained object detection model available in Matlab (Yolo / SSD).</p>
+<p>Students should understand the principles of object detection with single-stage object detection networks, and be able to use a pretrained object detection model available in Matlab (Yolo / SSD).</p>
 </section>
 <section id="theoretical-aspects" class="level2" data-number="2">
 <h2 data-number="2" class="anchored" data-anchor-id="theoretical-aspects"><span class="header-section-number">2</span> Theoretical aspects</h2>
 <p>Single Shot Detector (SSD) is a CNN network architecture designed for fast detection (e.g.&nbsp;localization) of objects in an image.</p>
 <section id="object-detection" class="level3">
 <h3 class="anchored" data-anchor-id="object-detection">Object detection</h3>
-<p>Object detection = locating certain objects in an image, and indicate their class.</p>
+<p>Object detection = locating certain objects in an image, and indicating their class.</p>
 <p>An example<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> is provided in the image below.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -173,8 +174,8 @@ window.Quarto = {
 <figcaption>Object detection</figcaption>
 </figure>
 </div>
-<p>The model is trained on a series of images from different categories (e.g.&nbsp;person, baseball bat, car, bicycle, , ball etc.).</p>
-<p>when predicting on a new image, the model returns a list of detected objects, each object having the following data:</p>
+<p>The model is trained on a series of images from different categories (e.g.&nbsp;person, baseball bat, car, bicycle, ball, etc.).</p>
+<p>When predicting on a new image, the model returns a list of detected objects, each object having the following data:</p>
 <ol type="1">
 <li><p>The <strong>bounding box</strong> surrounding the object. This is defined by 4 pixel coordinates (e.g.&nbsp;bottom=140, top=300, left=74, right=128), but can come in different varieties:</p>
 <ul>
@@ -203,7 +204,7 @@ window.Quarto = {
 <li>A matrix of <span class="math inline">\(N \times 4\)</span> values with the predicted box displacements/distortions with respect to all the <span class="math inline">\(N\)</span> anchor boxes (i.e.&nbsp;offset x, offset y, height scaling, width scaling).</li>
 <li>A matrix of <span class="math inline">\(N \times C\)</span> with the predicted class scores for all the <span class="math inline">\(N\)</span> boxes. <span class="math inline">\(C\)</span> is the number of distinct classes in the dataset.</li>
 </ul>
-<p><span class="math inline">\(N\)</span> is the total number of predicted boxes over all the image. It can be very large, e.g.&nbsp;8732 boxes for a <span class="math inline">\(300 \times 300\)</span> image.</p>
+<p><span class="math inline">\(N\)</span> is the total number of predicted boxes over all the image. It can be very large, e.g.&nbsp;8732 boxes for a <span class="math inline">\(300 \times 300\)</span> image. The exact count is driven by the anchor box design (scales and aspect ratios assigned to each feature map location).</p>
 <p>For a larger <span class="math inline">\(1024 \times 640\)</span> image, the number can be much larger, over 90000 (speaking from experience). Of course, it depends on the parameters chosen by the designer.</p>
 </section>
 <section id="output-encoding-and-decoding" class="level3">
@@ -227,28 +228,28 @@ window.Quarto = {
 </figure>
 </div>
 <p>This is a key post-processing step in most object detectors.</p>
-<p>A single object is predicted by many anchor boxes. As a result, we will have <strong>many predicted boxes around one object</strong> in the image, with slightly different values. We want just one box. Non-Max Suppression (NMS) is a procedure to select a single box out of a groups of overlapping boxes (the one with the highest confidence score), and ignore all the other opverlapping ones. An example illustrated below<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>.</p>
+<p>A single object is predicted by many anchor boxes. As a result, we will have <strong>many predicted boxes around one object</strong> in the image, with slightly different values. We want just one box. Non-Max Suppression (NMS) is a procedure to select a single box out of a group of overlapping boxes (the one with the highest confidence score), and ignore all the other overlapping ones. An example is illustrated below<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>.</p>
 </section>
 <section id="the-model" class="level3">
 <h3 class="anchored" data-anchor-id="the-model">The model</h3>
-<p>The network model is defined by the sequence of convolutional layers in the architecture. Open the newtork in Matlab in order to inspect the architure in detail.</p>
+<p>The network model is defined by the sequence of convolutional layers in the architecture. Open the network in Matlab in order to inspect the architecture in detail.</p>
 </section>
 <section id="the-model-parameters" class="level3">
 <h3 class="anchored" data-anchor-id="the-model-parameters">The model parameters</h3>
-<p>The SSD model parameters are the parameters of all the convolutional the layers. There are no fully-connected layers in the SSD network, and neither in YOLO.</p>
+<p>The SSD model parameters are the parameters of all the convolutional layers. There are no fully-connected layers in the SSD network, and neither in YOLO.</p>
 </section>
 <section id="the-cost-function" class="level3">
 <h3 class="anchored" data-anchor-id="the-cost-function">The cost function</h3>
 <p>The model produces two kinds of data:</p>
 <ul>
-<li>box locations (expressed as displacements/distortions with respect to the anchot boxes)</li>
+<li>box locations (expressed as displacements/distortions with respect to the anchor boxes)</li>
 <li>box classification scores</li>
 </ul>
 <p>When training, the predicted boxes are compared to the <strong>real ground-truth</strong> boxes available. For each ground-truth box, the best predicted box is selected (the predicted box with the correct class which overlaps the most with it), and the error is computed based on two terms:</p>
 <ol type="1">
-<li><p>The <strong>localization error</strong>: typically, is the absolute difference between the coordinates or displacements of the ground-truth box and the predicted box.</p></li>
+<li><p>The <strong>localization error</strong>: typically is the absolute difference between the coordinates or displacements of the ground-truth box and the predicted box.</p></li>
 <li><p>The <strong>classification error</strong>, which compares the class scores of the predicted box with the true ground-truth class. The cross-entropy loss function is typically used, just like it is used for all other classification tasks.</p>
-<p>Besides the predicted boxes which are compared to the ground-truth, there are many predicted boxes which corespond to <strong>no</strong> ground truth box. There are a few different methods how to treat these, some methods (e.g.&nbsp;Focal Loss) being better than others.</p></li>
+<p>Besides the predicted boxes which are compared to the ground-truth, there are many predicted boxes which correspond to <strong>no</strong> ground truth box. There are a few different methods how to treat these, some methods (e.g.&nbsp;Focal Loss) being better than others.</p></li>
 </ol>
 </section>
 <section id="training" class="level3">
@@ -257,19 +258,22 @@ window.Quarto = {
 <p><strong>Backpropagation</strong> = the technique to compute the derivatives of <span class="math inline">\(J\)</span> with respect to all parameters in the network.</p>
 <p>This is similar to all CNN networks.</p>
 </section>
+<section id="evaluation-metrics" class="level3">
+<h3 class="anchored" data-anchor-id="evaluation-metrics">Evaluation metrics</h3>
+<p>Detection quality is usually reported with Average Precision (AP) for each class and mean AP (mAP) over all classes. Lowering detection thresholds increases recall (fewer missed objects) but can lower precision (more false positives); raising thresholds does the opposite. Keep the precision/recall trade-off in mind when adjusting score/overlap thresholds in the exercises.</p>
+</section>
 </section>
 <section id="matlab-tutorials-walkthrough" class="level2" data-number="3">
 <h2 data-number="3" class="anchored" data-anchor-id="matlab-tutorials-walkthrough"><span class="header-section-number">3</span> Matlab tutorials walkthrough</h2>
-<p>Practical work is based on 3 Matlab examples:</p>
-<p><!-- 1. [Multiclass Object Detection Using YOLO v2 Deep Learning](https://www.mathworks.com/help/vision/ug/multiclass-object-detection-using-yolo-v2-deep-learning.html) --></p>
-<ol start="2" type="1">
+<p>Practical work is based on 2 Matlab examples:</p>
+<ol type="1">
 <li><p>Using the pretrained detectors available in <a href="https://github.com/matlab-deep-learning/MATLAB-Deep-Learning-Model-Hub#object-detection-">Mathworks Github</a></p>
 <ul>
 <li>Use <a href="https://github.com/matlab-deep-learning/pretrained-efficientdet-d0">EfficientDet</a></li>
 <li>Download the zip file of the whole repository and unzip in Matlab Online</li>
 <li>Run the <code>efficientDetD0ObjectDetectionExample.m</code> file</li>
 </ul></li>
-<li><p>Change the thresholds in postprocess.m file</p></li>
+<li><p>Change the thresholds in <code>postprocess.m</code> file</p></li>
 </ol>
 <p>Other tutorials:</p>
 <ol type="1">
@@ -284,9 +288,10 @@ window.Quarto = {
 <section id="exercise-1---run-on-another-image" class="level3">
 <h3 class="anchored" data-anchor-id="exercise-1---run-on-another-image">Exercise 1 - Run on another image</h3>
 <ul>
-<li>Run the EffecientDet object detector on the image <code>Richarlison.jpg</code>, and identify how many objects are detected, and their class.</li>
-<li>Set the overlap threshold to 0.01 and run it on the <code>Richarlison.jpg</code> image. What happens?</li>
-<li>Set the overlap threshold to 0.9 and the score threshold to 0.2, and run it on the <code>Richarlison.jpg</code> image. What happens?</li>
+<li>Run the EfficientDet object detector on the image <code>Richarlison.jpg</code>, and identify how many objects are detected, and their class.</li>
+<li>Read the expected input resolution and the output tensor dimensions of the EfficientDet D0 network (e.g., via <code>analyzeNetwork(detector.Network)</code> or by inspecting <code>detector.Network.InputSizes</code> and the prediction head layer sizes).</li>
+<li>Set the overlap threshold to 0.01 and run it on the <code>Richarlison.jpg</code> image. What happens? Then set it to 0.9 and run it again. What does this threshold do?</li>
+<li>Reset the overlap threshold to 0.5, and set the score threshold to 0.02, and run it on the <code>Richarlison.jpg</code> image. What happens? What does this threshold do?</li>
 <li>Set a breakpoint on line 34 of the <code>postprocess.m</code> file and investigate the size of the <code>scores</code> vector. What is its size? What does this number represent?</li>
 </ul>
 </section>
@@ -296,7 +301,8 @@ window.Quarto = {
 <li><p>Run the EfficientDet object detector on the image <code>CarWide.jpg</code>. Is the car detected? If yes, with what score?</p></li>
 <li><p>Identify the input resolution of the EfficientDet network.</p></li>
 <li><p>Use the Matlab function <code>imresize()</code> to resize the image <code>CarWide.jpg</code> to the input resolution, and display it with <code>imshow()</code>.</p>
-<p>What happens with the car image? This is the image which goes into the object detector network. Do you thinks this a problem?</p></li>
+<p>What happens with the car image? This is the image which goes into the object detector network. Do you think this is a problem?</p>
+<p>Tip: plain resizing can distort aspect ratio and hurt detection scores. Try a resizing that preserves aspect ratio (or compare both) and visualize how the car looks before feeding the network.</p></li>
 <li><p>Use any Windows tool to crop from the <code>CarWide.jpg</code> a square part containing the car, save it, and run the object detector on it.</p>
 <p>Does the detection score improve?</p></li>
 </ul>
@@ -318,9 +324,9 @@ window.Quarto = {
 <ul>
 <li>Go to the YoloX object detector from here: https://github.com/matlab-deep-learning/Pretrained-YOLOX-Network-For-Object-Detection</li>
 <li>Using the Github example, run this detector on the same image <code>Richarlison.jpg</code></li>
-<li>Filter the bounding box on the image:
+<li>Filter the bounding boxes on the image:
 <ul>
-<li>Display only the objects with the highest score</li>
+<li>Display only the object with the highest score</li>
 <li>Display only the object whose center (the center of the box) is the left-most among all objects</li>
 <li>Display only the non-person objects</li>
 </ul></li>
@@ -334,17 +340,34 @@ window.Quarto = {
 <h3 class="anchored" data-anchor-id="exercise-5---non-max-suppression">Exercise 5 - Non-max suppression</h3>
 <p>Write a small Matlab function called <code>IOU</code> which computes the intersection-over-union of two bounding boxes, given as vectors <code>[left, right, bottom, top]</code>.</p>
 <p>Use the <code>rectint()</code> function to compute the intersection of the boxes.</p>
+<p>Note: <code>rectint()</code> expects <code>[x, y, width, height]</code>. Convert <code>[left, right, bottom, top]</code> to <code>[left, bottom, right-left, top-bottom]</code>.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="va">result</span> <span class="op">=</span> <span class="va">IOU</span>(<span class="va">box1</span><span class="op">,</span> <span class="va">box2</span>)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">% Compute IOU of two boxes</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">% Each box is a 4-element vector: [left, right, bottom, top]</span></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="op">...</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>[<span class="va">x1</span><span class="op">,</span> <span class="va">y1</span><span class="op">,</span> <span class="va">w1</span><span class="op">,</span> <span class="va">h1</span>] <span class="op">=</span> <span class="va">deal</span>(<span class="va">box1</span>(<span class="fl">1</span>)<span class="op">,</span> <span class="va">box1</span>(<span class="fl">3</span>)<span class="op">,</span> <span class="va">box1</span>(<span class="fl">2</span>) <span class="op">-</span> <span class="va">box1</span>(<span class="fl">1</span>)<span class="op">,</span> <span class="va">box1</span>(<span class="fl">4</span>) <span class="op">-</span> <span class="va">box1</span>(<span class="fl">3</span>))<span class="op">;</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>[<span class="va">x2</span><span class="op">,</span> <span class="va">y2</span><span class="op">,</span> <span class="va">w2</span><span class="op">,</span> <span class="va">h2</span>] <span class="op">=</span> <span class="va">deal</span>(<span class="va">box2</span>(<span class="fl">1</span>)<span class="op">,</span> <span class="va">box2</span>(<span class="fl">3</span>)<span class="op">,</span> <span class="va">box2</span>(<span class="fl">2</span>) <span class="op">-</span> <span class="va">box2</span>(<span class="fl">1</span>)<span class="op">,</span> <span class="va">box2</span>(<span class="fl">4</span>) <span class="op">-</span> <span class="va">box2</span>(<span class="fl">3</span>))<span class="op">;</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="va">inter</span> <span class="op">=</span> <span class="va">rectint</span>([<span class="va">x1</span><span class="op">,</span> <span class="va">y1</span><span class="op">,</span> <span class="va">w1</span><span class="op">,</span> <span class="va">h1</span>]<span class="op">,</span> [<span class="va">x2</span><span class="op">,</span> <span class="va">y2</span><span class="op">,</span> <span class="va">w2</span><span class="op">,</span> <span class="va">h2</span>])<span class="op">;</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="va">unionArea</span> <span class="op">=</span> <span class="va">w1</span> <span class="op">*</span> <span class="va">h1</span> <span class="op">+</span> <span class="va">w2</span> <span class="op">*</span> <span class="va">h2</span> <span class="op">-</span> <span class="va">inter</span><span class="op">;</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="va">result</span> <span class="op">=</span> <span class="va">inter</span> <span class="op">/</span> <span class="va">unionArea</span><span class="op">;</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Use the function to compute the IOU of the following two bounding boxes:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="va">A</span> <span class="op">=</span> [<span class="fl">50</span><span class="op">,</span> <span class="fl">100</span><span class="op">,</span> <span class="fl">120</span><span class="op">,</span> <span class="fl">200</span>]<span class="op">;</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="va">B</span> <span class="op">=</span> [<span class="fl">10</span><span class="op">,</span> <span class="fl">80</span><span class="op">,</span> <span class="fl">40</span><span class="op">,</span> <span class="fl">140</span>]<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Bonus: plug <code>IOU</code> into a minimal NMS loop to keep the strongest boxes:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="va">keep</span> <span class="op">=</span> <span class="va">simpleNMS</span>(<span class="va">boxes</span><span class="op">,</span> <span class="va">scores</span><span class="op">,</span> <span class="va">iouThresh</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>[<span class="op">~,</span> <span class="va">order</span>] <span class="op">=</span> <span class="va">sort</span>(<span class="va">scores</span><span class="op">,</span> <span class="ss">'descend'</span>)<span class="op">;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="va">keep</span> <span class="op">=</span> []<span class="op">;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="kw">while</span> <span class="op">~</span><span class="va">isempty</span>(<span class="va">order</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="va">i</span> <span class="op">=</span> <span class="va">order</span>(<span class="fl">1</span>)<span class="op">;</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="va">keep</span>(<span class="kw">end</span><span class="op">+</span><span class="fl">1</span>) <span class="op">=</span> <span class="va">i</span><span class="op">;</span> <span class="co">%#ok&lt;AGROW&gt;</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="va">rest</span> <span class="op">=</span> <span class="va">order</span>(<span class="fl">2</span><span class="op">:</span><span class="kw">end</span>)<span class="op">;</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="va">ious</span> <span class="op">=</span> <span class="va">arrayfun</span>(<span class="op">@</span>(<span class="va">j</span>) <span class="va">IOU</span>(<span class="va">boxes</span>(<span class="va">i</span><span class="op">,</span> <span class="op">:</span>)<span class="op">,</span> <span class="va">boxes</span>(<span class="va">j</span><span class="op">,</span> <span class="op">:</span>))<span class="op">,</span> <span class="va">rest</span>)<span class="op">;</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="va">order</span> <span class="op">=</span> <span class="va">rest</span>(<span class="va">ious</span> <span class="op">&lt;</span> <span class="va">iouThresh</span>)<span class="op">;</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="exercise-6---ssd" class="level3">
 <h3 class="anchored" data-anchor-id="exercise-6---ssd">Exercise 6 - SSD</h3>
@@ -357,7 +380,7 @@ window.Quarto = {
 <li>Which are the two output layers?</li>
 <li>How many boxes are predicted in all?</li>
 </ul></li>
-<li><p>Run the next steps of the tutorial, and observer the detected boxes on the image.</p></li>
+<li><p>Run the next steps of the tutorial, and observe the detected boxes on the image.</p></li>
 <li><p>Download a similar image from the Internet and run the model on it. Are the objects detected well?</p></li>
 <li><p>Locate the call to the <code>detect()</code> function and change the detection threshold to 0.01. What happens?</p>
 <ul>
@@ -369,7 +392,7 @@ window.Quarto = {
 <li><p>Set the detection parameter ‘SelectStrongest’ to <code>false</code>: <code>detect(... 'SelectStrongest', false)</code>. Reset the threshold to a reasonable value (e.g.&nbsp;0.4). What changes? How many detected boxes are now?</p>
 <ul>
 <li>Why do we have multiple boxes around a single object?</li>
-<li>Imagine a procedure to keep only a single detection box around an object (this is known as <strong>Non-Max Suppresion (NMS)</strong>)</li>
+<li>Imagine a procedure to keep only a single detection box around an object (this is known as <strong>Non-Max Suppression (NMS)</strong>)</li>
 </ul></li>
 <li><p>Set the variable <code>doTraining</code> to <code>true</code> (or 1) and train the model. How fast does it work?</p></li>
 </ol>
@@ -377,7 +400,11 @@ window.Quarto = {
 </section>
 <section id="final-questions" class="level2" data-number="5">
 <h2 data-number="5" class="anchored" data-anchor-id="final-questions"><span class="header-section-number">5</span> Final questions</h2>
-<p>TBD</p>
+<ul>
+<li>When would you pick SSD versus YOLO for a real-time application?</li>
+<li>How would you tune score and overlap thresholds differently for high recall vs high precision use cases?</li>
+<li>What strategies help when input images have very different aspect ratios from the detector’s expected size?</li>
+</ul>
 </section>
 
 
@@ -473,8 +500,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -585,7 +610,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {
