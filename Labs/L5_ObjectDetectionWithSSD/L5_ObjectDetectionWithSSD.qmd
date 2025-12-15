@@ -131,6 +131,9 @@ This is similar to all CNN networks.
 
 Detection quality is usually reported with Average Precision (AP) for each class and mean AP (mAP) over all classes. Lowering detection thresholds increases recall (fewer missed objects) but can lower precision (more false positives); raising thresholds does the opposite. Keep the precision/recall trade-off in mind when adjusting score/overlap thresholds in the exercises.
 
+**Precision** = fraction of reported detections that are correct (true positives / (true positives + false positives)).  
+**Recall** = fraction of all real objects that are correctly detected (true positives / (true positives + false negatives)).
+
 ## Matlab tutorials walkthrough
 
 Practical work is based on 2 Matlab examples:

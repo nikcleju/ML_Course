@@ -261,6 +261,8 @@ window.Quarto = {
 <section id="evaluation-metrics" class="level3">
 <h3 class="anchored" data-anchor-id="evaluation-metrics">Evaluation metrics</h3>
 <p>Detection quality is usually reported with Average Precision (AP) for each class and mean AP (mAP) over all classes. Lowering detection thresholds increases recall (fewer missed objects) but can lower precision (more false positives); raising thresholds does the opposite. Keep the precision/recall trade-off in mind when adjusting score/overlap thresholds in the exercises.</p>
+<p><strong>Precision</strong> = fraction of reported detections that are correct (true positives / (true positives + false positives)).<br>
+<strong>Recall</strong> = fraction of all real objects that are correctly detected (true positives / (true positives + false negatives)).</p>
 </section>
 </section>
 <section id="matlab-tutorials-walkthrough" class="level2" data-number="3">
