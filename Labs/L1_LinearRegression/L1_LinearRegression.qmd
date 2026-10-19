@@ -26,7 +26,7 @@ Students should understand and be able use a linear regression model in Matlab
 
 A typical job in Machine Learning is to **predict** an output $y$ from some given data $(x_1, ... x_n)$:
 
-$$X = \begin{bmatrix} x_1 & x_2 & \dots & x_N \end{bmatrix} \rightarrow y$$
+$$X = \begin{bmatrix} x_1 & x_2 & \dots & x_n \end{bmatrix} \rightarrow y$$
 
 In **supervised learning**, we are given many examples (input-output pairs) out of which we need to deduce the prediction rule.
 
@@ -39,13 +39,13 @@ Depending on the meaning of $y$, we can have:
 
 The linear regression model: the output is assumed to be a **linear combination** of the inputs.
 
-$$y \approx w_1 x_1 + w_2 x_2 + ... + w_N x_N + b.$$
+$$y \approx w_1 x_1 + w_2 x_2 + ... + w_n x_n + b.$$
 
 The coefficients $w_i$ and $b$ are parameters we need to estimate/find. "Learning" means finding good values for the parameters, which get the job done.
 
 ## Linear regression: the parameters
 
-The parameters of the linear regression model are the **weights** $w_1, w_2, ... w_N$ and the **bias** value $b$ (also known as the **intercept**).
+The parameters of the linear regression model are the **weights** $w_1, w_2, ... w_n$ and the **bias** value $b$ (also known as the **intercept**).
 
 ## Cost function (loss function)
 
@@ -54,7 +54,7 @@ Given some parameters $w_i$ and $b$, how do we know if they are good?
 For an input vector $X$:
 
 - we compute the **prediction**:
-  $$\hat{y} = w_1 x_1 + w_2 x_2 + ... + w_N x_N + b$$
+  $$\hat{y} = w_1 x_1 + w_2 x_2 + ... + w_n x_n + b$$
 - we compare the prediction against the true result ("**ground-truth**") with the **cost function** (also known as **loss function**):
   $$J = (\hat{y} - y)^2$$
 
@@ -66,7 +66,7 @@ The cost function defines what is good and what is bad, depending on its result 
 If we have many data (input-output pairs), the overall cost is the average of the cost for each entry:
 $$J = \frac{1}{N} \sum_i (\hat{y}^i - y^i)^2$$
 
-The cost function can be anything. Here, and typically for linear regression, we have the **quadratic cost function** (also known as "least squares", "$\ell_2$ norm", ...). This is typical good cost function for regression, but not so good for classification problems.
+The cost function can be anything. Here, and typically for linear regression, we have the **quadratic cost function** (also known as "least squares", "squared $\ell_2$ norm", ...). This is typical good cost function for regression, but not so good for classification problems.
 $$(\hat{y} - y)^2$$
 
 Other cost functions can be used, and they lead to different results (sometimes better, sometimes worse, depending on the problem).
@@ -86,7 +86,7 @@ x_1^2 & x_2^2 & x_3^2 & ... & x_{11}^2 & 1 \\
 x_1^N & x_2^N & x_3^N & ... & x_{11}^N & 1 \\
 \end{bmatrix}
 \cdot
-\begin{bmatrix} w_1 \\ w_2 \\ \vdots \\ w_N \\ b \end{bmatrix}$$
+\begin{bmatrix} w_1 \\ w_2 \\ \vdots \\ w_{11} \\ b \end{bmatrix}$$
 
 Naming the matrices and vectors as $Y$, $\hat{Y}$, $X$, $W$, we have:
 $$Y \approx \hat{Y} = X \cdot W$$
@@ -95,27 +95,32 @@ Note two important things:
 
 - We can treat $b$ just like another weight, which multiplies some constant value 1. We can extend the input matrix with a column of 1's, and consider $b$ just like the 12-th weight in $W$.
 - The same weights appear in all linear combinations. They are the unknowns in this linear equation system.
-- This is a **massively overcomplete** equation system. There is probably no exact solution, but there exists a **least-squares solution**, i.e. the solution vector $W$ which makes the predictions $\hat{Y}$ **as close as possible** to the true values $Y$ (i.e. minimum cost).
+- This is a **massively overdetermined** equation system. There is probably no exact solution, but there exists a **least-squares solution**, i.e. the solution vector $W$ which makes the predictions $\hat{Y}$ **as close as possible** to the true values $Y$ (i.e. minimum cost).
 
 ## How to train linear regression?
 
 **Training** = **learning** = finding good values for the unknown parameters.
 
-For linear regression, we can do it in three ways:
+For linear regression, we can do it in four ways:
 
 ### A. Closed form solution
 
 When the cost function is the quadratic, the best solution can actually be found analytically (this may be the only such case in the whole of Machine Learning :) ):
 
-$$W_{optimal} = X^\dagger Y = \left( X^* X \right)^{-1} X^* \cdot Y$$
+$$W_{optimal} = X^\dagger Y$$
 
 This is not true anymore if we change the cost function.
 
-The sign `*` signifies **transposition**.
+The sign $\dagger$ signifies the **pseudo-inverse** of a matrix. The pseudo-inverse can be computed in Matlab with the function `pinv(X)`,
+and in our case ($X$ is a ``tall'' matrix with linear independent columns) is defined as:
+
+$$\left( X^* X \right)^{-1} X^*$$
+
+where $X^*$ is the **conjugate transpose** of $X$ (in our case, just the transpose, since all values are real).
 
 ### B. Matlab function doing the job for us
 
-Linear regression can be fitted in Matlab using the function `fitml()`:
+Linear regression can be fitted in Matlab using the function `fitlm()`:
 
 ```{matlab}
 mdl = fitlm(X,Y)  % X are the inputs, Y is the target vector, mdl is a model object
@@ -147,19 +152,20 @@ The derivative tells us how the cost $J$ changes for a small increase in the par
      $$ w_i = w_i - \mu \cdot \frac{d J}{d w_i}$$
 
 If we group all derivatives in a vector, this is known as the **gradient** vector:
-$$\nabla W = \begin{bmatrix} \frac{d J}{d w_1} & \frac{d J}{d w_2} & ... & \frac{d J}{d w_{k}}\end{bmatrix}.$$
+$$\nabla W = \begin{bmatrix} \frac{d J}{d w_1} & \frac{d J}{d w_2} & ... & \frac{d J}{d w_{k}}\end{bmatrix}^T.$$
 
 In matrix form, the update rule can be written as:
 $$W = W - \mu \nabla W.$$
 
 For linear regression with the quadratic cost function, it can be shown that the gradient is equal to:
-$$\nabla W = X^* (\hat{Y} - Y)$$
+$$\nabla W = \frac{2}{N }X^T (\hat{Y} - Y)$$
+
 
 # Practical work
 
 The data used in this example comes from here: https://www.kaggle.com/uciml/red-wine-quality-cortez-et-al-2009
 
-The data contains 11 numerical chemical measurements for some different brands of red wines, together with a quality score indicated by buyers.
+The data contains 11 numerical chemical measurements for some different brands of red wines, together with a quality score indicated by experts.
 The job is to determine how do the measured parameters influence the quality score. The ultimate goal is to predict the quality for some new type of red wine, based on its measurements.
 
 Inputs:
@@ -232,15 +238,16 @@ $$x \rightarrow \frac{x - \mu}{\sigma},$$
 
 where $\mu$ is the mean and $\sigma$ is the standard deviation of every input column ($\sigma^2$ is the variance).
 
-Do this preprocessing and repeat the training from above. You can use the Matlab function `normalize()` for this purpose. How are the results?
+Note that the additional column of 1's (for the bias) should not be normalized,
+since it is constant and has no variance.
 
-In Matlab, this can be achieved with the function `zscore()` or `normalize()` (depending on Matlab version).
+In Matlab, this normalization can be achieved with the function `zscore()` or `normalize()` (depending on Matlab version).
 
-Task: normalize the input data and recompute. From now on, use only the normalized data.
+**Task**: normalize the input data and recompute. From now on, use only the normalized data.
 
 - **Question**: According to the new model parameters, which is the most important factor in determining the perceived quality of the wine?
 
-**Task 4**: Compute the solution with the Matlab function `fitml()` and check that it is the same
+**Task 4**: Compute the solution with the Matlab function `fitlm()` and check that it is the same (note that `fitlm()` provides the intercept $b$ separately, so you need to compare the weights $w_i$ only).
 
 ```{matlab}
 %======================
@@ -256,7 +263,7 @@ Task: normalize the input data and recompute. From now on, use only the normaliz
 %======================
 ```
 
-**Task 5**: Implement optimization with Gradient Descent
+**Task 6**: Implement optimization with Gradient Descent
 
 ```{matlab}
 %======================
@@ -279,7 +286,7 @@ for iter = 1:number_of_epochs
     dW = ...
 
     % Update the weights
-    mu = 0.0001;           % try multiple values here
+    mu = 0.0001;           % try multiple values here: 0.0001, 0.001, 0.01, 0.1, 1
     W = W - mu * dW;
 
     % Store the weights history
@@ -289,18 +296,18 @@ end
 % Plot the error and the evolution of the weights
 plot(J)
 figure
-plot(W_hist)
+plot(W_hist')  % Transpose to have each weight as a column
 ```
 
-**Task 6**: Create new features
+**Task 7**: Create new features
 
 The linear model tries to estimate the output only as a linear combination of the inputs $x_i$. But what if the output depends, say, on the squared value $x_i^2$ of an input? The model cannot capture this. Instead, we can create new features manually, by performing transformations of the input data.
 
-Augment the existing dataset by appending, for every column $x_i$, new columns with the squared values $x_i^2$, and also all possible products $x_i \cdot x_j$. Then repeat the training process on the augmented data. How are the results?
+Augment the existing dataset by appending, for every column $x_i$, new columns with the squared values $x_i^2$, and also all possible products $x_i \cdot x_j$. Then repeat the training process on the augmented data. How are the results (final training error) compared to the original?
 
-**Task 7**: Change dataset
+**Task 8**: Change dataset
 
-Perform linear regression on the dataset available in "Admission_Predict_Ver1.1.csv", using one of the methods described above (your choice). 
+Perform linear regression on the dataset available in "Admission_Predict_Ver1.1.csv", using one of the methods described above (your choice).
 
 Read the description of the dataset from it's original homepage: [https://www.kaggle.com/datasets/mohansacharya/graduate-admissions/](https://www.kaggle.com/datasets/mohansacharya/graduate-admissions/).
 
