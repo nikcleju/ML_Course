@@ -138,4 +138,4 @@ fprintf('Training-mean baseline        --          %8.3f\n', baselineRMSE);
 fprintf('Vehicle weight only       %8.3f          %8.3f\n', trainCostSingle, rmseSingle);
 fprintf('Three predictors          %8.3f          %8.3f\n', trainCostMultiple, rmseMultiple);
 
-%% 6. Discussion and self-check (see worksheet)
+%% 6. Self-check and deliverables (see worksheet)

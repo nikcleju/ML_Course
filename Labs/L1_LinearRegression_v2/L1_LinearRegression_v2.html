@@ -2213,7 +2213,8 @@ vertical-align: -.125em;
   <li><a href="#objective-and-plan" id="toc-objective-and-plan" class="nav-link active" data-scroll-target="#objective-and-plan"><span class="header-section-number">1</span> Objective and plan</a></li>
   <li><a href="#before-starting" id="toc-before-starting" class="nav-link" data-scroll-target="#before-starting"><span class="header-section-number">2</span> Before starting</a>
   <ul class="collapse">
-  <li><a href="#matlab-survival-guide" id="toc-matlab-survival-guide" class="nav-link" data-scroll-target="#matlab-survival-guide"><span class="header-section-number">2.1</span> MATLAB survival guide</a></li>
+  <li><a href="#evidence-of-your-work" id="toc-evidence-of-your-work" class="nav-link" data-scroll-target="#evidence-of-your-work"><span class="header-section-number">2.1</span> Evidence of your work</a></li>
+  <li><a href="#matlab-survival-guide" id="toc-matlab-survival-guide" class="nav-link" data-scroll-target="#matlab-survival-guide"><span class="header-section-number">2.2</span> MATLAB survival guide</a></li>
   </ul></li>
   <li><a href="#linear-regression-concepts" id="toc-linear-regression-concepts" class="nav-link" data-scroll-target="#linear-regression-concepts"><span class="header-section-number">3</span> Linear regression concepts</a>
   <ul class="collapse">
@@ -2279,7 +2280,7 @@ vertical-align: -.125em;
 | Task 2: inspect and plot real data | 20 min |
 | Tasks 3–4: baseline and one-predictor model | 30 min |
 | Task 5: three-predictor model | 25 min |
-| Task 6: discussion and self-check | 15 min |
+| Task 6: self-check and report assembly | 15 min |
 | Troubleshooting/buffer, used throughout | 20 min |
 | **Total** | **150 min** |
 -->
@@ -2294,8 +2295,19 @@ vertical-align: -.125em;
 <li>Complete only the four expressions labelled <strong>TODO A–D</strong>. The <code>[]</code> and <code>NaN</code> placeholders deliberately trigger explanatory checks when reached. If you run the whole unfinished script, it stops at the first unfinished task.</li>
 <li>Save your changes regularly. If you restart MATLAB or clear the workspace, rerun the earlier sections. Do not rename or move the CSV files.</li>
 </ol>
-<section id="matlab-survival-guide" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="matlab-survival-guide"><span class="header-section-number">2.1</span> MATLAB survival guide</h2>
+<section id="evidence-of-your-work" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="evidence-of-your-work"><span class="header-section-number">2.1</span> Evidence of your work</h2>
+<p>Each task ends with a <strong>Deliverables</strong> checklist. Collect the listed items into a short screenshot-based report and send it to the instructor.</p>
+<ul>
+<li>Capture screenshots as you finish each task. In particular, capture Task 2’s scatterplot before Task 4 adds a fitted line to the same figure.</li>
+<li>Include the relevant code, results, or figure only. Keep code and numbers readable, and keep plot axes, units, and legends visible. One screenshot may cover several checklist items; do not duplicate it unnecessarily.</li>
+<li>Organize the report under <strong>Task 1–Task 6</strong>, with your name and group at the top. Use short captions to identify screenshots. Do not retype printed results or write a theory section.</li>
+<li>Send <strong>one PDF</strong>, named <code>Lab1_Name_Group.pdf</code>, through the channel specified by the instructor. Separate image files or a separate <code>.m</code> submission are not required unless requested.</li>
+<li>Use the final Task 6 block for the short answers and PDF assembly. There is no additional programming task or extended report to complete after the session.</li>
+</ul>
+</section>
+<section id="matlab-survival-guide" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="matlab-survival-guide"><span class="header-section-number">2.2</span> MATLAB survival guide</h2>
 <p>We use a numeric matrix as a dataset, with <strong>rows = observations</strong>, <strong>columns = variables</strong>.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="va">A</span> <span class="op">=</span> [<span class="fl">10</span> <span class="fl">20</span><span class="op">;</span> <span class="fl">30</span> <span class="fl">40</span><span class="op">;</span> <span class="fl">50</span> <span class="fl">60</span>]<span class="op">;</span>   <span class="co">% Three rows, two columns</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="va">A</span>(<span class="fl">2</span><span class="op">,</span><span class="fl">1</span>)                      <span class="co">% Row 2, column 1: gives 30</span></span>
@@ -2449,16 +2461,20 @@ J_{\mathrm{train}}(b,w)
 <section id="task-1-connect-the-model-parameters-and-cost" class="level2" data-number="4.1">
 <h2 data-number="4.1" class="anchored" data-anchor-id="task-1-connect-the-model-parameters-and-cost"><span class="header-section-number">4.1</span> Task 1: connect the model, parameters, and cost</h2>
 <p><strong>Goal:</strong> see how training selects one line by minimizing a numerical cost.</p>
-<p><strong>Run starter section 1.</strong> The bundled <code>synthetic_line.csv</code> contains 40 artificial observations generated from <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi><mo>=</mo><mn>3</mn><mo>+</mo><mn>2</mn><mi>x</mi><mo>+</mo><mi>ε</mi></mrow><annotation encoding="application/x-tex">y=3+2x+\varepsilon</annotation></semantics></math>, where <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ε</mi><annotation encoding="application/x-tex">\varepsilon</annotation></semantics></math> is random noise with mean 0 and standard deviation 1.5. These are not measurements of real objects; the units are arbitrary.</p>
+<p><strong>Run starter section 1.</strong> The bundled <code>synthetic_line.csv</code> contains 40 artificial observations generated from <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi><mo>=</mo><mn>3</mn><mo>+</mo><mn>2</mn><mi>x</mi><mo>+</mo><mi>ε</mi></mrow><annotation encoding="application/x-tex">y=3+2x+\varepsilon</annotation></semantics></math>, where <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ε</mi><annotation encoding="application/x-tex">\varepsilon</annotation></semantics></math> is random noise with mean 0 and standard deviation 1.5. These are not measurements of real objects; the units are arbitrary. Here we know the data-generation formula; for the real car data, we will not know the true relationship in advance.</p>
 <p>The supplied code compares a deliberately untrained candidate (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi><mo>=</mo><mn>0</mn><mo>,</mo><mi>w</mi><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">b=0,w=1</annotation></semantics></math>) with the trained line on the <strong>same</strong> 40 observations. It prints both training costs and plots both lines. There is no coding TODO in this task.</p>
 <p><strong>Steps</strong></p>
 <ol type="1">
 <li>Inspect <code>size(x)</code> and <code>size(y)</code>. Both should be <code>40 1</code>.</li>
 <li>Locate the bias and weight in the printed output. Are they near 3 and 2? Do not expect exact equality: the observations include noise.</li>
-<li>Identify the model, its two parameters, and the cost being minimized. Compare the printed candidate and trained costs. Which parameter choice fits better?</li>
+<li>Identify the model, its two parameters, and the cost being minimized. Compare the printed candidate and trained costs. Which parameter choice fits better? Check that the trained cost is no larger than the candidate cost.</li>
 <li>Explain why the fitted line does not pass through every point. Would missing individual points mean that fitting failed? The generating parameters describe how noisy data were made; they need not exactly minimize the cost of this particular finite sample.</li>
 </ol>
-<p><strong>Checkpoint:</strong> one scatterplot with candidate and trained lines, two fitted parameters, and a smaller (or equal) cost for the trained line. The data-generation formula is known here; that will not be true for real data.</p>
+<p><strong>Deliverables</strong></p>
+<ul>
+<li>Figure 1 showing the observations, untrained candidate line, and trained line.</li>
+<li>The printed fitted bias and model weight, and the candidate/trained MSE costs. Include readable screenshots of the figure and output; a combined screenshot is sufficient if everything is visible.</li>
+</ul>
 </section>
 <section id="task-2-inspect-cars" class="level2" data-number="4.2">
 <h2 data-number="4.2" class="anchored" data-anchor-id="task-2-inspect-cars"><span class="header-section-number">4.2</span> Task 2: inspect cars</h2>
@@ -2521,11 +2537,15 @@ J_{\mathrm{train}}(b,w)
 <p>Higher MPG means travelling farther on the same fuel quantity: <strong>better fuel economy</strong>, not higher fuel consumption per distance. The records describe historical cars, not today’s vehicle population. No missing-value handling is required for the selected columns. Vehicle weight is divided by 1000 to make the corresponding model weight easier to interpret: it describes the predicted MPG change per 1000 lb of vehicle weight.</p>
 <p><strong>Steps</strong></p>
 <ol type="1">
-<li>Inspect <code>D(1:5,:)</code>, <code>size(Xtrain)</code>, and <code>size(ytrain)</code>.</li>
-<li>In <strong>TODO A</strong>, select the first predictor column of <code>Xtrain</code> as <code>xWeight</code>. Use the indexing example in the survival guide.</li>
-<li>Inspect the training scatterplot. Before fitting, predict whether the model weight will be positive or negative. Is a straight line likely to be exact?</li>
+<li>Inspect <code>D(1:5,:)</code>, <code>size(Xtrain)</code>, and <code>size(ytrain)</code>. Check that <code>Xtrain</code> is <code>318 3</code> and <code>ytrain</code> is <code>318 1</code>.</li>
+<li>In <strong>TODO A</strong>, select the first predictor column of <code>Xtrain</code> as <code>xWeight</code>. Use the indexing example in the survival guide. After running section 2, check that <code>size(xWeight)</code> is <code>318 1</code>.</li>
+<li>Inspect the scatterplot, which shows only training observations. Before fitting, predict whether the model weight will be positive or negative. Is a straight line likely to be exact?</li>
 </ol>
-<p><strong>Checkpoint:</strong> <code>Xtrain</code> is <code>318 3</code>, <code>ytrain</code> is <code>318 1</code>, and <code>xWeight</code> is <code>318 1</code>. The plot shows only training observations.</p>
+<p><strong>Deliverables</strong></p>
+<ul>
+<li>Your completed <strong>TODO A</strong> code and the displayed sizes of <code>Xtrain</code>, <code>ytrain</code>, and <code>xWeight</code> (use <code>size(...)</code> in the Command Window).</li>
+<li>The training scatterplot of vehicle weight versus MPG, <strong>before adding the fitted line</strong>. Capture the code/sizes and Figure 2.</li>
+</ul>
 </section>
 <section id="task-3-establish-a-baseline" class="level2" data-number="4.3">
 <h2 data-number="4.3" class="anchored" data-anchor-id="task-3-establish-a-baseline"><span class="header-section-number">4.3</span> Task 3: establish a baseline</h2>
@@ -2534,9 +2554,12 @@ J_{\mathrm{train}}(b,w)
 <p><strong>Steps</strong></p>
 <ol type="1">
 <li>Read the three lines computing <code>baselineValue</code>, <code>baselinePred</code>, and <code>baselineRMSE</code>.</li>
-<li>State what prediction is made for every test car and why the mean uses only the training rows. Identify the baseline test RMSE in the output.</li>
+<li>State what prediction is made for every test car and why the mean uses only the training rows. Identify the baseline test RMSE in the output: it is one number measured in MPG. Keep it for the model comparison in Tasks 4–5.</li>
 </ol>
-<p><strong>Checkpoint:</strong> one baseline test RMSE, measured in MPG. Keep this value for the comparison table; a model’s error needs a reference, not just a small-looking number.</p>
+<p><strong>Deliverables</strong></p>
+<ul>
+<li>The baseline prediction value and its printed test RMSE. Display <code>baselineValue</code> in the Command Window to show the prediction value. One screenshot of these results is enough.</li>
+</ul>
 </section>
 <section id="task-4-does-vehicle-weight-help" class="level2" data-number="4.4">
 <h2 data-number="4.4" class="anchored" data-anchor-id="task-4-does-vehicle-weight-help"><span class="header-section-number">4.4</span> Task 4: does vehicle weight help?</h2>
@@ -2545,12 +2568,17 @@ J_{\mathrm{train}}(b,w)
 <p><strong>Steps</strong></p>
 <ol type="1">
 <li>In <strong>TODO B</strong>, select the vehicle-weight column of <code>Xtest</code>. It must be <code>80 1</code>.</li>
-<li>The fitting and prediction calls are supplied. Read them and identify which rows provide the fitted parameters and which rows receive predictions. State which cost <code>fitlm</code> minimizes: training MSE or test RMSE.</li>
+<li>The fitting and prediction calls are supplied. Read them and identify which rows provide the fitted parameters and which rows receive predictions. State which cost <code>fitlm</code> minimizes: training MSE or test RMSE. Do not refit the model using test targets.</li>
 <li>In <strong>TODO C</strong>, compute the test RMSE from <code>predSingle</code> and <code>ytest</code>, using the baseline expression as a pattern. Check that the result is a single number.</li>
-<li>Compare the printed test RMSE with the baseline.</li>
+<li>Check that Figure 2 now shows the fitted line over the training observations. Compare the printed test RMSE with the baseline.</li>
 <li>Read the fitted weight. Interpret its sign and units: a one-unit change in this predictor means <strong>1000 lb</strong>, not 1 lb. Is the bias, which predicts MPG at zero vehicle weight, physically meaningful for a real car?</li>
 </ol>
-<p><strong>Checkpoint:</strong> the training scatterplot now includes a fitted line; the model using vehicle weight has a test RMSE. Do not fit the line again using test targets.</p>
+<p><strong>Deliverables</strong></p>
+<ul>
+<li>Your completed <strong>TODO B and TODO C</strong> code.</li>
+<li>Figure 2 with the training observations and fitted line.</li>
+<li>The printed bias, model weight, and test RMSE for the model using only vehicle weight. Use screenshots of the code, figure, and output; combine them where practical.</li>
+</ul>
 </section>
 <section id="task-5-do-two-more-measurements-help" class="level2" data-number="4.5">
 <h2 data-number="4.5" class="anchored" data-anchor-id="task-5-do-two-more-measurements-help"><span class="header-section-number">4.5</span> Task 5: do two more measurements help?</h2>
@@ -2560,20 +2588,30 @@ J_{\mathrm{train}}(b,w)
 <ol type="1">
 <li>In <strong>TODO D</strong>, use the same fitting pattern as Task 4, but provide all three columns of <code>Xtrain</code> and the same <code>ytrain</code> vector.</li>
 <li>The code prints <strong>training MSE costs</strong> and <strong>test RMSE values</strong>. Identify the four parameters of the three-predictor model; what quantity was minimized?</li>
-<li>Compare the three <strong>test RMSE</strong> values printed in the Command Window: the training-mean baseline, the vehicle-weight-only model, and the three-predictor model. Do not assume that adding predictors must improve the test result; an unchanged or worse result is valid.</li>
+<li>Compare the three <strong>test RMSE</strong> values printed in the Command Window: the training-mean baseline, the vehicle-weight-only model, and the three-predictor model. Do not assume that adding predictors must improve the test result; an unchanged or worse result is valid. Identify the model with the lowest test RMSE, checking that all three results use the same 80 test cars.</li>
 </ol>
 <p>Training MSE cost for the larger least-squares model should not increase, apart from numerical rounding: it can reproduce the smaller model by setting the two extra weights to zero. Test RMSE has no such guarantee. One split is a small experiment, not proof that a model will always win.</p>
-<p><strong>Checkpoint:</strong> identify which model has the lowest test RMSE, with all three results evaluated on the same 80 test cars. Do not rank the three predictors by raw coefficient magnitude: their units differ and the measurements can be correlated. A fitted association is not a causal effect. These are observational records, not an experiment changing only vehicle weight: heavier cars may also differ in engine design and other characteristics. The fitted weight does not isolate what would happen if we changed one car’s vehicle weight alone.</p>
+<p>Do not rank the three predictors by raw coefficient magnitude: their units differ and the measurements can be correlated. A fitted association is not a causal effect. These are observational records, not an experiment changing only vehicle weight: heavier cars may also differ in engine design and other characteristics. The fitted weight does not isolate what would happen if we changed one car’s vehicle weight alone.</p>
+<p><strong>Deliverables</strong></p>
+<ul>
+<li>Your completed <strong>TODO D</strong> code.</li>
+<li>The printed comparison showing baseline test RMSE, and training MSE/test RMSE for the two fitted models. Capture the code and results table; no manually copied table is needed.</li>
+</ul>
 </section>
 <section id="task-6-discuss-and-check-your-understanding" class="level2" data-number="4.6">
 <h2 data-number="4.6" class="anchored" data-anchor-id="task-6-discuss-and-check-your-understanding"><span class="header-section-number">4.6</span> Task 6: discuss and check your understanding</h2>
 <p><strong>Goal:</strong> explain what training optimized and what the test comparison establishes.</p>
-<p>Use your plots and the printed results to discuss the questions below with a classmate or the instructor. These are in-lab checks: <strong>no written lab report, figure export, or file submission is required</strong>.</p>
+<p>Use your plots and printed results to answer the questions below. Include <strong>1–2 sentences per question</strong> in your screenshot report.</p>
 <ol type="1">
 <li>Interpret the model weight <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>w</mi><annotation encoding="application/x-tex">w</annotation></semantics></math> when vehicle weight is the only predictor, including its sign and units. Why is it not evidence that experimentally changing vehicle weight would cause exactly this change in MPG?</li>
 <li>Which prescribed model has the lowest test RMSE? Does the model using only vehicle weight beat the baseline, and do the extra predictors improve on that model in this split? Use your numbers.</li>
 <li>What parameters and cost function are involved in training the model using only vehicle weight? Why can minimizing that cost still leave imperfect predictions on the test rows? Mention at least one limitation of this experiment.</li>
 </ol>
+<p><strong>Deliverables</strong></p>
+<ul>
+<li>Three short numbered answers to the self-check questions.</li>
+<li>Assemble the screenshots from Tasks 1–5 and these answers into the single PDF described under “Evidence of your work”. Check that your name, group, task headings, code, plot labels, and numerical results are readable, then send it to the instructor through the indicated channel.</li>
+</ul>
 <p>This is the end of the required lab. If you are behind schedule, ask for help on the four TODO expressions; do not spend the buffer exploring additional models.</p>
 </section>
 </section>

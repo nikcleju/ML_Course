@@ -10,18 +10,22 @@ Start with **[L1_LinearRegression_v2.qmd](L1_LinearRegression_v2.qmd)** and
 - Four TODO expressions intentionally stop execution until completed; this is a
   worksheet, not a ready-to-run solution. Everything else is supplied.
 - No Python, internet connection, extra MATLAB add-ons, or data downloads.
-- Compare the plots and printed results during the session, then discuss the
-  final questions. No written lab report, figure export, or file submission is required.
+- Each task lists its deliverables. Compile the listed screenshots and three
+  short self-check answers into one PDF (`Lab1_Name_Group.pdf`) and send it to
+  the instructor. Capture Task 2's scatterplot before Task 4 modifies it.
+  No theory write-up or separate source-code submission is required unless requested.
 
 ## Instructor preparation
 
 Check toolbox availability before class. Demonstrate Run Section and indexing
 before starting the first task. Budget 20 of the 150 minutes for support.
+Use the final 15-minute block for the short self-check and
+screenshot-report assembly, rather than adding homework or new coding tasks.
 If students need more help, supply a TODO expression individually rather than
 adding mandatory work outside the session. No separate answer key is bundled.
 
 The worksheet follows **model → parameters → training cost → cost minimization
-→ held-out evaluation**. Tasks use explicit goals, steps, and checkpoints.
+→ held-out evaluation**. Tasks use explicit goals, steps with practical checks, and deliverables.
 The synthetic example compares an untrained candidate line with the fitted line
 and prints both MSE costs; the car comparison distinguishes training MSE from
 test RMSE. This adds no extra TODOs or session time.
